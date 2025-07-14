@@ -1,4 +1,5 @@
 
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Products from "@/components/Products";
@@ -10,6 +11,8 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/30 relative overflow-x-hidden">
+      <Header />
+      
       {/* Animated background elements */}
       <div className="fixed inset-0 -z-10">
         {/* Floating geometric shapes */}

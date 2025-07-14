@@ -1,8 +1,20 @@
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Mail } from "lucide-react";
+import { ContentStore, HeroContent } from "@/lib/contentStore";
 
 const Hero = () => {
+  const [content, setContent] = useState<HeroContent | null>(null);
+
+  useEffect(() => {
+    const contentStore = ContentStore.getInstance();
+    const siteContent = contentStore.getContent();
+    setContent(siteContent.hero);
+  }, []);
+
+  if (!content) return <div>Loading...</div>;
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 overflow-hidden">
       {/* Background Pattern */}
@@ -17,17 +29,16 @@ const Hero = () => {
           <div className="text-white space-y-8">
             <div className="space-y-4 animate-fade-in">
               <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium">
-                WSN - Wellstocked Nigeria Limited
+                {content.subtitle}
               </div>
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                Premium Office
+                {content.title.split(' ').slice(0, 2).join(' ')}
                 <span className="block bg-gradient-to-r from-teal-300 to-blue-300 bg-clip-text text-transparent">
-                  Equipment & Automation
+                  {content.title.split(' ').slice(2).join(' ')}
                 </span>
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed">
-                We are a recognized, innovative, and authorized distributor of quality office equipment and automation solutions in Nigeria. 
-                Serving diverse sectors with excellence for over 20 years.
+                {content.description}
               </p>
             </div>
             
@@ -57,16 +68,16 @@ const Hero = () => {
             <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
               <div className="space-y-6">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold text-white mb-2">20+ Years</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">{content.stats.years} Years</h3>
                   <p className="text-blue-200">of Excellence</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div className="bg-white/5 rounded-xl p-4">
-                    <div className="text-3xl font-bold text-teal-300">500+</div>
+                    <div className="text-3xl font-bold text-teal-300">{content.stats.clients}</div>
                     <div className="text-sm text-blue-200">Clients Served</div>
                   </div>
                   <div className="bg-white/5 rounded-xl p-4">
-                    <div className="text-3xl font-bold text-teal-300">24/7</div>
+                    <div className="text-3xl font-bold text-teal-300">{content.stats.support}</div>
                     <div className="text-sm text-blue-200">Support</div>
                   </div>
                 </div>

@@ -6,14 +6,51 @@ import { ContentStore, HeroContent } from "@/lib/contentStore";
 
 const Hero = () => {
   const [content, setContent] = useState<HeroContent | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const contentStore = ContentStore.getInstance();
-    const siteContent = contentStore.getContent();
-    setContent(siteContent.hero);
+    console.log("Hero component mounted, loading content...");
+    try {
+      const contentStore = ContentStore.getInstance();
+      const siteContent = contentStore.getContent();
+      console.log("Content loaded:", siteContent.hero);
+      setContent(siteContent.hero);
+    } catch (error) {
+      console.error("Error loading hero content:", error);
+      // Fallback content if store fails
+      setContent({
+        title: "Premium Office Equipment & Automation",
+        subtitle: "WSN - Wellstocked Nigeria Limited",
+        description: "We are a recognized, innovative, and authorized distributor of quality office equipment and automation solutions in Nigeria. Serving diverse sectors with excellence for over 20 years.",
+        stats: {
+          years: "20+",
+          clients: "500+",
+          support: "24/7"
+        }
+      });
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
-  if (!content) return <div>Loading...</div>;
+  console.log("Hero render - isLoading:", isLoading, "content:", content);
+
+  if (isLoading) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700">
+        <div className="text-white text-xl">Loading Hero Section...</div>
+      </section>
+    );
+  }
+
+  if (!content) {
+    console.error("Hero content is null after loading");
+    return (
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700">
+        <div className="text-white text-xl">Error loading Hero content</div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 overflow-hidden">

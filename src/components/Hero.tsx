@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Mail } from "lucide-react";
@@ -37,7 +36,7 @@ const Hero = () => {
 
   if (isLoading) {
     return (
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 z-10">
         <div className="text-white text-xl">Loading Hero Section...</div>
       </section>
     );
@@ -46,14 +45,14 @@ const Hero = () => {
   if (!content) {
     console.error("Hero content is null after loading");
     return (
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 z-10">
         <div className="text-white text-xl">Error loading Hero content</div>
       </section>
     );
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 overflow-hidden z-10">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 border-2 border-white/20 rounded-full animate-pulse"></div>
@@ -61,7 +60,7 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/4 w-16 h-16 border-2 border-white/20 rounded-full animate-pulse delay-500"></div>
       </div>
       
-      <div className="container mx-auto px-4 z-10">
+      <div className="container mx-auto px-4 z-20 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white space-y-8">
             <div className="space-y-4 animate-fade-in">

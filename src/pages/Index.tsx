@@ -43,7 +43,7 @@ const Index = () => {
       </div>
 
       {/* Content sections with staggered animations */}
-      <div className="relative z-0">
+      <div className="relative">
         <div className="animate-fade-in">
           <Hero />
         </div>

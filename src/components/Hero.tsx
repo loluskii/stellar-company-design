@@ -6,54 +6,17 @@ import { ContentStore, HeroContent } from "@/lib/contentStore";
 
 const Hero = () => {
   const [content, setContent] = useState<HeroContent | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Hero component mounted, loading content...");
-    try {
-      const contentStore = ContentStore.getInstance();
-      const siteContent = contentStore.getContent();
-      console.log("Content loaded:", siteContent.hero);
-      setContent(siteContent.hero);
-    } catch (error) {
-      console.error("Error loading hero content:", error);
-      // Fallback content if store fails
-      setContent({
-        title: "Premium Office Equipment & Automation",
-        subtitle: "WSN - Wellstocked Nigeria Limited",
-        description: "We are a recognized, innovative, and authorized distributor of quality office equipment and automation solutions in Nigeria. Serving diverse sectors with excellence for over 20 years.",
-        stats: {
-          years: "20+",
-          clients: "500+",
-          support: "24/7"
-        }
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    const contentStore = ContentStore.getInstance();
+    const siteContent = contentStore.getContent();
+    setContent(siteContent.hero);
   }, []);
 
-  console.log("Hero render - isLoading:", isLoading, "content:", content);
-
-  if (isLoading) {
-    return (
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 z-10">
-        <div className="text-white text-xl">Loading Hero Section...</div>
-      </section>
-    );
-  }
-
-  if (!content) {
-    console.error("Hero content is null after loading");
-    return (
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 z-10">
-        <div className="text-white text-xl">Error loading Hero content</div>
-      </section>
-    );
-  }
+  if (!content) return <div>Loading...</div>;
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 overflow-hidden z-10">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 border-2 border-white/20 rounded-full animate-pulse"></div>
@@ -61,7 +24,7 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/4 w-16 h-16 border-2 border-white/20 rounded-full animate-pulse delay-500"></div>
       </div>
       
-      <div className="container mx-auto px-4 z-20 relative">
+      <div className="container mx-auto px-4 z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white space-y-8">
             <div className="space-y-4 animate-fade-in">
@@ -102,6 +65,22 @@ const Hero = () => {
           </div>
           
           <div className="relative animate-fade-in delay-700">
+            {/* Hero Image */}
+            <div className="relative mb-8">
+              <img
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=faces"
+                alt="Professional team working"
+                className="rounded-3xl shadow-2xl w-full h-80 object-cover border-4 border-white/20"
+              />
+              <div className="absolute -bottom-4 -right-4 bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                <img
+                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=150&fit=crop"
+                  alt="Technology workspace"
+                  className="rounded-lg w-24 h-18 object-cover"
+                />
+              </div>
+            </div>
+            
             <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
               <div className="space-y-6">
                 <div className="text-center">

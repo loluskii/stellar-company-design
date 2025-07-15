@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Mail } from "lucide-react";
@@ -101,22 +102,6 @@ const Hero = () => {
           </div>
           
           <div className="relative animate-fade-in delay-700">
-            {/* Hero Image */}
-            <div className="relative mb-8">
-              <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=faces"
-                alt="Professional team working"
-                className="rounded-3xl shadow-2xl w-full h-80 object-cover border-4 border-white/20"
-              />
-              <div className="absolute -bottom-4 -right-4 bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
-                <img
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=150&fit=crop"
-                  alt="Technology workspace"
-                  className="rounded-lg w-24 h-18 object-cover"
-                />
-              </div>
-            </div>
-            
             <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
               <div className="space-y-6">
                 <div className="text-center">

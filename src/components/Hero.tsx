@@ -79,8 +79,8 @@ const Hero = () => {
             {/* Hero Image */}
             <div className="relative h-full">
               <img
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop"
-                alt="Professional office environment with modern technology"
+                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop"
+                alt="Team working with advanced display technology and automation solutions"
                 className="rounded-3xl shadow-2xl w-full h-full min-h-[500px] object-cover border-4 border-white/20"
               />
             </div>

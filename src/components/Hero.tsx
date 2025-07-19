@@ -58,7 +58,7 @@ const Hero = () => {
                 Explore Services
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-full transition-all duration-300 z-40 relative">
+              <Button size="lg" variant="outline" className="border-white text-white bg-white/10 hover:bg-white/20 px-8 py-3 rounded-full transition-all duration-300 z-40 relative">
                 Contact Us
               </Button>
             </div>
@@ -75,40 +75,14 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="relative z-30">
+          <div className="relative z-30 h-full">
             {/* Hero Image */}
-            <div className="relative mb-8">
+            <div className="relative h-full">
               <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&crop=faces"
-                alt="Professional team working"
-                className="rounded-3xl shadow-2xl w-full h-80 object-cover border-4 border-white/20"
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop"
+                alt="Professional office environment with modern technology"
+                className="rounded-3xl shadow-2xl w-full h-full min-h-[500px] object-cover border-4 border-white/20"
               />
-              <div className="absolute -bottom-4 -right-4 bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
-                <img
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=150&fit=crop"
-                  alt="Technology workspace"
-                  className="rounded-lg w-24 h-18 object-cover"
-                />
-              </div>
-            </div>
-            
-            <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-              <div className="space-y-6">
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-white mb-2">{heroContent.stats.years} Years</h3>
-                  <p className="text-blue-200">of Excellence</p>
-                </div>
-                <div className="grid grid-cols-2 gap-4 text-center">
-                  <div className="bg-white/5 rounded-xl p-4">
-                    <div className="text-3xl font-bold text-teal-300">{heroContent.stats.clients}</div>
-                    <div className="text-sm text-blue-200">Clients Served</div>
-                  </div>
-                  <div className="bg-white/5 rounded-xl p-4">
-                    <div className="text-3xl font-bold text-teal-300">{heroContent.stats.support}</div>
-                    <div className="text-sm text-blue-200">Support</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

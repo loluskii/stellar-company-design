@@ -44,7 +44,7 @@ const Index = () => {
 
       {/* Content sections with staggered animations */}
       <div className="relative">
-        <div className="animate-fade-in">
+        <div className="animate-fade-in" style={{ animationFillMode: 'both' }}>
           <Hero />
         </div>
         <div className="animate-slide-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>

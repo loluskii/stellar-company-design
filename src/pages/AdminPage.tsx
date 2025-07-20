@@ -21,13 +21,11 @@ const AdminPage = () => {
   const contentStore = ContentStore.getInstance();
 
   const handleResetContent = () => {
-    if (confirm("Are you sure you want to reset all content to default? This action cannot be undone.")) {
-      contentStore.resetToDefault();
+    if (confirm("Are you sure you want to reset all content to default? This feature is not available yet.")) {
       toast({
-        title: "Content Reset",
-        description: "All content has been reset to default values.",
+        title: "Not Available",
+        description: "Reset functionality will be implemented later.",
       });
-      window.location.reload();
     }
   };
 

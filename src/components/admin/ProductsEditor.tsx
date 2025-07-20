@@ -1,7 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ContentStore, ProductCategory } from "@/lib/contentStore";
@@ -14,49 +14,42 @@ const ProductsEditor = () => {
   const contentStore = ContentStore.getInstance();
 
   useEffect(() => {
-    const siteContent = contentStore.getContent();
-    setProducts(siteContent.products);
+    const loadContent = async () => {
+      await contentStore.loadContent();
+      const siteContent = contentStore.getContent();
+      setProducts(siteContent.products);
+    };
+    loadContent();
   }, []);
 
-  const handleSave = () => {
-    contentStore.updateProducts(products);
-    toast({
-      title: "Products Updated",
-      description: "Your changes have been saved successfully.",
-    });
+  const handleSave = async () => {
+    try {
+      await contentStore.updateProducts(products);
+      toast({
+        title: "Products Updated",
+        description: "Your changes have been saved successfully.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save products.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleCategoryChange = (index: number, field: keyof ProductCategory, value: string | string[]) => {
+  const handleCategoryChange = (index: number, field: keyof ProductCategory, value: string) => {
     const updatedProducts = [...products];
     updatedProducts[index] = { ...updatedProducts[index], [field]: value };
     setProducts(updatedProducts);
   };
 
-  const handleItemChange = (categoryIndex: number, itemIndex: number, value: string) => {
-    const updatedProducts = [...products];
-    const updatedItems = [...updatedProducts[categoryIndex].items];
-    updatedItems[itemIndex] = value;
-    updatedProducts[categoryIndex].items = updatedItems;
-    setProducts(updatedProducts);
-  };
-
-  const addItem = (categoryIndex: number) => {
-    const updatedProducts = [...products];
-    updatedProducts[categoryIndex].items.push("");
-    setProducts(updatedProducts);
-  };
-
-  const removeItem = (categoryIndex: number, itemIndex: number) => {
-    const updatedProducts = [...products];
-    updatedProducts[categoryIndex].items.splice(itemIndex, 1);
-    setProducts(updatedProducts);
-  };
-
   const addCategory = () => {
     const newCategory: ProductCategory = {
-      id: Date.now().toString(),
-      title: "",
-      items: [""]
+      name: "",
+      description: "",
+      image_url: "",
+      sort_order: products.length
     };
     setProducts([...products, newCategory]);
   };
@@ -69,7 +62,7 @@ const ProductsEditor = () => {
   return (
     <div className="space-y-6">
       {products.map((category, index) => (
-        <Card key={category.id}>
+        <Card key={category.id || index}>
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">Category {index + 1}</CardTitle>
@@ -84,43 +77,34 @@ const ProductsEditor = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <Label htmlFor={`title-${index}`}>Category Title</Label>
+              <Label htmlFor={`name-${index}`}>Category Name</Label>
               <Input
-                id={`title-${index}`}
-                value={category.title}
-                onChange={(e) => handleCategoryChange(index, 'title', e.target.value)}
-                placeholder="Category title"
+                id={`name-${index}`}
+                value={category.name}
+                onChange={(e) => handleCategoryChange(index, 'name', e.target.value)}
+                placeholder="Category name"
               />
             </div>
 
             <div>
-              <Label>Products</Label>
-              <div className="space-y-2">
-                {category.items.map((item, itemIndex) => (
-                  <div key={itemIndex} className="flex gap-2">
-                    <Input
-                      value={item}
-                      onChange={(e) => handleItemChange(index, itemIndex, e.target.value)}
-                      placeholder="Product name"
-                    />
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => removeItem(index, itemIndex)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                ))}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => addItem(index)}
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Product
-                </Button>
-              </div>
+              <Label htmlFor={`description-${index}`}>Description</Label>
+              <Textarea
+                id={`description-${index}`}
+                value={category.description}
+                onChange={(e) => handleCategoryChange(index, 'description', e.target.value)}
+                placeholder="Category description"
+                rows={3}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor={`image_url-${index}`}>Image URL (optional)</Label>
+              <Input
+                id={`image_url-${index}`}
+                value={category.image_url || ""}
+                onChange={(e) => handleCategoryChange(index, 'image_url', e.target.value)}
+                placeholder="https://example.com/image.jpg"
+              />
             </div>
           </CardContent>
         </Card>

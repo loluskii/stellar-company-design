@@ -15,9 +15,13 @@ const Services = () => {
   const [services, setServices] = useState<ServiceItem[]>([]);
 
   useEffect(() => {
-    const contentStore = ContentStore.getInstance();
-    const siteContent = contentStore.getContent();
-    setServices(siteContent.services);
+    const loadContent = async () => {
+      const contentStore = ContentStore.getInstance();
+      await contentStore.loadContent();
+      const siteContent = contentStore.getContent();
+      setServices(siteContent.services);
+    };
+    loadContent();
   }, []);
 
   return (

@@ -1,10 +1,11 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { ContentStore, AboutContent } from "@/lib/contentStore";
 import { useToast } from "@/hooks/use-toast";
+import { Plus, Trash2 } from "lucide-react";
 
 const AboutEditor = () => {
   const [content, setContent] = useState<AboutContent | null>(null);
@@ -12,17 +13,29 @@ const AboutEditor = () => {
   const contentStore = ContentStore.getInstance();
 
   useEffect(() => {
-    const siteContent = contentStore.getContent();
-    setContent(siteContent.about);
+    const loadContent = async () => {
+      await contentStore.loadContent();
+      const siteContent = contentStore.getContent();
+      setContent(siteContent.about);
+    };
+    loadContent();
   }, []);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (content) {
-      contentStore.updateAbout(content);
-      toast({
-        title: "About Section Updated",
-        description: "Your changes have been saved successfully.",
-      });
+      try {
+        await contentStore.updateAbout(content);
+        toast({
+          title: "About Section Updated",
+          description: "Your changes have been saved successfully.",
+        });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to save about content.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -32,11 +45,24 @@ const AboutEditor = () => {
     }
   };
 
-  const handleDescriptionChange = (index: number, value: string) => {
+  const handleValueChange = (index: number, value: string) => {
     if (content) {
-      const updatedDescription = [...content.description];
-      updatedDescription[index] = value;
-      setContent({ ...content, description: updatedDescription });
+      const updatedValues = [...content.values];
+      updatedValues[index] = value;
+      setContent({ ...content, values: updatedValues });
+    }
+  };
+
+  const addValue = () => {
+    if (content) {
+      setContent({ ...content, values: [...content.values, ""] });
+    }
+  };
+
+  const removeValue = (index: number) => {
+    if (content) {
+      const updatedValues = content.values.filter((_, i) => i !== index);
+      setContent({ ...content, values: updatedValues });
     }
   };
 
@@ -56,18 +82,14 @@ const AboutEditor = () => {
       </div>
 
       <div>
-        <Label>Description Paragraphs</Label>
-        <div className="space-y-4">
-          {content.description.map((paragraph, index) => (
-            <Textarea
-              key={index}
-              value={paragraph}
-              onChange={(e) => handleDescriptionChange(index, e.target.value)}
-              placeholder={`Paragraph ${index + 1}`}
-              rows={4}
-            />
-          ))}
-        </div>
+        <Label htmlFor="description">Description</Label>
+        <Textarea
+          id="description"
+          value={content.description}
+          onChange={(e) => handleChange('description', e.target.value)}
+          placeholder="Company description"
+          rows={4}
+        />
       </div>
 
       <div>
@@ -93,14 +115,33 @@ const AboutEditor = () => {
       </div>
 
       <div>
-        <Label htmlFor="reach">Company Reach</Label>
-        <Textarea
-          id="reach"
-          value={content.reach}
-          onChange={(e) => handleChange('reach', e.target.value)}
-          placeholder="Company reach and coverage"
-          rows={3}
-        />
+        <Label>Company Values</Label>
+        <div className="space-y-2">
+          {content.values.map((value, index) => (
+            <div key={index} className="flex gap-2">
+              <Input
+                value={value}
+                onChange={(e) => handleValueChange(index, e.target.value)}
+                placeholder={`Value ${index + 1}`}
+              />
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => removeValue(index)}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
+          ))}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={addValue}
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add Value
+          </Button>
+        </div>
       </div>
 
       <Button onClick={handleSave} className="w-full">

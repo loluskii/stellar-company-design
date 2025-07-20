@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,17 +12,29 @@ const HeroEditor = () => {
   const contentStore = ContentStore.getInstance();
 
   useEffect(() => {
-    const siteContent = contentStore.getContent();
-    setContent(siteContent.hero);
+    const loadContent = async () => {
+      await contentStore.loadContent();
+      const siteContent = contentStore.getContent();
+      setContent(siteContent.hero);
+    };
+    loadContent();
   }, []);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (content) {
-      contentStore.updateHero(content);
-      toast({
-        title: "Hero Section Updated",
-        description: "Your changes have been saved successfully.",
-      });
+      try {
+        await contentStore.updateHero(content);
+        toast({
+          title: "Hero Section Updated",
+          description: "Your changes have been saved successfully.",
+        });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to save hero content.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -33,37 +44,28 @@ const HeroEditor = () => {
     }
   };
 
-  const handleStatsChange = (field: keyof HeroContent['stats'], value: string) => {
-    if (content) {
-      setContent({
-        ...content,
-        stats: { ...content.stats, [field]: value }
-      });
-    }
-  };
-
   if (!content) return <div>Loading...</div>;
 
   return (
     <div className="space-y-6">
       <div className="grid gap-4">
         <div>
-          <Label htmlFor="subtitle">Company Tagline</Label>
-          <Input
-            id="subtitle"
-            value={content.subtitle}
-            onChange={(e) => handleChange('subtitle', e.target.value)}
-            placeholder="WSN - Wellstocked Nigeria Limited"
-          />
-        </div>
-
-        <div>
           <Label htmlFor="title">Main Title</Label>
           <Input
             id="title"
             value={content.title}
             onChange={(e) => handleChange('title', e.target.value)}
-            placeholder="Premium Office Equipment & Automation"
+            placeholder="WELLSTOCKED"
+          />
+        </div>
+
+        <div>
+          <Label htmlFor="subtitle">Subtitle</Label>
+          <Input
+            id="subtitle"
+            value={content.subtitle}
+            onChange={(e) => handleChange('subtitle', e.target.value)}
+            placeholder="Premium Quality Products & Services"
           />
         </div>
 
@@ -80,32 +82,42 @@ const HeroEditor = () => {
 
         <div className="grid grid-cols-3 gap-4">
           <div>
-            <Label htmlFor="years">Years of Experience</Label>
+            <Label htmlFor="phone">Phone</Label>
             <Input
-              id="years"
-              value={content.stats.years}
-              onChange={(e) => handleStatsChange('years', e.target.value)}
-              placeholder="20+"
+              id="phone"
+              value={content.phone}
+              onChange={(e) => handleChange('phone', e.target.value)}
+              placeholder="+234 XXX XXX XXXX"
             />
           </div>
           <div>
-            <Label htmlFor="clients">Clients Served</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
-              id="clients"
-              value={content.stats.clients}
-              onChange={(e) => handleStatsChange('clients', e.target.value)}
-              placeholder="500+"
+              id="email"
+              value={content.email}
+              onChange={(e) => handleChange('email', e.target.value)}
+              placeholder="info@wellstocked.ng"
             />
           </div>
           <div>
-            <Label htmlFor="support">Support</Label>
+            <Label htmlFor="location">Location</Label>
             <Input
-              id="support"
-              value={content.stats.support}
-              onChange={(e) => handleStatsChange('support', e.target.value)}
-              placeholder="24/7"
+              id="location"
+              value={content.location}
+              onChange={(e) => handleChange('location', e.target.value)}
+              placeholder="Lagos, Nigeria"
             />
           </div>
+        </div>
+
+        <div>
+          <Label htmlFor="image_url">Image URL (optional)</Label>
+          <Input
+            id="image_url"
+            value={content.image_url || ""}
+            onChange={(e) => handleChange('image_url', e.target.value)}
+            placeholder="https://example.com/image.jpg"
+          />
         </div>
       </div>
 

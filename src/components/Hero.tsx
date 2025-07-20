@@ -8,22 +8,23 @@ const Hero = () => {
   const [content, setContent] = useState<HeroContent | null>(null);
 
   useEffect(() => {
-    const contentStore = ContentStore.getInstance();
-    const siteContent = contentStore.getContent();
-    setContent(siteContent.hero);
-    console.log('Hero content loaded:', siteContent.hero);
+    const loadContent = async () => {
+      const contentStore = ContentStore.getInstance();
+      await contentStore.loadContent();
+      const siteContent = contentStore.getContent();
+      setContent(siteContent.hero);
+    };
+    loadContent();
   }, []);
 
-  // Remove the loading state that might be blocking content
+  // Fallback content while loading
   const heroContent = content || {
-    title: "Premium Office Equipment & Automation",
-    subtitle: "WSN - Wellstocked Nigeria Limited",
-    description: "We are a recognized, innovative, and authorized distributor of quality office equipment and automation solutions in Nigeria. Serving diverse sectors with excellence for over 20 years.",
-    stats: {
-      years: "20+",
-      clients: "500+",
-      support: "24/7"
-    }
+    title: "WELLSTOCKED",
+    subtitle: "Premium Quality Products & Services",
+    description: "Your trusted partner for all your needs. We provide top-quality products and exceptional services to help your business thrive.",
+    phone: "+234 XXX XXX XXXX",
+    email: "info@wellstocked.ng",
+    location: "Lagos, Nigeria"
   };
 
   return (
@@ -66,11 +67,11 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-6 pt-8">
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-teal-300" />
-                <span className="text-blue-100">+234 XXX XXX XXXX</span>
+                <span className="text-blue-100">{heroContent.phone}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-teal-300" />
-                <span className="text-blue-100">info@wellstocked.ng</span>
+                <span className="text-blue-100">{heroContent.email}</span>
               </div>
             </div>
           </div>

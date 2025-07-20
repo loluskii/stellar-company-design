@@ -1,23 +1,39 @@
-
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Users, Award, Globe } from "lucide-react";
+import { ContentStore, AboutContent } from "@/lib/contentStore";
 
 const About = () => {
+  const [about, setAbout] = useState<AboutContent | null>(null);
+
+  useEffect(() => {
+    const loadContent = async () => {
+      const contentStore = ContentStore.getInstance();
+      await contentStore.loadContent();
+      const siteContent = contentStore.getContent();
+      setAbout(siteContent.about);
+    };
+    loadContent();
+  }, []);
+
+  // Fallback content while loading
+  const aboutContent = about || {
+    title: "About WELLSTOCKED",
+    description: "WELLSTOCKED is a leading provider of premium quality products and services. With years of experience in the industry, we have built a reputation for excellence, reliability, and customer satisfaction.",
+    mission: "To provide our clients with the highest quality products and services while maintaining the highest standards of integrity and professionalism.",
+    vision: "To be the most trusted and respected provider of quality products and services in our industry.",
+    values: ["Quality Excellence", "Customer Focus", "Integrity", "Innovation", "Reliability"]
+  };
+
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">About Wellstocked Nigeria Limited</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">{aboutContent.title}</h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                Wellstocked is a recognized, innovative, and authorized distributor of 
-                quality office equipment and automation in Nigeria. Our suppliers are 
-                Sharp Corporation, Panasonic Corporation, HP, Kaun EDC and Fargo etc.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                We sell, distribute and provide after-sales services through our constantly 
-                trained and competent engineers and sales force via our branches spread across the country.
+                {aboutContent.description}
               </p>
             </div>
             
@@ -27,55 +43,66 @@ const About = () => {
                   <Building2 className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Established</h3>
-                <p className="text-gray-600">Over 20 Years</p>
+                <p className="text-gray-600">Years of Experience</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Globe className="h-8 w-8 text-teal-600" />
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-blue-600" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">Coverage</h3>
-                <p className="text-gray-600">Nationwide</p>
+                <h3 className="font-bold text-gray-900 mb-2">Clients</h3>
+                <p className="text-gray-600">Satisfied Customers</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Award className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">Quality</h3>
+                <p className="text-gray-600">Premium Standards</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Globe className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">Reach</h3>
+                <p className="text-gray-600">Nationwide Coverage</p>
               </div>
             </div>
           </div>
           
           <div className="space-y-6">
-            <Card className="border-l-4 border-l-blue-500 hover:shadow-lg transition-shadow">
-              <CardHeader className="flex flex-row items-center space-y-0 pb-4">
-                <Users className="h-6 w-6 text-blue-500 mr-3" />
-                <CardTitle className="text-lg">Our Mission</CardTitle>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl text-gray-900">Our Mission</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
-                  To provide innovative office automation solutions with excellent service delivery, 
-                  ensuring customer satisfaction and long-term partnerships across Nigeria.
-                </p>
+                <p className="text-gray-600">{aboutContent.mission}</p>
               </CardContent>
             </Card>
             
-            <Card className="border-l-4 border-l-teal-500 hover:shadow-lg transition-shadow">
-              <CardHeader className="flex flex-row items-center space-y-0 pb-4">
-                <Award className="h-6 w-6 text-teal-500 mr-3" />
-                <CardTitle className="text-lg">Our Vision</CardTitle>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl text-gray-900">Our Vision</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
-                  To be the leading provider of office equipment and automation solutions in Nigeria, 
-                  recognized for quality products, exceptional service, and technological innovation.
-                </p>
+                <p className="text-gray-600">{aboutContent.vision}</p>
               </CardContent>
             </Card>
             
-            <Card className="border-l-4 border-l-purple-500 hover:shadow-lg transition-shadow">
-              <CardHeader className="flex flex-row items-center space-y-0 pb-4">
-                <Globe className="h-6 w-6 text-purple-500 mr-3" />
-                <CardTitle className="text-lg">Our Reach</CardTitle>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl text-gray-900">Our Values</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
-                  Operating across oil & gas, banking, telecommunications, and public sectors 
-                  with branches nationwide, providing prompt response and reliable service.
-                </p>
+                <div className="flex flex-wrap gap-2">
+                  {aboutContent.values.map((value, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+                    >
+                      {value}
+                    </span>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           </div>

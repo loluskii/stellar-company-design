@@ -14,7 +14,171 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      about_content: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          mission: string
+          title: string
+          updated_at: string
+          values: string[]
+          vision: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          id?: string
+          mission: string
+          title: string
+          updated_at?: string
+          values?: string[]
+          vision: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          mission?: string
+          title?: string
+          updated_at?: string
+          values?: string[]
+          vision?: string
+        }
+        Relationships: []
+      }
+      contact_info: {
+        Row: {
+          address: string[]
+          business_hours: string[]
+          created_at: string
+          email: string[]
+          id: string
+          phone: string[]
+          updated_at: string
+        }
+        Insert: {
+          address?: string[]
+          business_hours?: string[]
+          created_at?: string
+          email?: string[]
+          id?: string
+          phone?: string[]
+          updated_at?: string
+        }
+        Update: {
+          address?: string[]
+          business_hours?: string[]
+          created_at?: string
+          email?: string[]
+          id?: string
+          phone?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      hero_content: {
+        Row: {
+          created_at: string
+          description: string
+          email: string
+          id: string
+          image_url: string | null
+          location: string
+          phone: string
+          subtitle: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          email: string
+          id?: string
+          image_url?: string | null
+          location: string
+          phone: string
+          subtitle: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          email?: string
+          id?: string
+          image_url?: string | null
+          location?: string
+          phone?: string
+          subtitle?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      product_categories: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          image_url: string | null
+          name: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          id?: string
+          image_url?: string | null
+          name: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          name?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          created_at: string
+          description: string
+          features: string[]
+          icon: string
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          features?: string[]
+          icon: string
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          features?: string[]
+          icon?: string
+          id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -9,11 +9,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: 'Times New Roman, Times, Georgia, serif' }}>WSN</h3>
-              <p className="text-3xl font-bold bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">
-                WELLSTOCKED
-              </p>
-              <p className="text-lg text-gray-400">NIGERIA LIMITED</p>
+              <h3 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Times New Roman, Times, Georgia, serif' }}>WSN</h3>
             </div>
             <p className="text-gray-400 leading-relaxed">
               Recognized, innovative, and authorized distributor of quality office equipment 

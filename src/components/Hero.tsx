@@ -28,7 +28,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-blue-900 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 border-2 border-white/20 rounded-full animate-pulse"></div>
@@ -45,7 +45,7 @@ const Hero = () => {
               </div>
               <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
                 {heroContent.title.split(' ').slice(0, 2).join(' ')}
-                <span className="block bg-gradient-to-r from-teal-300 to-blue-300 bg-clip-text text-transparent">
+                <span className="block text-blue-200">
                   {heroContent.title.split(' ').slice(2).join(' ')}
                 </span>
               </h1>

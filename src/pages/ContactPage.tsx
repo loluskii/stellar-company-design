@@ -48,7 +48,7 @@ const ContactPage = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-6 gradient-text">
+          <h1 className="text-5xl font-bold mb-6">
             Contact Us
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">

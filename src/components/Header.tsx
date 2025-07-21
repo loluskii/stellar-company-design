@@ -11,7 +11,6 @@ const Header = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
-    { name: "Products", path: "/products" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
@@ -45,7 +44,7 @@ const Header = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/contact">
-              <Button className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
                 Get Quote
               </Button>
             </Link>
@@ -77,7 +76,7 @@ const Header = () => {
                 </Link>
               ))}
               <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                <Button className="w-full mt-2 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
+                <Button className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white">
                   Get Quote
                 </Button>
               </Link>

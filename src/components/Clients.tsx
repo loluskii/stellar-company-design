@@ -25,13 +25,13 @@ const Clients = () => {
   return (
     <section className="py-32 relative overflow-hidden">
       {/* Gradient overlays for fade effect */}
-      <div className="absolute left-0 top-0 w-40 h-full bg-gradient-to-r from-slate-50 via-white/80 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 w-40 h-full bg-gradient-to-l from-slate-50 via-white/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 h-full w-16 z-10 bg-white/90" />
+      <div className="absolute right-0 top-0 h-full w-16 z-10 bg-white/90" />
       
       {/* Decorative elements */}
-      <div className="absolute top-10 left-20 w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
-      <div className="absolute bottom-20 right-32 w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-bounce"></div>
-      <div className="absolute top-1/2 left-10 w-1 h-20 bg-gradient-to-b from-transparent via-purple-300 to-transparent opacity-50"></div>
+      <div className="absolute top-10 left-20 w-2 h-2 bg-gray-200 rounded-full animate-pulse"></div>
+      <div className="absolute bottom-20 right-32 w-3 h-3 bg-gray-200 rounded-full animate-bounce"></div>
+      <div className="absolute top-1/2 left-10 w-1 h-20 bg-gray-200 opacity-50"></div>
 
       <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
@@ -62,7 +62,7 @@ const Clients = () => {
               <div className="w-36 h-36 flex items-center justify-center rounded-3xl glass-morphism backdrop-blur-xl bg-white/70 border-2 border-white/30 shadow-xl transition-all duration-700 ease-out">
                 <div className="text-7xl grayscale transition-all duration-700 ease-out relative">
                   {client.logo}
-                  <div className="absolute inset-0 bg-gradient-to-r rounded-full blur-xl opacity-0 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-white rounded-full blur-xl opacity-0 transition-opacity duration-500"></div>
                 </div>
               </div>
             </div>

@@ -21,17 +21,6 @@ const ServicesPage = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-6 gradient-text">
-            Our Services
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive office solutions designed to enhance productivity and efficiency 
-            across oil & gas, banking, telecommunications, and public sectors
-          </p>
-        </div>
-      </section>
 
       {/* Main Services */}
       <Services />

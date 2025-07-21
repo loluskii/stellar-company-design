@@ -20,6 +20,12 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				serif: [
+					'Times New Roman',
+					'Times',
+					'Georgia',
+					'serif'
+				],
 				outfit: ['Outfit', 'system-ui', 'sans-serif'],
 			},
 			colors: {

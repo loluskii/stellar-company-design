@@ -24,7 +24,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2">
             <div className="text-2xl font-bold">
-              <span className="text-gray-900">WSN</span>
+              <span className="text-gray-900" style={{ fontFamily: 'Times New Roman, Times, Georgia, serif' }}>WSN</span>
             </div>
           </Link>
 

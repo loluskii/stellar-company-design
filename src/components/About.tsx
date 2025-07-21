@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Building2, Users, Award, Globe, Target, Eye, Heart, Zap, Shield, Rocket } from "lucide-react";
+import { Building2, Users, Award, Globe, Target, Eye, Heart, CheckCircle, ArrowRight, Lightbulb } from "lucide-react";
 import { ContentStore, AboutContent } from "@/lib/contentStore";
 
 const About = () => {
@@ -25,112 +25,131 @@ const About = () => {
     values: ["Quality Excellence", "Customer Focus", "Integrity", "Innovation", "Reliability"]
   };
 
-  const valueIcons = [Heart, Zap, Shield, Rocket, Award];
+  const valueIcons = [Heart, CheckCircle, Lightbulb, Award, Target];
 
   return (
-    <section className="relative py-32 overflow-hidden">
-      {/* Background with gradient and patterns */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <div className="absolute inset-0 opacity-40" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+    <section className="py-24 bg-gray-50 relative overflow-hidden">
+      {/* Creative geometric background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-96 h-96 border-4 border-blue-100 rounded-full opacity-60"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 border-4 border-purple-100 rounded-full opacity-40"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 border-2 border-green-100 rotate-45 opacity-50"></div>
+        <div className="absolute top-20 left-1/2 w-32 h-32 bg-yellow-100 rounded-full opacity-30"></div>
         
-        {/* Floating gradient orbs */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-violet-400/10 to-purple-400/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
       </div>
 
       <div className="relative container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-20 animate-fade-in">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full text-white/80 text-sm font-medium mb-6 border border-white/20">
-            <Rocket className="h-4 w-4" />
-            About Our Company
+        {/* Creative Header Section */}
+        <div className="text-center mb-20">
+          <div className="inline-block relative mb-6">
+            <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-500 rotate-45"></div>
+            <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-purple-500 rounded-full"></div>
+            <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 relative">
+              {aboutContent.title}
+            </h2>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold mb-6 gradient-text">
-            {aboutContent.title}
-          </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-            {aboutContent.description}
-          </p>
+          <div className="max-w-3xl mx-auto relative">
+            <div className="absolute -left-8 top-0 w-1 h-full bg-blue-500"></div>
+            <p className="text-xl text-gray-600 leading-relaxed pl-8">
+              {aboutContent.description}
+            </p>
+          </div>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        {/* Creative Stats Section */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
           {[
-            { icon: Building2, title: "15+", subtitle: "Years Experience", color: "from-purple-500 to-pink-500" },
-            { icon: Users, title: "500+", subtitle: "Happy Clients", color: "from-blue-500 to-cyan-500" },
-            { icon: Award, title: "98%", subtitle: "Success Rate", color: "from-green-500 to-emerald-500" },
-            { icon: Globe, title: "24/7", subtitle: "Support", color: "from-orange-500 to-red-500" }
+            { icon: Building2, title: "15+", subtitle: "Years Experience", color: "blue", shape: "circle" },
+            { icon: Users, title: "500+", subtitle: "Happy Clients", color: "purple", shape: "square" },
+            { icon: Award, title: "98%", subtitle: "Success Rate", color: "green", shape: "diamond" },
+            { icon: Globe, title: "24/7", subtitle: "Support", color: "orange", shape: "hexagon" }
           ].map((stat, index) => (
             <div key={index} className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" style={{ background: `linear-gradient(135deg, ${stat.color.split(' ')[1]}, ${stat.color.split(' ')[3]})` }}></div>
-              <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover-glow hover:bg-white/15 transition-all duration-300 text-center">
-                <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative overflow-hidden">
+                {/* Creative shape backgrounds */}
+                {stat.shape === "circle" && (
+                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 rounded-full opacity-50"></div>
+                )}
+                {stat.shape === "square" && (
+                  <div className="absolute -top-8 -right-8 w-24 h-24 bg-purple-50 rotate-45 opacity-50"></div>
+                )}
+                {stat.shape === "diamond" && (
+                  <div className="absolute -top-6 -right-6 w-20 h-20 bg-green-50 rotate-45 opacity-50"></div>
+                )}
+                {stat.shape === "hexagon" && (
+                  <div className="absolute -top-8 -right-8 w-24 h-24 bg-orange-50 rounded-full opacity-50"></div>
+                )}
+                
+                <div className={`w-16 h-16 bg-${stat.color}-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10`}>
                   <stat.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-2">{stat.title}</h3>
-                <p className="text-white/70 font-medium">{stat.subtitle}</p>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2 relative z-10">{stat.title}</h3>
+                <p className="text-gray-600 font-medium relative z-10">{stat.subtitle}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Mission, Vision, Values */}
-        <div className="grid lg:grid-cols-3 gap-8 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+        {/* Creative Three Column Layout */}
+        <div className="grid lg:grid-cols-3 gap-12">
           {/* Mission */}
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <Card className="relative bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 rounded-3xl overflow-hidden">
-              <CardHeader className="text-center pb-4">
-                <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div className="relative">
+            <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-500 rotate-45"></div>
+            <Card className="bg-white border-2 border-blue-100 hover:border-blue-300 transition-colors duration-300 rounded-3xl overflow-hidden h-full">
+              <CardHeader className="bg-blue-50 text-center relative">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-100 rounded-full -translate-y-12 translate-x-12 opacity-50"></div>
+                <div className="w-20 h-20 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 relative z-10">
                   <Target className="h-10 w-10 text-white" />
                 </div>
-                <CardTitle className="text-2xl font-bold text-white">Our Mission</CardTitle>
+                <CardTitle className="text-2xl font-bold text-gray-900 relative z-10">Our Mission</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-white/80 leading-relaxed text-center">{aboutContent.mission}</p>
+              <CardContent className="p-8">
+                <p className="text-gray-600 leading-relaxed text-center">{aboutContent.mission}</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Vision */}
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <Card className="relative bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 rounded-3xl overflow-hidden">
-              <CardHeader className="text-center pb-4">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div className="relative lg:mt-8">
+            <div className="absolute -top-4 -right-4 w-6 h-6 bg-purple-500 rounded-full"></div>
+            <Card className="bg-white border-2 border-purple-100 hover:border-purple-300 transition-colors duration-300 rounded-3xl overflow-hidden h-full">
+              <CardHeader className="bg-purple-50 text-center relative">
+                <div className="absolute top-0 left-0 w-20 h-20 bg-purple-100 rotate-45 -translate-y-10 -translate-x-10 opacity-50"></div>
+                <div className="w-20 h-20 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 relative z-10">
                   <Eye className="h-10 w-10 text-white" />
                 </div>
-                <CardTitle className="text-2xl font-bold text-white">Our Vision</CardTitle>
+                <CardTitle className="text-2xl font-bold text-gray-900 relative z-10">Our Vision</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-white/80 leading-relaxed text-center">{aboutContent.vision}</p>
+              <CardContent className="p-8">
+                <p className="text-gray-600 leading-relaxed text-center">{aboutContent.vision}</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Values */}
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <Card className="relative bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 rounded-3xl overflow-hidden">
-              <CardHeader className="text-center pb-4">
-                <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div className="relative">
+            <div className="absolute -bottom-4 -right-4 w-10 h-10 bg-green-500 rotate-45"></div>
+            <Card className="bg-white border-2 border-green-100 hover:border-green-300 transition-colors duration-300 rounded-3xl overflow-hidden h-full">
+              <CardHeader className="bg-green-50 text-center relative">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-green-100 rounded-full -translate-y-8 translate-x-8 opacity-50"></div>
+                <div className="w-20 h-20 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4 relative z-10">
                   <Heart className="h-10 w-10 text-white" />
                 </div>
-                <CardTitle className="text-2xl font-bold text-white">Our Values</CardTitle>
+                <CardTitle className="text-2xl font-bold text-gray-900 relative z-10">Our Values</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
+              <CardContent className="p-8">
+                <div className="space-y-4">
                   {aboutContent.values.map((value, index) => {
                     const IconComponent = valueIcons[index % valueIcons.length];
                     return (
-                      <div key={index} className="flex items-center gap-3 group/item">
-                        <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-400 rounded-lg flex items-center justify-center group-hover/item:scale-110 transition-transform duration-200">
-                          <IconComponent className="h-4 w-4 text-white" />
+                      <div key={index} className="flex items-center gap-4 group/item">
+                        <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center group-hover/item:scale-110 transition-transform duration-200">
+                          <IconComponent className="h-5 w-5 text-white" />
                         </div>
-                        <span className="text-white/90 font-medium">{value}</span>
+                        <span className="text-gray-700 font-medium">{value}</span>
+                        <ArrowRight className="h-4 w-4 text-green-500 ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-200" />
                       </div>
                     );
                   })}

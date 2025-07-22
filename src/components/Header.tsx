@@ -22,9 +22,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold">
-              <span className="text-gray-900" style={{ fontFamily: 'Times New Roman, Times, Georgia, serif' }}>WSN</span>
-            </div>
+            <img src="/wsn-logo.png" alt="WSN Logo" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}

@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import ReadyToTransform from "@/components/ReadyToTransform";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
@@ -84,6 +85,7 @@ const ContactPage = () => {
       {/* Main Contact Section */}
       <Contact />
 
+      <ReadyToTransform />
       {/* Services Overview */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">

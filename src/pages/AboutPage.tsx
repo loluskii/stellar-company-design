@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
 import Clients from "@/components/Clients";
+import ReadyToTransform from "@/components/ReadyToTransform";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Building, Award, Clock } from "lucide-react";
 
@@ -97,6 +98,7 @@ const AboutPage = () => {
       {/* Clients Section */}
       <Clients />
 
+      <ReadyToTransform />
       <Footer />
     </div>
   );

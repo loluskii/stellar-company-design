@@ -19,10 +19,10 @@ const About = () => {
   // Fallback content while loading
   const aboutContent = about || {
     title: "About WELLSTOCKED",
-    description: "WELLSTOCKED is a leading provider of premium quality products and services. With years of experience in the industry, we have built a reputation for excellence, reliability, and customer satisfaction.",
+    description: `Wellstocked is a contractor, importer, and authorized distributor of quality office equipment and automation in Nigeria. Our suppliers include Sharp Corporation, Panasonic Corporation, HP, Katun EDC, Fargo, and more. We sell, distribute, and provide after-sales services through our constantly trained and competent engineers and sales force via our branches spread across the country. Our experience in our line of business spans over 29 years with a clientele base that cuts across Oil & Gas, Banking, Telecommunications, general business, and Public sectors. We provide services in any terrain and in any part of the country, with prompt response and minimal downtime. We focus on regular preventive maintenance and after-sales service to ensure long product life, rather than just breakdown maintenance.`,
     mission: "To provide our clients with the highest quality products and services while maintaining the highest standards of integrity and professionalism.",
     vision: "To be the most trusted and respected provider of quality products and services in our industry.",
-    values: ["Quality Excellence", "Customer Focus", "Integrity", "Innovation", "Reliability"]
+    values: ["Quality Excellence", "Customer Focus", "Integrity", "Innovation", "Reliability", "Prompt Response", "Nationwide Reach", "Preventive Maintenance"]
   };
 
   return (
@@ -37,34 +37,34 @@ const About = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-4 gap-6">
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Building2 className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Established</h3>
-                <p className="text-gray-600">Years of Experience</p>
+                <p className="text-gray-600 text-2xl font-mono animate-count">29+ Years</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Users className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Clients</h3>
-                <p className="text-gray-600">Satisfied Customers</p>
+                <p className="text-gray-600 text-2xl font-mono animate-count">All Sectors</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Award className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Quality</h3>
-                <p className="text-gray-600">Premium Standards</p>
+                <p className="text-gray-600 text-2xl font-mono animate-count">Authorized Brands</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Globe className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Reach</h3>
-                <p className="text-gray-600">Nationwide Coverage</p>
+                <p className="text-gray-600 text-2xl font-mono animate-count">Nationwide</p>
               </div>
             </div>
           </div>
@@ -103,6 +103,23 @@ const About = () => {
                     </span>
                   ))}
                 </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-blue-50 border-blue-200">
+              <CardHeader>
+                <CardTitle className="text-xl text-blue-900 flex items-center gap-2"><span>💡</span> Why Choose Us</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc pl-6 text-blue-800 space-y-2">
+                  <li>29+ years of industry experience</li>
+                  <li>Authorized distributor for global brands</li>
+                  <li>Nationwide branch network and support</li>
+                  <li>Prompt response and minimal downtime</li>
+                  <li>Preventive maintenance and after-sales service</li>
+                  <li>Competent, constantly trained engineers and sales force</li>
+                  <li>Trusted by top companies in Oil & Gas, Banking, Telecom, and Public sectors</li>
+                </ul>
               </CardContent>
             </Card>
           </div>

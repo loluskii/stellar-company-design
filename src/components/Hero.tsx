@@ -19,7 +19,7 @@ const Hero = () => {
 
   // Fallback content while loading
   const heroContent = content || {
-    title: "WELLSTOCKED",
+    title: "WELLSTOCKED Nigeria Limited",
     subtitle: "Premium Quality Products & Services",
     description: "Your trusted partner for all your needs. We provide top-quality products and exceptional services to help your business thrive.",
     phone: "+234 XXX XXX XXXX",
@@ -43,11 +43,8 @@ const Hero = () => {
               <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-white">
                 {heroContent.subtitle}
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
-                {heroContent.title.split(' ').slice(0, 2).join(' ')}
-                <span className="block text-blue-200">
-                  {heroContent.title.split(' ').slice(2).join(' ')}
-                </span>
+              <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white" style={{ fontFamily: 'Times New Roman', }}>
+                {heroContent.title}
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed">
                 {heroContent.description}

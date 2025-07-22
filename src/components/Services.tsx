@@ -1,6 +1,11 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Settings, Printer, Server, Wrench, Airplay, CreditCard, Monitor, Users, Award, Building2, Globe, Database, Layers, Briefcase, Shield, Cpu, HardDrive, Network, BatteryCharging, Cloud, Key, Lock, Phone, Tablet, Laptop, MousePointer, FileText, FileCheck2, FileBarChart2, FileSearch2, FileCog, FilePlus2, FileMinus2, FileX2, FileArchive, FileStack, FileSignature, FileSpreadsheet, FileSymlink, FileText, FileType, FileVideo2, FileVolume2, FileWarning, FileZip, Folder, FolderOpen, FolderPlus, FolderMinus, FolderX, FolderArchive, FolderSymlink, FolderInput, FolderOutput, FolderSearch, FolderCog, FolderKey, FolderLock, FolderPlus, FolderMinus, FolderX, FolderArchive, FolderSymlink, FolderInput, FolderOutput, FolderSearch, FolderCog, FolderKey, FolderLock } from "lucide-react";
+import { Settings, Printer, Server, Wrench, Airplay, 
+  CreditCard, Monitor, Users, Award, Building2, Globe, Database, Layers, Briefcase, 
+  Shield, Cpu, HardDrive, Network, BatteryCharging, Cloud, Key, Lock, Phone, Tablet, Laptop, MousePointer,
+  FileCheck2, FileBarChart2, FileSearch2, FileCog, FilePlus2, FileMinus2, FileX2, FileArchive, FileStack, 
+  FileSignature, FileSpreadsheet, FileSymlink, FileText, FileType, FileVideo2, FileVolume2, FileWarning, 
+  Folder, FolderOpen } from "lucide-react";
 
 const services = [
   {

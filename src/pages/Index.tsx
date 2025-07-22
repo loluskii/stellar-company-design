@@ -65,18 +65,15 @@ const Index = () => {
           <Hero />
         </div>
         <div className="animate-slide-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
-          <Services />
+          <About />
         </div>
         <div className="animate-slide-up" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
-          <About />
+          <Services />
         </div>
         <div className="animate-slide-up" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
           <Clients />
         </div>
-        <div className="animate-slide-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
-          <Contact />
-        </div>
-        <div className="animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
+        <div className="animate-fade-in" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
           <ReadyToTransform />
           <Footer />
         </div>

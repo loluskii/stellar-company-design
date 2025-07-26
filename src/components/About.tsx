@@ -28,7 +28,7 @@ const About = () => {
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div className="space-y-8">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">{aboutContent.title}</h2>
@@ -36,37 +36,7 @@ const About = () => {
                 {aboutContent.description}
               </p>
             </div>
-            
-            <div className="grid grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Building2 className="h-8 w-8 text-blue-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">Established</h3>
-                <p className="text-gray-600 text-2xl font-mono animate-count">29+ Years</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-blue-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">Clients</h3>
-                <p className="text-gray-600 text-2xl font-mono animate-count">All Sectors</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8 text-blue-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">Quality</h3>
-                <p className="text-gray-600 text-2xl font-mono animate-count">Authorized Brands</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Globe className="h-8 w-8 text-blue-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">Reach</h3>
-                <p className="text-gray-600 text-2xl font-mono animate-count">Nationwide</p>
-              </div>
-            </div>
+
           </div>
           
           <div className="space-y-6">
@@ -88,25 +58,8 @@ const About = () => {
               </CardContent>
             </Card>
             
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl text-gray-900">Our Values</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {aboutContent.values.map((value, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
-                    >
-                      {value}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
 
-            <Card className="bg-blue-50 border-blue-200">
+            <Card className="bg-blue-50 border-blue-200 hidden">
               <CardHeader>
                 <CardTitle className="text-xl text-blue-900 flex items-center gap-2"><span>💡</span> Why Choose Us</CardTitle>
               </CardHeader>

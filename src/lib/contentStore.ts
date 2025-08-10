@@ -1,32 +1,12 @@
-import { supabase } from '@/integrations/supabase/client';
+// Import JSON files directly
+import heroData from '@/data/hero.json';
+import aboutData from '@/data/about.json';
+import servicesData from '@/data/services.json';
+import productsData from '@/data/products.json';
+import contactData from '@/data/contact.json';
+import { FileManager } from './fileManager';
 
-interface ServiceItem {
-  id?: string;
-  title: string;
-  description: string;
-  features: string[];
-  icon: string;
-  sort_order?: number;
-}
-
-interface ProductCategory {
-  id?: string;
-  name: string;
-  description: string;
-  image_url?: string;
-  sort_order?: number;
-}
-
-interface ContactInfo {
-  id?: string;
-  phone: string[];
-  email: string[];
-  address: string[];
-  business_hours: string[];
-}
-
-interface HeroContent {
-  id?: string;
+export interface HeroContent {
   title: string;
   subtitle: string;
   description: string;
@@ -36,8 +16,7 @@ interface HeroContent {
   image_url?: string;
 }
 
-interface AboutContent {
-  id?: string;
+export interface AboutContent {
   title: string;
   description: string;
   mission: string;
@@ -45,27 +24,43 @@ interface AboutContent {
   values: string[];
 }
 
-interface SiteContent {
-  hero: HeroContent | null;
-  services: ServiceItem[];
+export interface ServiceContent {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+  sort_order: number;
+}
+
+export interface ProductCategory {
+  id: string;
+  name: string;
+  description: string;
+  image_url?: string;
+  sort_order: number;
+}
+
+export interface ContactInfo {
+  phone: string[];
+  email: string[];
+  address: string[];
+  business_hours: string[];
+}
+
+export interface SiteContent {
+  hero: HeroContent;
+  about: AboutContent;
+  services: ServiceContent[];
   products: ProductCategory[];
-  about: AboutContent | null;
-  contact: ContactInfo | null;
+  contact: ContactInfo;
 }
 
 export class ContentStore {
   private static instance: ContentStore;
-  private content: SiteContent = {
-    hero: null,
-    services: [],
-    products: [],
-    about: null,
-    contact: null
-  };
+  private content: SiteContent | null = null;
 
-  private constructor() {
-    // No need to load content in constructor since we'll load it asynchronously
-  }
+  private constructor() {}
 
   static getInstance(): ContentStore {
     if (!ContentStore.instance) {
@@ -74,93 +69,62 @@ export class ContentStore {
     return ContentStore.instance;
   }
 
-  async loadContent(): Promise<SiteContent> {
+  async loadContent(): Promise<void> {
     try {
-      // Load hero content
-      const { data: heroData } = await supabase
-        .from('hero_content')
-        .select('*')
-        .single();
-
-      // Load services
-      const { data: servicesData } = await supabase
-        .from('services')
-        .select('*')
-        .order('sort_order');
-
-      // Load product categories
-      const { data: productsData } = await supabase
-        .from('product_categories')
-        .select('*')
-        .order('sort_order');
-
-      // Load about content
-      const { data: aboutData } = await supabase
-        .from('about_content')
-        .select('*')
-        .single();
-
-      // Load contact info
-      const { data: contactData } = await supabase
-        .from('contact_info')
-        .select('*')
-        .single();
-
+      // Load content from JSON files
       this.content = {
-        hero: heroData || null,
-        services: servicesData || [],
-        products: productsData || [],
-        about: aboutData || null,
-        contact: contactData || null
+        hero: heroData,
+        about: aboutData,
+        services: servicesData,
+        products: productsData,
+        contact: contactData
       };
-
-      return this.content;
     } catch (error) {
-      console.error('Error loading content from Supabase:', error);
-      return this.content;
+      console.error('Error loading content:', error);
+      this.content = this.getDefaultContent();
     }
   }
 
   getContent(): SiteContent {
-    return this.content;
+    return this.content || this.getDefaultContent();
   }
 
-  async updateHero(hero: Omit<HeroContent, 'id'>): Promise<void> {
+  // Method to update content files (for CMS)
+  async updateHero(hero: HeroContent): Promise<void> {
     try {
-      const { data } = await supabase
-        .from('hero_content')
-        .upsert({
-          id: this.content.hero?.id,
-          ...hero
-        })
-        .select()
-        .single();
-
-      if (data) {
-        this.content.hero = data;
+      const success = await FileManager.updateContentFile('hero', hero);
+      if (success && this.content) {
+        this.content.hero = hero;
+      } else {
+        throw new Error('Failed to update hero content');
       }
     } catch (error) {
-      console.error('Error updating hero content:', error);
+      console.error('Error updating hero:', error);
       throw error;
     }
   }
 
-  async updateServices(services: ServiceItem[]): Promise<void> {
+  async updateAbout(about: AboutContent): Promise<void> {
     try {
-      // Delete all existing services
-      await supabase.from('services').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      
-      // Insert new services
-      const { data } = await supabase
-        .from('services')
-        .insert(services.map((service, index) => ({
-          ...service,
-          sort_order: index
-        })))
-        .select();
+      const success = await FileManager.updateContentFile('about', about);
+      if (success && this.content) {
+        this.content.about = about;
+      } else {
+        throw new Error('Failed to update about content');
+      }
+    } catch (error) {
+      console.error('Error updating about:', error);
+      throw error;
+    }
+  }
 
-      if (data) {
-        this.content.services = data;
+  async updateServices(services: ServiceContent[]): Promise<void> {
+    try {
+      const success = await FileManager.updateContentFile('services', services);
+      if (success && this.content) {
+        this.content.services = services;
+      } else {
+        throw new Error('Failed to update services content');
       }
     } catch (error) {
       console.error('Error updating services:', error);
@@ -170,66 +134,60 @@ export class ContentStore {
 
   async updateProducts(products: ProductCategory[]): Promise<void> {
     try {
-      // Delete all existing product categories
-      await supabase.from('product_categories').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      
-      // Insert new product categories
-      const { data } = await supabase
-        .from('product_categories')
-        .insert(products.map((product, index) => ({
-          ...product,
-          sort_order: index
-        })))
-        .select();
-
-      if (data) {
-        this.content.products = data;
+      const success = await FileManager.updateContentFile('products', products);
+      if (success && this.content) {
+        this.content.products = products;
+      } else {
+        throw new Error('Failed to update products content');
       }
     } catch (error) {
-      console.error('Error updating product categories:', error);
+      console.error('Error updating products:', error);
       throw error;
     }
   }
 
-  async updateAbout(about: Omit<AboutContent, 'id'>): Promise<void> {
+  async updateContact(contact: ContactInfo): Promise<void> {
     try {
-      const { data } = await supabase
-        .from('about_content')
-        .upsert({
-          id: this.content.about?.id,
-          ...about
-        })
-        .select()
-        .single();
-
-      if (data) {
-        this.content.about = data;
+      const success = await FileManager.updateContentFile('contact', contact);
+      if (success && this.content) {
+        this.content.contact = contact;
+      } else {
+        throw new Error('Failed to update contact content');
       }
     } catch (error) {
-      console.error('Error updating about content:', error);
+      console.error('Error updating contact:', error);
       throw error;
     }
   }
 
-  async updateContact(contact: Omit<ContactInfo, 'id'>): Promise<void> {
-    try {
-      const { data } = await supabase
-        .from('contact_info')
-        .upsert({
-          id: this.content.contact?.id,
-          ...contact
-        })
-        .select()
-        .single();
-
-      if (data) {
-        this.content.contact = data;
+  private getDefaultContent(): SiteContent {
+    return {
+      hero: {
+        title: "Wellstocked Nigeria Limited",
+        subtitle: "Your Trusted Partner in Office Equipment & Automation",
+        description: "Contractor, importer and authorized distributor of quality office equipment and automation in Nigeria with over 29 years of experience.",
+        phone: "01-2702549",
+        email: "info@wellstockednig.com",
+        location: "Lekki Phase I, Lagos"
+      },
+      about: {
+        title: "About Wellstocked Nigeria Limited",
+        description: "Wellstocked is a contractor, importer and authorized distributor of quality office equipment and automation in Nigeria.",
+        mission: "To provide quality office equipment and automation solutions.",
+        vision: "To be the leading distributor of office equipment in Nigeria.",
+        values: ["Quality", "Service", "Reliability"]
+      },
+      services: [],
+      products: [],
+      contact: {
+        phone: ["01-2702549"],
+        email: ["info@wellstockednig.com"],
+        address: ["Lagos, Nigeria"],
+        business_hours: ["Monday - Friday: 9:00 AM - 5:00 PM"]
       }
-    } catch (error) {
-      console.error('Error updating contact info:', error);
-      throw error;
-    }
+    };
   }
 }
 
-export type { SiteContent, ServiceItem, ProductCategory, ContactInfo, HeroContent, AboutContent };
+// Legacy exports for compatibility
+export type { ServiceContent as ServiceItem };

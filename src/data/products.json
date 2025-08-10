@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "name": "Photocopiers & Printers",
+    "description": "Sharp photocopiers, HP printers, and comprehensive printing solutions with consumables and accessories.",
+    "image_url": null,
+    "sort_order": 1
+  },
+  {
+    "id": "2",
+    "name": "Computer Systems & Networking",
+    "description": "HP and Dell computer systems, Cisco networking hardware, servers and IT infrastructure solutions.",
+    "image_url": null,
+    "sort_order": 2
+  },
+  {
+    "id": "3",
+    "name": "UPS & Power Solutions",
+    "description": "Industrial UPS systems, inverter batteries, and power management equipment for business continuity.",
+    "image_url": null,
+    "sort_order": 3
+  },
+  {
+    "id": "4",
+    "name": "Air Conditioning Systems",
+    "description": "Panasonic and Sharp air conditioning units for office and industrial cooling requirements.",
+    "image_url": null,
+    "sort_order": 4
+  },
+  {
+    "id": "5",
+    "name": "Interactive Display Technology",
+    "description": "Sharp interactive touch screens, video walls, digital displays and intelligent automation systems.",
+    "image_url": null,
+    "sort_order": 5
+  },
+  {
+    "id": "6",
+    "name": "Office Equipment & Furniture",
+    "description": "Complete office furniture solutions, scanners, shredders, and essential office automation equipment.",
+    "image_url": null,
+    "sort_order": 6
+  },
+  {
+    "id": "7",
+    "name": "Security & ID Systems",
+    "description": "Fargo ID card printing systems, POS machines, note counting machines, and security hardware.",
+    "image_url": null,
+    "sort_order": 7
+  },
+  {
+    "id": "8",
+    "name": "Consumables & Accessories",
+    "description": "ATM consumables, printer cartridges, toners, and maintenance supplies for all equipment types.",
+    "image_url": null,
+    "sort_order": 8
+  }
+]

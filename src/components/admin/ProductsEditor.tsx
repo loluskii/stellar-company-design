@@ -46,6 +46,7 @@ const ProductsEditor = () => {
 
   const addCategory = () => {
     const newCategory: ProductCategory = {
+      id: Date.now().toString(),
       name: "",
       description: "",
       image_url: "",

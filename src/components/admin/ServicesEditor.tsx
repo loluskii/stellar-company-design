@@ -5,12 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ContentStore, ServiceItem } from "@/lib/contentStore";
+import { ContentStore, ServiceContent } from "@/lib/contentStore";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Trash2 } from "lucide-react";
 
 const ServicesEditor = () => {
-  const [services, setServices] = useState<ServiceItem[]>([]);
+  const [services, setServices] = useState<ServiceContent[]>([]);
   const { toast } = useToast();
   const contentStore = ContentStore.getInstance();
 
@@ -27,7 +27,7 @@ const ServicesEditor = () => {
     });
   };
 
-  const handleServiceChange = (index: number, field: keyof ServiceItem, value: string | string[]) => {
+  const handleServiceChange = (index: number, field: keyof ServiceContent, value: string | string[]) => {
     const updatedServices = [...services];
     updatedServices[index] = { ...updatedServices[index], [field]: value };
     setServices(updatedServices);
@@ -54,12 +54,13 @@ const ServicesEditor = () => {
   };
 
   const addService = () => {
-    const newService: ServiceItem = {
+    const newService: ServiceContent = {
       id: Date.now().toString(),
       title: "",
       description: "",
       features: [""],
-      icon: "Settings"
+      icon: "Settings",
+      sort_order: services.length
     };
     setServices([...services, newService]);
   };

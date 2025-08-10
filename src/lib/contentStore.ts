@@ -4,7 +4,7 @@ import aboutData from '@/data/about.json';
 import servicesData from '@/data/services.json';
 import productsData from '@/data/products.json';
 import contactData from '@/data/contact.json';
-// Simple JSON file-based content management
+import { FileManager } from './fileManager';
 
 export interface HeroContent {
   title: string;
@@ -89,8 +89,76 @@ export class ContentStore {
     return this.content || this.getDefaultContent();
   }
 
-  // Note: To update content, edit the JSON files in src/data/ directly
-  // The changes will be reflected after refreshing the page
+  // Method to update content files (for CMS)
+  async updateHero(hero: HeroContent): Promise<void> {
+    try {
+      const success = await FileManager.updateContentFile('hero', hero);
+      if (success && this.content) {
+        this.content.hero = hero;
+      } else {
+        throw new Error('Failed to update hero content');
+      }
+    } catch (error) {
+      console.error('Error updating hero:', error);
+      throw error;
+    }
+  }
+
+  async updateAbout(about: AboutContent): Promise<void> {
+    try {
+      const success = await FileManager.updateContentFile('about', about);
+      if (success && this.content) {
+        this.content.about = about;
+      } else {
+        throw new Error('Failed to update about content');
+      }
+    } catch (error) {
+      console.error('Error updating about:', error);
+      throw error;
+    }
+  }
+
+  async updateServices(services: ServiceContent[]): Promise<void> {
+    try {
+      const success = await FileManager.updateContentFile('services', services);
+      if (success && this.content) {
+        this.content.services = services;
+      } else {
+        throw new Error('Failed to update services content');
+      }
+    } catch (error) {
+      console.error('Error updating services:', error);
+      throw error;
+    }
+  }
+
+  async updateProducts(products: ProductCategory[]): Promise<void> {
+    try {
+      const success = await FileManager.updateContentFile('products', products);
+      if (success && this.content) {
+        this.content.products = products;
+      } else {
+        throw new Error('Failed to update products content');
+      }
+    } catch (error) {
+      console.error('Error updating products:', error);
+      throw error;
+    }
+  }
+
+  async updateContact(contact: ContactInfo): Promise<void> {
+    try {
+      const success = await FileManager.updateContentFile('contact', contact);
+      if (success && this.content) {
+        this.content.contact = contact;
+      } else {
+        throw new Error('Failed to update contact content');
+      }
+    } catch (error) {
+      console.error('Error updating contact:', error);
+      throw error;
+    }
+  }
 
   private getDefaultContent(): SiteContent {
     return {

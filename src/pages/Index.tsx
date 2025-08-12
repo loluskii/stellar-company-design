@@ -30,37 +30,9 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-white relative overflow-x-hidden flex flex-col">
       <Header />
-      {/* Animated background elements */}
-      <div className="fixed inset-0 -z-10">
-        {/* Floating geometric shapes with subtle background images */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gray-100 rounded-full blur-3xl animate-float">
-          <img
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=300&fit=crop"
-            alt=""
-            className="w-full h-full object-cover rounded-full opacity-5"
-          />
-        </div>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-gray-100 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}>
-          <img
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop"
-            alt=""
-            className="w-full h-full object-cover rounded-full opacity-5"
-          />
-        </div>
-        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-gray-100 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}>
-          <img
-            src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=350&h=350&fit=crop"
-            alt=""
-            className="w-full h-full object-cover rounded-full opacity-5"
-          />
-        </div>
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-gray-50"></div>
-      </div>
-      {/* Content sections with staggered animations */}
-      <div className="relative">
+      <div className="relative pt-16">
         <div className="animate-fade-in" style={{ animationFillMode: 'both' }}>
           <Hero />
         </div>

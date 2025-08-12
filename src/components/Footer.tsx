@@ -43,15 +43,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-teal-400" />
-                <span className="text-gray-400">+234 XXX XXX XXXX</span>
+                <span className="text-gray-400">+234 0705 063 9404</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-teal-400" />
-                <span className="text-gray-400">info@wellstocked.ng</span>
+                <span className="text-gray-400">info@wellstockedltd.com</span>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-teal-400" />
-                <span className="text-gray-400">Lagos, Nigeria</span>
+                <MapPin className="h-8 w-8 text-teal-400" />
+                <span className="text-gray-400">Wellstocked Mall, 1 Hakeem Dickson Link Road, Lekki Phase 1, Lagos, Nigeria</span>
               </div>
             </div>
           </div>

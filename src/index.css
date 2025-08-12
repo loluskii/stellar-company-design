@@ -198,3 +198,8 @@ html {
 html::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+.my-gradient {
+  @apply bg-no-repeat bg-cover;
+  background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(0,105,148,1) 15.6%, rgba(0,163,217,1) 51.9%, rgba(0,194,226,1) 81%);
+}

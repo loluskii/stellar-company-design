@@ -22,31 +22,27 @@ const Hero = () => {
     title: "WELLSTOCKED Nigeria Limited",
     subtitle: "Premium Quality Products & Services",
     description: "Your trusted partner for all your needs. We provide top-quality products and exceptional services to help your business thrive.",
-    phone: "+234 XXX XXX XXXX",
-    email: "info@wellstocked.ng",
+    phone: "+234 0705 063 9404",
+    email: "info@wellstockedltd.com",
     location: "Lagos, Nigeria"
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-blue-900 overflow-hidden">
+    <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center my-gradient overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 border-2 border-white/20 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-40 right-32 w-24 h-24 border-2 border-white/20 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 border-2 border-white/20 rounded-full animate-pulse delay-500"></div>
-      </div>
+
       
-      <div className="container mx-auto px-4 z-20 relative">
+      <div className="container mx-auto px-4 py-8 z-20 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white space-y-8 z-30 relative">
             <div className="space-y-4">
-              <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-white">
+              <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-white">
                 {heroContent.subtitle}
               </div>
               <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white" style={{ fontFamily: 'Times New Roman', }}>
                 {heroContent.title}
               </h1>
-              <p className="text-xl text-blue-100 leading-relaxed">
+              <p className="text-lg sm:text-xl text-blue-100 leading-snug md:leading-relaxed">
                 {heroContent.description}
               </p>
             </div>
@@ -61,7 +57,7 @@ const Hero = () => {
               </Button>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-6 pt-8">
+            <div className="sm:flex flex-col sm:flex-row gap-6 hidden">
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-teal-300" />
                 <span className="text-blue-100">{heroContent.phone}</span>
@@ -79,7 +75,7 @@ const Hero = () => {
               <img
                 src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop"
                 alt="Team working with advanced display technology and automation solutions"
-                className="rounded-3xl shadow-2xl w-full h-full min-h-[500px] object-cover border-4 border-white/20"
+                className="rounded-3xl shadow-2xl w-full h-full min-h-[250px] md:min-h-[500px] object-cover border-4 border-white/20"
               />
             </div>
           </div>

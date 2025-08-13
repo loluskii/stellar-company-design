@@ -9,6 +9,7 @@ import { ContentStore } from "@/lib/contentStore";
 import HeroEditor from "@/components/admin/HeroEditor";
 import ServicesEditor from "@/components/admin/ServicesEditor";
 import ProductsEditor from "@/components/admin/ProductsEditor";
+import ClientsEditor from "@/components/admin/ClientsEditor";
 import AboutEditor from "@/components/admin/AboutEditor";
 import ContactEditor from "@/components/admin/ContactEditor";
 import { useToast } from "@/hooks/use-toast";
@@ -110,6 +111,13 @@ const AdminPage = () => {
                     Products
                   </Button>
                   <Button
+                    variant={activeTab === "clients" ? "default" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveTab("clients")}
+                  >
+                    Clients
+                  </Button>
+                  <Button
                     variant={activeTab === "about" ? "default" : "ghost"}
                     className="w-full justify-start"
                     onClick={() => setActiveTab("about")}
@@ -144,6 +152,7 @@ const AdminPage = () => {
                   {activeTab === "hero" && <HeroEditor />}
                   {activeTab === "services" && <ServicesEditor />}
                   {activeTab === "products" && <ProductsEditor />}
+                  {activeTab === "clients" && <ClientsEditor />}
                   {activeTab === "about" && <AboutEditor />}
                   {activeTab === "contact" && <ContactEditor />}
                 </CardContent>

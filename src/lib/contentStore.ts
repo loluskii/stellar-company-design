@@ -9,6 +9,13 @@ interface ServiceItem {
   sort_order?: number;
 }
 
+interface ClientItem {
+  id?: string;
+  name: string;
+  logo_url?: string;
+  sort_order?: number;
+}
+
 interface ProductCategory {
   id?: string;
   name: string;
@@ -49,6 +56,7 @@ interface SiteContent {
   hero: HeroContent | null;
   services: ServiceItem[];
   products: ProductCategory[];
+  clients: ClientItem[];
   about: AboutContent | null;
   contact: ContactInfo | null;
 }
@@ -59,6 +67,7 @@ export class ContentStore {
     hero: null,
     services: [],
     products: [],
+    clients: [],
     about: null,
     contact: null
   };
@@ -94,22 +103,29 @@ export class ContentStore {
         .select('*')
         .order('sort_order');
 
+      // Load clients
+      const { data: clientsData } = await supabase
+        .from('clients')
+        .select('*')
+        .order('sort_order');
+
       // Load about content
       const { data: aboutData } = await supabase
         .from('about_content')
         .select('*')
-        .single();
+        .maybeSingle();
 
       // Load contact info
       const { data: contactData } = await supabase
         .from('contact_info')
         .select('*')
-        .single();
+        .maybeSingle();
 
       this.content = {
         hero: heroData || null,
         services: servicesData || [],
         products: productsData || [],
+        clients: clientsData || [],
         about: aboutData || null,
         contact: contactData || null
       };
@@ -191,6 +207,29 @@ export class ContentStore {
     }
   }
 
+  async updateClients(clients: ClientItem[]): Promise<void> {
+    try {
+      // Delete all existing clients
+      await supabase.from('clients').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Insert new clients
+      const { data } = await supabase
+        .from('clients')
+        .insert(clients.map((client, index) => ({
+          ...client,
+          sort_order: index
+        })))
+        .select();
+
+      if (data) {
+        this.content.clients = data;
+      }
+    } catch (error) {
+      console.error('Error updating clients:', error);
+      throw error;
+    }
+  }
+
   async updateAbout(about: Omit<AboutContent, 'id'>): Promise<void> {
     try {
       const { data } = await supabase
@@ -232,4 +271,4 @@ export class ContentStore {
   }
 }
 
-export type { SiteContent, ServiceItem, ProductCategory, ContactInfo, HeroContent, AboutContent };
+export type { SiteContent, ServiceItem, ProductCategory, ClientItem, ContactInfo, HeroContent, AboutContent };

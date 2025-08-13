@@ -1,26 +1,21 @@
 import { useState, useRef, useEffect } from "react";
+import { ContentStore, ClientItem } from "@/lib/contentStore";
 
-const clients = [
-  { name: "UNICEF", logo: "https://weadapt.org/wp-content/uploads/2023/05/unicef_vert.png" },
-  { name: "FirstBank", logo: "https://www.firstbanknigeria.com/wp-content/uploads/2020/01/First-Bank.svg" },
-  { name: "Shell", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/640px-Shell_logo.svg.png" },
-  { name: "MTN", logo: "https://logos-world.net/wp-content/uploads/2023/01/MTN-Logo.png" },
-  { name: "Telnet", logo: "https://media.licdn.com/dms/image/v2/C4D0BAQE6Alnz3S39SA/company-logo_200_200/company-logo_200_200/0/1630493011038?e=2147483647&v=beta&t=P9e2DFO4O9x21udzKluhu8_M2WLNAfKZ05n2ZU24aM4" },
-  { name: "Access Bank", logo: "https://wp.logos-download.com/wp-content/uploads/2023/02/Access_Bank_PLC_Logo.png?dl" },
-  { name: "Fidelity Bank", logo: "https://www.seekpng.com/png/full/356-3560448_fidelity-bank-old-logo-brandessence-fidelity-bank-nigeria.png" },
-  { name: "AEDC", logo: "https://nerc.gov.ng/wp-content/uploads/2024/04/Artboard-3.png" },
-  { name: "Sterling Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/0/07/Sterling_Bank_Logo_Straight.png" },
-  { name: "UBA", logo: "https://images.africanfinancials.com/ng-uba-logo.png" },
-  { name: "Panasonic", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Panasonic_logo_%28Blue%29.svg/1200px-Panasonic_logo_%28Blue%29.svg.png" },
-  { name: "HP", logo: "https://telnetng.com/wp-content/uploads/2025/04/HP-Logo-1024x576.png" }
-];
-
-const duplicatedClients = [...clients, ...clients];
-
-export default function Clients() {
+const Clients = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [duration, setDuration] = useState("20s");
+  const [clients, setClients] = useState<ClientItem[]>([]);
   const marqueeRef = useRef(null);
+
+  useEffect(() => {
+    const loadContent = async () => {
+      const contentStore = ContentStore.getInstance();
+      await contentStore.loadContent();
+      const siteContent = contentStore.getContent();
+      setClients(siteContent.clients);
+    };
+    loadContent();
+  }, []);
 
   useEffect(() => {
     if (marqueeRef.current) {
@@ -30,7 +25,26 @@ export default function Clients() {
       const time = totalWidth / speedFactor; // seconds
       setDuration(`${time}s`);
     }
-  }, []);
+  }, [clients]);
+
+  // Fallback clients while loading
+  const fallbackClients: ClientItem[] = [
+    { name: "UNICEF", logo_url: "https://weadapt.org/wp-content/uploads/2023/05/unicef_vert.png" },
+    { name: "FirstBank", logo_url: "https://www.firstbanknigeria.com/wp-content/uploads/2020/01/First-Bank.svg" },
+    { name: "Shell", logo_url: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/640px-Shell_logo.svg.png" },
+    { name: "MTN", logo_url: "https://logos-world.net/wp-content/uploads/2023/01/MTN-Logo.png" },
+    { name: "Telnet", logo_url: "https://media.licdn.com/dms/image/v2/C4D0BAQE6Alnz3S39SA/company-logo_200_200/company-logo_200_200/0/1630493011038?e=2147483647&v=beta&t=P9e2DFO4O9x21udzKluhu8_M2WLNAfKZ05n2ZU24aM4" },
+    { name: "Access Bank", logo_url: "https://wp.logos-download.com/wp-content/uploads/2023/02/Access_Bank_PLC_Logo.png?dl" },
+    { name: "Fidelity Bank", logo_url: "https://www.seekpng.com/png/full/356-3560448_fidelity-bank-old-logo-brandessence-fidelity-bank-nigeria.png" },
+    { name: "AEDC", logo_url: "https://nerc.gov.ng/wp-content/uploads/2024/04/Artboard-3.png" },
+    { name: "Sterling Bank", logo_url: "https://upload.wikimedia.org/wikipedia/commons/0/07/Sterling_Bank_Logo_Straight.png" },
+    { name: "UBA", logo_url: "https://images.africanfinancials.com/ng-uba-logo.png" },
+    { name: "Panasonic", logo_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Panasonic_logo_%28Blue%29.svg/1200px-Panasonic_logo_%28Blue%29.svg.png" },
+    { name: "HP", logo_url: "https://telnetng.com/wp-content/uploads/2025/04/HP-Logo-1024x576.png" }
+  ];
+
+  const displayClients = clients.length > 0 ? clients : fallbackClients;
+  const duplicatedClients = [...displayClients, ...displayClients];
 
   return (
     <section className="py-16 relative overflow-hidden bg-white">
@@ -59,12 +73,12 @@ export default function Clients() {
           }}
         >
           {duplicatedClients.map((client, index) => (
-            <div className="w-24 h-24 flex items-center justify-center transition-all duration-700 ease-out">
-                <div className="text-5xl grayscale hover:grayscale-0 transition-all duration-700 ease-out relative">
-                  <img src={client.logo} alt={client.name} />
-                  <div className="absolute inset-0 bg-white rounded-full blur-xl opacity-0 transition-opacity duration-500"></div>
-                </div>
+            <div key={`${client.name}-${index}`} className="w-24 h-24 flex items-center justify-center transition-all duration-700 ease-out">
+              <div className="text-5xl grayscale hover:grayscale-0 transition-all duration-700 ease-out relative">
+                <img src={client.logo_url} alt={client.name} />
+                <div className="absolute inset-0 bg-white rounded-full blur-xl opacity-0 transition-opacity duration-500"></div>
               </div>
+            </div>
           ))}
         </div>
       </div>
@@ -84,4 +98,6 @@ export default function Clients() {
       `}</style>
     </section>
   );
-}
+};
+
+export default Clients;

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Settings, Printer, Server, Wrench, Airplay, 
@@ -8,60 +8,90 @@ import { Settings, Printer, Server, Wrench, Airplay,
   FileCheck2, FileBarChart2, FileSearch2, FileCog, FilePlus2, FileMinus2, FileX2, FileArchive, FileStack, 
   FileSignature, FileSpreadsheet, FileSymlink, FileText, FileType, FileVideo2, FileVolume2, FileWarning, 
   Folder, FolderOpen, ChevronDown, ChevronUp } from "lucide-react";
+import { ContentStore, ServiceItem } from "@/lib/contentStore";
 
-const services = [
-  {
-    title: "Office Equipment Sales & Supply",
-    description: "Authorized distributor and supplier of quality office equipment and automation solutions.",
-    features: [
-      "Sharp Photocopiers",
-      "Panasonic, Sharp, HP Printers",
-      "Industrial/Online UPS",
-      "Computer Systems & Accessories (HP, Dell, etc.)",
-      "ATM Consumables",
-      "Note Counting Machines",
-      "Air Conditioners",
-      "Office Furniture",
-      "Interactive Displays & Video Walls",
-      "Industrial Scanners & Shredders",
-      "POS Machines & Consumables",
-      "ID Card Printing Machines (Fargo)",
-      "Networking Hardware/Software (Cisco, etc.)"
-    ],
-    icon: Printer
-  },
-  {
-    title: "Leasing & Maintenance",
-    description: "Flexible leasing options and comprehensive maintenance for all supplied equipment.",
-    features: [
-      "Preventive Maintenance",
-      "After-Sales Service",
-      "Breakdown Repairs",
-      "Regular Servicing",
-      "Nationwide Support",
-      "Prompt Response, Minimal Downtime"
-    ],
-    icon: Wrench
-  },
-  {
-    title: "IT & Office Solutions",
-    description: "Integrated technology and office solutions for modern businesses.",
-    features: [
-      "Computer Networking",
-      "Servers & Storage",
-      "Cloud Solutions",
-      "Software Licensing",
-      "Security & Access Control",
-      "Broadband & Connectivity",
-      "Consulting & Custom Solutions"
-    ],
-    icon: Server
-  }
-];
+// Icon mapping for services loaded from database
+const iconMap: { [key: string]: any } = {
+  "Printer": Printer,
+  "Server": Server,
+  "Wrench": Wrench,
+  "Settings": Settings,
+  "Building2": Building2,
+  "Globe": Globe,
+  "Database": Database,
+  "Shield": Shield,
+  "Cpu": Cpu,
+  "Network": Network,
+  "Cloud": Cloud
+};
 
 const Services = () => {
   const [showAll, setShowAll] = useState(false);
+  const [services, setServices] = useState<ServiceItem[]>([]);
   const maxInitialFeatures = 5;
+
+  useEffect(() => {
+    const loadContent = async () => {
+      const contentStore = ContentStore.getInstance();
+      await contentStore.loadContent();
+      const siteContent = contentStore.getContent();
+      setServices(siteContent.services);
+    };
+    loadContent();
+  }, []);
+
+  // Fallback services while loading
+  const fallbackServices: ServiceItem[] = [
+    {
+      title: "Office Equipment Sales & Supply",
+      description: "Authorized distributor and supplier of quality office equipment and automation solutions.",
+      features: [
+        "Sharp Photocopiers",
+        "Panasonic, Sharp, HP Printers",
+        "Industrial/Online UPS",
+        "Computer Systems & Accessories (HP, Dell, etc.)",
+        "ATM Consumables",
+        "Note Counting Machines",
+        "Air Conditioners",
+        "Office Furniture",
+        "Interactive Displays & Video Walls",
+        "Industrial Scanners & Shredders",
+        "POS Machines & Consumables",
+        "ID Card Printing Machines (Fargo)",
+        "Networking Hardware/Software (Cisco, etc.)"
+      ],
+      icon: "Printer"
+    },
+    {
+      title: "Leasing & Maintenance",
+      description: "Flexible leasing options and comprehensive maintenance for all supplied equipment.",
+      features: [
+        "Preventive Maintenance",
+        "After-Sales Service",
+        "Breakdown Repairs",
+        "Regular Servicing",
+        "Nationwide Support",
+        "Prompt Response, Minimal Downtime"
+      ],
+      icon: "Wrench"
+    },
+    {
+      title: "IT & Office Solutions",
+      description: "Integrated technology and office solutions for modern businesses.",
+      features: [
+        "Computer Networking",
+        "Servers & Storage",
+        "Cloud Solutions",
+        "Software Licensing",
+        "Security & Access Control",
+        "Broadband & Connectivity",
+        "Consulting & Custom Solutions"
+      ],
+      icon: "Server"
+    }
+  ];
+
+  const displayServices = services.length > 0 ? services : fallbackServices;
 
   return (
     <section className="py-24 bg-gray-50">
@@ -73,8 +103,8 @@ const Services = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const IconComponent = service.icon || Settings;
+          {displayServices.map((service, index) => {
+            const IconComponent = iconMap[service.icon] || Settings;
             const displayFeatures = showAll 
               ? service.features 
               : service.features.slice(0, maxInitialFeatures);
@@ -107,7 +137,7 @@ const Services = () => {
             );
           })}
         </div>
-        {!showAll && services.some(service => service.features.length > maxInitialFeatures) && (
+        {!showAll && displayServices.some(service => service.features.length > maxInitialFeatures) && (
           <div className="text-center mt-12">
             <Button 
               onClick={() => setShowAll(true)}

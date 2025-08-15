@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
@@ -44,6 +44,144 @@ export type Database = {
           updated_at?: string
           values?: string[]
           vision?: string
+        }
+        Relationships: []
+      }
+      about_page_milestones: {
+        Row: {
+          created_at: string
+          description: string
+          highlight: boolean
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string
+          year: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          highlight?: boolean
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+          year: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          highlight?: boolean
+          id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+          year?: string
+        }
+        Relationships: []
+      }
+      about_page_sections: {
+        Row: {
+          created_at: string
+          hero_description: string
+          hero_subtitle: string
+          hero_title: string
+          id: string
+          journey_description: string
+          journey_title: string
+          story_content: string[]
+          story_title: string
+          updated_at: string
+          values_description: string
+          values_title: string
+        }
+        Insert: {
+          created_at?: string
+          hero_description: string
+          hero_subtitle: string
+          hero_title: string
+          id?: string
+          journey_description: string
+          journey_title: string
+          story_content?: string[]
+          story_title: string
+          updated_at?: string
+          values_description: string
+          values_title: string
+        }
+        Update: {
+          created_at?: string
+          hero_description?: string
+          hero_subtitle?: string
+          hero_title?: string
+          id?: string
+          journey_description?: string
+          journey_title?: string
+          story_content?: string[]
+          story_title?: string
+          updated_at?: string
+          values_description?: string
+          values_title?: string
+        }
+        Relationships: []
+      }
+      about_page_stats: {
+        Row: {
+          created_at: string
+          icon: string
+          id: string
+          label: string
+          number: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          icon: string
+          id?: string
+          label: string
+          number: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          icon?: string
+          id?: string
+          label?: string
+          number?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      about_page_values: {
+        Row: {
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          icon: string
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -202,6 +340,60 @@ export type Database = {
           id?: string
           sort_order?: number
           title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services_page_benefits: {
+        Row: {
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          icon: string
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services_page_sections: {
+        Row: {
+          benefits_description: string
+          benefits_title: string
+          created_at: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          benefits_description: string
+          benefits_title: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+        }
+        Update: {
+          benefits_description?: string
+          benefits_title?: string
+          created_at?: string
+          id?: string
           updated_at?: string
         }
         Relationships: []

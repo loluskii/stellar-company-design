@@ -12,6 +12,8 @@ import ProductsEditor from "@/components/admin/ProductsEditor";
 import ClientsEditor from "@/components/admin/ClientsEditor";
 import AboutEditor from "@/components/admin/AboutEditor";
 import ContactEditor from "@/components/admin/ContactEditor";
+import AboutPageEditor from "@/components/admin/AboutPageEditor";
+import ServicesPageEditor from "@/components/admin/ServicesPageEditor";
 import { useToast } from "@/hooks/use-toast";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
@@ -131,6 +133,20 @@ const AdminPage = () => {
                   >
                     Contact
                   </Button>
+                  <Button
+                    variant={activeTab === "aboutPage" ? "default" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveTab("aboutPage")}
+                  >
+                    About Page
+                  </Button>
+                  <Button
+                    variant={activeTab === "servicesPage" ? "default" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveTab("servicesPage")}
+                  >
+                    Services Page
+                  </Button>
                 </CardContent>
               </Card>
             </div>
@@ -155,6 +171,8 @@ const AdminPage = () => {
                   {activeTab === "clients" && <ClientsEditor />}
                   {activeTab === "about" && <AboutEditor />}
                   {activeTab === "contact" && <ContactEditor />}
+                  {activeTab === "aboutPage" && <AboutPageEditor />}
+                  {activeTab === "servicesPage" && <ServicesPageEditor />}
                 </CardContent>
               </Card>
             </div>

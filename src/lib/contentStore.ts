@@ -52,6 +52,58 @@ interface AboutContent {
   values: string[];
 }
 
+interface AboutPageSections {
+  id?: string;
+  hero_title: string;
+  hero_subtitle: string;
+  hero_description: string;
+  story_title: string;
+  story_content: string[];
+  values_title: string;
+  values_description: string;
+  journey_title: string;
+  journey_description: string;
+}
+
+interface AboutPageStat {
+  id?: string;
+  icon: string;
+  number: string;
+  label: string;
+  sort_order?: number;
+}
+
+interface AboutPageValue {
+  id?: string;
+  icon: string;
+  title: string;
+  description: string;
+  sort_order?: number;
+}
+
+interface AboutPageMilestone {
+  id?: string;
+  year: string;
+  title: string;
+  description: string;
+  highlight: boolean;
+  sort_order?: number;
+}
+
+interface ServicesPageSections {
+  id?: string;
+  benefits_title: string;
+  benefits_description: string;
+}
+
+interface ServicesPageBenefit {
+  id?: string;
+  icon: string;
+  title: string;
+  description: string;
+  sort_order?: number;
+}
+
 interface SiteContent {
   hero: HeroContent | null;
   services: ServiceItem[];
@@ -59,6 +111,16 @@ interface SiteContent {
   clients: ClientItem[];
   about: AboutContent | null;
   contact: ContactInfo | null;
+  aboutPage: {
+    sections: AboutPageSections | null;
+    stats: AboutPageStat[];
+    values: AboutPageValue[];
+    milestones: AboutPageMilestone[];
+  };
+  servicesPage: {
+    sections: ServicesPageSections | null;
+    benefits: ServicesPageBenefit[];
+  };
 }
 
 export class ContentStore {
@@ -69,7 +131,17 @@ export class ContentStore {
     products: [],
     clients: [],
     about: null,
-    contact: null
+    contact: null,
+    aboutPage: {
+      sections: null,
+      stats: [],
+      values: [],
+      milestones: []
+    },
+    servicesPage: {
+      sections: null,
+      benefits: []
+    }
   };
 
   private constructor() {
@@ -121,13 +193,59 @@ export class ContentStore {
         .select('*')
         .maybeSingle();
 
+      // Load about page sections
+      const { data: aboutPageSectionsData } = await supabase
+        .from('about_page_sections')
+        .select('*')
+        .maybeSingle();
+
+      // Load about page stats
+      const { data: aboutPageStatsData } = await supabase
+        .from('about_page_stats')
+        .select('*')
+        .order('sort_order');
+
+      // Load about page values
+      const { data: aboutPageValuesData } = await supabase
+        .from('about_page_values')
+        .select('*')
+        .order('sort_order');
+
+      // Load about page milestones
+      const { data: aboutPageMilestonesData } = await supabase
+        .from('about_page_milestones')
+        .select('*')
+        .order('sort_order');
+
+      // Load services page sections
+      const { data: servicesPageSectionsData } = await supabase
+        .from('services_page_sections')
+        .select('*')
+        .maybeSingle();
+
+      // Load services page benefits
+      const { data: servicesPageBenefitsData } = await supabase
+        .from('services_page_benefits')
+        .select('*')
+        .order('sort_order');
+
       this.content = {
         hero: heroData || null,
         services: servicesData || [],
         products: productsData || [],
         clients: clientsData || [],
         about: aboutData || null,
-        contact: contactData || null
+        contact: contactData || null,
+        aboutPage: {
+          sections: aboutPageSectionsData || null,
+          stats: aboutPageStatsData || [],
+          values: aboutPageValuesData || [],
+          milestones: aboutPageMilestonesData || []
+        },
+        servicesPage: {
+          sections: servicesPageSectionsData || null,
+          benefits: servicesPageBenefitsData || []
+        }
       };
 
       return this.content;
@@ -269,6 +387,152 @@ export class ContentStore {
       throw error;
     }
   }
+
+  async updateAboutPageSections(sections: Omit<AboutPageSections, 'id'>): Promise<void> {
+    try {
+      const { data } = await supabase
+        .from('about_page_sections')
+        .upsert({
+          id: this.content.aboutPage.sections?.id,
+          ...sections
+        })
+        .select()
+        .single();
+
+      if (data) {
+        this.content.aboutPage.sections = data;
+      }
+    } catch (error) {
+      console.error('Error updating about page sections:', error);
+      throw error;
+    }
+  }
+
+  async updateAboutPageStats(stats: AboutPageStat[]): Promise<void> {
+    try {
+      // Delete all existing stats
+      await supabase.from('about_page_stats').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Insert new stats
+      const { data } = await supabase
+        .from('about_page_stats')
+        .insert(stats.map((stat, index) => ({
+          ...stat,
+          sort_order: index
+        })))
+        .select();
+
+      if (data) {
+        this.content.aboutPage.stats = data;
+      }
+    } catch (error) {
+      console.error('Error updating about page stats:', error);
+      throw error;
+    }
+  }
+
+  async updateAboutPageValues(values: AboutPageValue[]): Promise<void> {
+    try {
+      // Delete all existing values
+      await supabase.from('about_page_values').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Insert new values
+      const { data } = await supabase
+        .from('about_page_values')
+        .insert(values.map((value, index) => ({
+          ...value,
+          sort_order: index
+        })))
+        .select();
+
+      if (data) {
+        this.content.aboutPage.values = data;
+      }
+    } catch (error) {
+      console.error('Error updating about page values:', error);
+      throw error;
+    }
+  }
+
+  async updateAboutPageMilestones(milestones: AboutPageMilestone[]): Promise<void> {
+    try {
+      // Delete all existing milestones
+      await supabase.from('about_page_milestones').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Insert new milestones
+      const { data } = await supabase
+        .from('about_page_milestones')
+        .insert(milestones.map((milestone, index) => ({
+          ...milestone,
+          sort_order: index
+        })))
+        .select();
+
+      if (data) {
+        this.content.aboutPage.milestones = data;
+      }
+    } catch (error) {
+      console.error('Error updating about page milestones:', error);
+      throw error;
+    }
+  }
+
+  async updateServicesPageSections(sections: Omit<ServicesPageSections, 'id'>): Promise<void> {
+    try {
+      const { data } = await supabase
+        .from('services_page_sections')
+        .upsert({
+          id: this.content.servicesPage.sections?.id,
+          ...sections
+        })
+        .select()
+        .single();
+
+      if (data) {
+        this.content.servicesPage.sections = data;
+      }
+    } catch (error) {
+      console.error('Error updating services page sections:', error);
+      throw error;
+    }
+  }
+
+  async updateServicesPageBenefits(benefits: ServicesPageBenefit[]): Promise<void> {
+    try {
+      // Delete all existing benefits
+      await supabase.from('services_page_benefits').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Insert new benefits
+      const { data } = await supabase
+        .from('services_page_benefits')
+        .insert(benefits.map((benefit, index) => ({
+          ...benefit,
+          sort_order: index
+        })))
+        .select();
+
+      if (data) {
+        this.content.servicesPage.benefits = data;
+      }
+    } catch (error) {
+      console.error('Error updating services page benefits:', error);
+      throw error;
+    }
+  }
 }
 
-export type { SiteContent, ServiceItem, ProductCategory, ClientItem, ContactInfo, HeroContent, AboutContent };
+export type { 
+  SiteContent, 
+  ServiceItem, 
+  ProductCategory, 
+  ClientItem, 
+  ContactInfo, 
+  HeroContent, 
+  AboutContent,
+  AboutPageSections,
+  AboutPageStat,
+  AboutPageValue,
+  AboutPageMilestone,
+  ServicesPageSections,
+  ServicesPageBenefit
+};

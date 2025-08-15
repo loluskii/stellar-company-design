@@ -1,73 +1,81 @@
-# Welcome to your Lovable project
+# Wellstocked Nigeria Limited - Website
 
-## Project info
+A modern, responsive website for Wellstocked Nigeria Limited, featuring offline support and a content management system.
 
-**URL**: https://lovable.dev/projects/f3f8eb07-ba02-458e-8310-b6f83689a69a
+## Features
 
-## How can I edit this code?
+### Offline Support
+The website includes comprehensive offline functionality:
 
-There are several ways of editing your application.
+- **Service Worker**: Caches static assets and API responses for offline access
+- **Offline Page**: Custom offline page shown when users lose connection
+- **Local Storage Caching**: Content is cached locally for offline browsing
+- **Offline Status Indicator**: Visual indicator when users are offline
+- **PWA Support**: Installable as a Progressive Web App
 
-**Use Lovable**
+### Offline Features
+- Browse previously visited pages without internet connection
+- View cached content (hero, services, products, about, contact info)
+- Automatic retry when connection is restored
+- Background sync for offline form submissions (future enhancement)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f3f8eb07-ba02-458e-8310-b6f83689a69a) and start prompting.
+### How Offline Works
+1. **First Visit**: Service worker caches essential assets and content
+2. **Subsequent Visits**: Content loads from cache for faster performance
+3. **Offline Mode**: Users can browse cached pages and content
+4. **Reconnection**: App automatically detects when connection is restored
 
-Changes made via Lovable will be committed automatically to this repo.
+### PWA Features
+- Installable on mobile devices
+- App-like experience
+- Offline functionality
+- Background sync capabilities
 
-**Use your preferred IDE**
+## Development
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
+```bash
+npm install
+```
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Development Server
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build for Production
+```bash
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Testing Offline Functionality
+1. Build the project: `npm run build`
+2. Serve the dist folder: `npx serve dist`
+3. Open browser dev tools → Application → Service Workers
+4. Check "Offline" in Network tab
+5. Refresh page to see offline functionality
 
-**Use GitHub Codespaces**
+## Technology Stack
+- React 18 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- Supabase for CMS
+- Service Worker for offline support
+- PWA capabilities
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Content Management
+The website uses Supabase as a headless CMS with the following content types:
+- Hero content
+- Services
+- Products
+- Clients
+- About information
+- Contact details
+- About page sections
+- Services page content
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/f3f8eb07-ba02-458e-8310-b6f83689a69a) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+All content is cached locally for offline access and updates automatically when online.

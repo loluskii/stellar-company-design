@@ -14,7 +14,7 @@ const AboutPage = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadAboutPage();
       const siteContent = contentStore.getContent();
       setAboutPageContent(siteContent.aboutPage);
     };
@@ -90,7 +90,7 @@ const AboutPage = () => {
                 {sections.hero_subtitle}
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto">
               {sections.hero_description}
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -101,8 +101,8 @@ const AboutPage = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl mb-4 backdrop-blur-sm">
                       <IconComponent className="h-8 w-8 text-cyan-400" />
                     </div>
-                    <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
-                    <div className="text-blue-200 text-sm font-medium">{stat.label}</div>
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.number}</div>
+                    <div className="text-white/80 text-sm font-medium">{stat.label}</div>
                   </div>
                 );
               })}
@@ -119,7 +119,7 @@ const AboutPage = () => {
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
                   {sections.story_title.split(' ').slice(0, -1).join(' ')}
-                  <span className="text-blue-600"> {sections.story_title.split(' ').slice(-1)}</span>
+                  <span className="text-primary"> {sections.story_title.split(' ').slice(-1)}</span>
                 </h2>
                 <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                   {sections.story_content.map((paragraph: string, index: number) => (
@@ -130,7 +130,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-indigo-100 rounded-3xl p-8 flex items-center justify-center">
                   <div className="text-center">
-                    <Building className="h-24 w-24 text-blue-600 mx-auto mb-4" />
+                    <Building className="h-24 w-24 text-primary mx-auto mb-4" />
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">15+ Years</h3>
                     <p className="text-gray-600">of Innovation & Excellence</p>
                   </div>
@@ -189,19 +189,19 @@ const AboutPage = () => {
             
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 transform -translate-y-1/2 hidden lg:block"></div>
+              <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary/30 via-primary to-primary/80 transform -translate-y-1/2 hidden lg:block"></div>
               
               <div className="grid lg:grid-cols-5 gap-8">
                 {milestones.map((milestone, index) => (
                   <div key={index} className="relative">
                     <div className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${
-                      milestone.highlight ? 'ring-2 ring-blue-400 ring-offset-2' : ''
+                      milestone.highlight ? 'ring-2 ring-primary ring-offset-2' : ''
                     }`}>
                       <div className="text-center">
                         <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full mb-4 ${
                           milestone.highlight 
-                            ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white' 
-                            : 'bg-blue-100 text-blue-600'
+                            ? 'bg-gradient-to-br from-primary to-primary/80 text-white' 
+                            : 'bg-primary/10 text-primary'
                         }`}>
                           <span className="font-bold text-sm">{milestone.year}</span>
                         </div>

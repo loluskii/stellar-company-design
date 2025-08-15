@@ -14,7 +14,7 @@ const ContactEditor = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadContact();
       const siteContent = contentStore.getContent();
       setContact(siteContent.contact);
     };

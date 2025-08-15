@@ -17,7 +17,7 @@ const ServicesPage = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadServicesPage();
       const siteContent = contentStore.getContent();
       setServicesPageContent(siteContent.servicesPage);
     };

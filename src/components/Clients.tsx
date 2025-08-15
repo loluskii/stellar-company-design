@@ -10,7 +10,7 @@ const Clients = () => {
   useEffect(() => {
     const loadContent = async () => {
       const contentStore = ContentStore.getInstance();
-      await contentStore.loadContent();
+      await contentStore.loadClients();
       const siteContent = contentStore.getContent();
       setClients(siteContent.clients);
     };

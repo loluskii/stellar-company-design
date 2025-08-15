@@ -14,7 +14,7 @@ const AboutEditor = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadAbout();
       const siteContent = contentStore.getContent();
       setContent(siteContent.about);
     };

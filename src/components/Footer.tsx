@@ -42,15 +42,15 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Contact</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-teal-400" />
+                <Phone className="h-4 w-4 text-primary" />
                 <span className="text-gray-400">+234 0705 063 9404</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-teal-400" />
+                <Mail className="h-4 w-4 text-primary" />
                 <span className="text-gray-400">info@wellstockedltd.com</span>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin className="h-8 w-8 text-teal-400" />
+                <MapPin className="h-8 w-8 text-primary" />
                 <span className="text-gray-400">Wellstocked Mall, 1 Hakeem Dickson Link Road, Lekki Phase 1, Lagos, Nigeria</span>
               </div>
             </div>
@@ -64,9 +64,9 @@ const Footer = () => {
             © 2024 Wellstocked Nigeria Limited. All rights reserved.
           </p>
           <div className="flex gap-6 text-gray-400">
-            <a href="#" className="hover:text-teal-400 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-teal-400 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-teal-400 transition-colors">Support</a>
+            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-primary transition-colors">Support</a>
           </div>
         </div>
       </div>

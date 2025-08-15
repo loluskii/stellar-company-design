@@ -1,12 +1,28 @@
+import { useEffect, useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import ReadyToTransform from "@/components/ReadyToTransform";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock, Building } from "lucide-react";
+import { ContentStore, ContactInfo } from "@/lib/contentStore";
 
 const ContactPage = () => {
-  const branches = [
+  type BranchItem = { name: string; address: string; phone?: string; type: "primary" | "branch" };
+  type WarehouseItem = { name: string; address: string };
+
+  const [contact, setContact] = useState<ContactInfo | null>(null);
+
+  useEffect(() => {
+    const load = async () => {
+      const store = ContentStore.getInstance();
+      await store.loadContact(true);
+      setContact(store.getContent().contact);
+    };
+    load();
+  }, []);
+
+  const fallbackBranches: BranchItem[] = [
     {
       name: "Head Office",
       address: "Block 123, Plot 4, Adewale Kolawole Street, Off Remi Olowude Street, New Marwa Market, Lekki Phase I, Lagos",
@@ -14,7 +30,7 @@ const ContactPage = () => {
       type: "primary"
     },
     {
-      name: "Ikeja Branch", 
+      name: "Ikeja Branch",
       address: "4, Pepple Street, Beside Zenith Bank, Shop 37, Computer Village, Ikeja, Lagos",
       phone: "01-7745209",
       type: "branch"
@@ -33,34 +49,84 @@ const ContactPage = () => {
     }
   ];
 
-  const warehouses = [
-    {
-      name: "Lagos Warehouse",
-      address: "71, Jebba Street, Ebute-Metta, Lagos"
-    },
-    {
-      name: "Yaba Warehouse", 
-      address: "Oyadiran Street, Sabo-Yaba, Lagos"
-    }
+  const fallbackWarehouses: WarehouseItem[] = [
+    { name: "Lagos Warehouse", address: "71, Jebba Street, Ebute-Metta, Lagos" },
+    { name: "Yaba Warehouse", address: "Oyadiran Street, Sabo-Yaba, Lagos" }
   ];
+
+  const { branches, warehouses } = useMemo(() => {
+    const result = { branches: [] as BranchItem[], warehouses: [] as WarehouseItem[] };
+    const addresses = contact?.address || [];
+    if (addresses.length === 0) {
+      return { branches: fallbackBranches, warehouses: fallbackWarehouses };
+    }
+
+    for (const line of addresses) {
+      const upper = line.toUpperCase();
+      if (upper.includes("WAREHOUSE")) {
+        // Format: 'WAREHOUSE: addr1 | addr2'
+        const afterColon = line.split(":")[1] || "";
+        const parts = afterColon.split("|").map(s => s.trim()).filter(Boolean);
+        for (const p of parts) {
+          // Use first word as city name if possible
+          const city = p.split(",")[0].trim();
+          result.warehouses.push({ name: `${city} Warehouse`, address: p });
+        }
+        continue;
+      }
+
+      if (upper.includes("BRANCH") || upper.includes("HEAD OFFICE")) {
+        const [label, restRaw = ""] = line.split(":");
+        const rest = restRaw.trim();
+        // Extract phone if present after 'Tel:'
+        let phone: string | undefined = undefined;
+        const telMatch = rest.match(/Tel:\s*(.*)$/i);
+        const addressOnly = telMatch ? rest.replace(/Tel:\s*.*/i, "").trim() : rest;
+        if (telMatch) {
+          phone = telMatch[1].trim();
+        }
+        // Format name
+        let name = label.toLowerCase().split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+        if (upper.includes("HEAD OFFICE")) name = "Head Office";
+        const type: "primary" | "branch" = upper.includes("HEAD OFFICE") ? "primary" : "branch";
+        result.branches.push({ name, address: addressOnly, phone, type });
+      }
+    }
+
+    // Backfill missing phone numbers from fallback branches by name
+    if (result.branches.length) {
+      result.branches = result.branches.map((b) => {
+        if (b.phone && b.phone.trim().length > 0) return b;
+        const fb = fallbackBranches.find(
+          (f) => f.name.toLowerCase() === b.name.toLowerCase()
+        );
+        return fb && fb.phone ? { ...b, phone: fb.phone } : b;
+      });
+    }
+
+    return {
+      branches: result.branches.length ? result.branches : fallbackBranches,
+      warehouses: result.warehouses.length ? result.warehouses : fallbackWarehouses,
+    };
+  }, [contact]);
 
   const contactMethods = [
     {
       icon: Phone,
       title: "Call Us",
-      details: ["01-2702549", "01-4610412", "07027702217", "07027706037"],
+      details: contact?.phone?.length ? contact.phone : ["01-2702549", "01-4610412", "07027702217", "07027706037"],
       color: "from-green-500 to-teal-500"
     },
     {
       icon: Mail,
       title: "Email Us",
-      details: ["info@wellstockednig.com", "sales@wellstockednig.com"],
+      details: contact?.email?.length ? contact.email : ["info@wellstockednig.com", "sales@wellstockednig.com"],
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: Clock,
       title: "Business Hours",
-      details: ["Monday - Friday: 8:00 AM - 6:00 PM", "Saturday: 9:00 AM - 4:00 PM", "Sunday: Closed", "Emergency Support: Available 24/7"],
+      details: contact?.business_hours?.length ? contact.business_hours : ["Monday - Friday: 8:00 AM - 6:00 PM", "Saturday: 9:00 AM - 4:00 PM", "Sunday: Closed", "Emergency Support: Available 24/7"],
       color: "from-purple-500 to-pink-500"
     }
   ];
@@ -79,15 +145,14 @@ const ContactPage = () => {
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900"></div>
+        <div className="absolute inset-0 my-gradient"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center text-white">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Get In Touch
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Ready to transform your office? Connect with our experts across Nigeria 
-              for personalized solutions and exceptional service
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              Get in touch with us for all your office equipment and automation needs
             </p>
           </div>
         </div>
@@ -151,7 +216,7 @@ const ContactPage = () => {
                     <div>
                       <CardTitle className="text-xl text-gray-900">{branch.name}</CardTitle>
                       {branch.type === 'primary' && (
-                        <span className="text-sm text-blue-600 font-medium">Primary Location</span>
+                        <span className="text-sm text-primary font-medium">Primary Location</span>
                       )}
                     </div>
                   </div>

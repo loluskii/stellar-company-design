@@ -26,7 +26,7 @@ const AboutPageEditor = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadAboutPage();
       const siteContent = contentStore.getContent();
       setSections(siteContent.aboutPage.sections);
       setStats(siteContent.aboutPage.stats);

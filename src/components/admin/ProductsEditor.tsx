@@ -15,7 +15,7 @@ const ProductsEditor = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadProducts();
       const siteContent = contentStore.getContent();
       setProducts(siteContent.products);
     };

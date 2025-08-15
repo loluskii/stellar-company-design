@@ -10,7 +10,7 @@ const Hero = () => {
   useEffect(() => {
     const loadContent = async () => {
       const contentStore = ContentStore.getInstance();
-      await contentStore.loadContent();
+      await contentStore.loadHero();
       const siteContent = contentStore.getContent();
       setContent(siteContent.hero);
     };

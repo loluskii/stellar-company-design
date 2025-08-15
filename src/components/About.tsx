@@ -9,7 +9,7 @@ const About = () => {
   useEffect(() => {
     const loadContent = async () => {
       const contentStore = ContentStore.getInstance();
-      await contentStore.loadContent();
+      await contentStore.loadAbout();
       const siteContent = contentStore.getContent();
       setAbout(siteContent.about);
     };

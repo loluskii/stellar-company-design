@@ -33,7 +33,7 @@ const Services = () => {
   useEffect(() => {
     const loadContent = async () => {
       const contentStore = ContentStore.getInstance();
-      await contentStore.loadContent();
+      await contentStore.loadServices();
       const siteContent = contentStore.getContent();
       setServices(siteContent.services);
     };
@@ -112,17 +112,17 @@ const Services = () => {
             
             return (
               <Card key={service.title} className="group h-full border bg-white">
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
-                    <IconComponent className="h-8 w-8 text-blue-600" />
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                    <IconComponent className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-xl text-gray-900">{service.title}</CardTitle>
+                  <CardTitle className="text-xl text-center">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {displayFeatures.map((feature, idx) => (
-                      <span key={idx} className="inline-block bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  <div className="flex flex-wrap gap-2 justify-center mb-6">
+                    {service.features.map((feature, idx) => (
+                      <span key={idx} className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
                         {feature}
                       </span>
                     ))}

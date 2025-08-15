@@ -31,8 +31,8 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
-                  isActive(item.path) ? "text-blue-600" : "text-gray-700"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive(item.path) ? "text-primary" : "text-gray-700"
                 }`}
               >
                 {item.name}
@@ -42,7 +42,7 @@ const Header = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/contact">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button className="bg-primary hover:bg-primary/90 text-white">
                 Get Quote
               </Button>
             </Link>
@@ -65,8 +65,8 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`px-2 py-2 text-sm font-medium transition-colors hover:text-blue-600 ${
-                    isActive(item.path) ? "text-blue-600" : "text-gray-700"
+                  className={`px-2 py-2 text-sm font-medium transition-colors hover:text-primary ${
+                    isActive(item.path) ? "text-primary" : "text-gray-700"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -74,7 +74,7 @@ const Header = () => {
                 </Link>
               ))}
               <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                <Button className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="w-full mt-2 bg-primary hover:bg-primary/90 text-white">
                   Get Quote
                 </Button>
               </Link>

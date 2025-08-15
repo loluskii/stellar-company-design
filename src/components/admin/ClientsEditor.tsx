@@ -14,7 +14,7 @@ const ClientsEditor = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadClients();
       const siteContent = contentStore.getContent();
       setClients(siteContent.clients);
     };

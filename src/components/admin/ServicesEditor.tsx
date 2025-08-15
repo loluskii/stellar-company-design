@@ -15,8 +15,12 @@ const ServicesEditor = () => {
   const contentStore = ContentStore.getInstance();
 
   useEffect(() => {
-    const siteContent = contentStore.getContent();
-    setServices(siteContent.services);
+    const loadContent = async () => {
+      await contentStore.loadServices();
+      const siteContent = contentStore.getContent();
+      setServices(siteContent.services);
+    };
+    loadContent();
   }, []);
 
   const handleSave = () => {

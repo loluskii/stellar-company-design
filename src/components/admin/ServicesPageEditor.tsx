@@ -20,7 +20,7 @@ const ServicesPageEditor = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadServicesPage();
       const siteContent = contentStore.getContent();
       setSections(siteContent.servicesPage.sections);
       setBenefits(siteContent.servicesPage.benefits);

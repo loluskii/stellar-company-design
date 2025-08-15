@@ -43,51 +43,43 @@ const Contact = () => {
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-blue-600" />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
-                    {contactInfo.phone.map((phone, index) => (
-                      <p key={index} className="text-gray-600">{phone}</p>
-                    ))}
+                    <h3 className="font-semibold text-gray-900">Phone</h3>
+                    <p className="text-gray-600">{contact?.phone?.join(', ') || 'Contact us for phone numbers'}</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-blue-600" />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
-                    {contactInfo.email.map((email, index) => (
-                      <p key={index} className="text-gray-600">{email}</p>
-                    ))}
+                    <h3 className="font-semibold text-gray-900">Email</h3>
+                    <p className="text-gray-600">{contact?.email?.join(', ') || 'info@wellstockedltd.com'}</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-blue-600" />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
-                    {contactInfo.address.map((addr, index) => (
-                      <p key={index} className="text-gray-600">{addr}</p>
-                    ))}
+                    <h3 className="font-semibold text-gray-900">Address</h3>
+                    <p className="text-gray-600">{contact?.address || 'Wellstocked Mall, 1 Hakeem Dickson Link Road, Lekki Phase 1, Lagos, Nigeria'}</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-blue-600" />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Clock className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Business Hours</h4>
-                    {contactInfo.business_hours.map((hours, index) => (
-                      <p key={index} className="text-gray-600">{hours}</p>
-                    ))}
+                    <h3 className="font-semibold text-gray-900">Business Hours</h3>
+                    <p className="text-gray-600">{contact?.business_hours || 'Monday - Friday: 8:00 AM - 6:00 PM'}</p>
                   </div>
                 </div>
               </div>

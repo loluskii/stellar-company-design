@@ -9,7 +9,7 @@ const Products = () => {
   useEffect(() => {
     const loadContent = async () => {
       const contentStore = ContentStore.getInstance();
-      await contentStore.loadContent();
+      await contentStore.loadProducts();
       const siteContent = contentStore.getContent();
       setProducts(siteContent.products);
     };

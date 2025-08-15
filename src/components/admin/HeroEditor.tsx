@@ -13,7 +13,7 @@ const HeroEditor = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadContent();
+      await contentStore.loadHero();
       const siteContent = contentStore.getContent();
       setContent(siteContent.hero);
     };

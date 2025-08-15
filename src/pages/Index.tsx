@@ -15,7 +15,13 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    ContentStore.getInstance().loadContent().then(() => setLoading(false));
+    const store = ContentStore.getInstance();
+    Promise.all([
+      store.loadHero(),
+      store.loadAbout(),
+      store.loadServices(),
+      store.loadClients(),
+    ]).then(() => setLoading(false));
   }, []);
 
   if (loading) {

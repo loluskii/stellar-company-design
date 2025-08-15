@@ -58,7 +58,7 @@ const AboutPage = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-6xl md:text-5xl font-bold mb-8 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
               {sections.hero_title}
               <span className="block bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
                 {sections.hero_subtitle}
@@ -94,7 +94,7 @@ const AboutPage = () => {
                 {sections.story_title.split(' ').slice(0, -1).join(' ')}
                 <span className="text-primary"> {sections.story_title.split(' ').slice(-1)}</span>
               </h2>
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+              <div className="space-y-6 text-base text-gray-600 leading-relaxed">
                 {sections.story_content?.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
                 ))}
@@ -116,10 +116,10 @@ const AboutPage = () => {
       <section className="py-24 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
               {sections.values_title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base text-gray-600 max-w-3xl mx-auto">
               {sections.values_description}
             </p>
           </div>
@@ -148,10 +148,10 @@ const AboutPage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
                 {sections.journey_title}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base text-gray-600 max-w-3xl mx-auto">
                 {sections.journey_description}
               </p>
             </div>

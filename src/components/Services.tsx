@@ -94,14 +94,22 @@ const Services = () => {
   const displayServices = services.length > 0 ? services : fallbackServices;
 
   return (
-    <section className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">Our Services & Solutions</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+    <section className="py-16 bg-gray-50">
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 my-gradient"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center text-white">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Our Services & Solutions
+            </h1>
+            <p className="text-base text-white/90 max-w-3xl mx-auto">
             Comprehensive sales, supply, leasing, and maintenance of office equipment, IT, and automation solutions for every sector in Nigeria.
-          </p>
+            </p>
+          </div>
         </div>
+      </section>
+      <div className="container mx-auto px-4 mt-12">
         <div className="grid md:grid-cols-3 gap-8">
           {displayServices.map((service, index) => {
             const IconComponent = iconMap[service.icon] || Settings;

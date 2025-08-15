@@ -27,7 +27,7 @@ const ContactPage = () => {
     {
       name: "Head Office",
       address: "Block 123, Plot 4, Adewale Kolawole Street, Off Remi Olowude Street, New Marwa Market, Lekki Phase I, Lagos",
-      phone: "01-2702549, 01-4610412",
+      phone: "07050639404, 08172846333, 08179652279",
       type: "primary"
     },
     {
@@ -115,13 +115,13 @@ const ContactPage = () => {
     {
       icon: FaWhatsapp,
       title: "Call or Text Us on WhatsApp",
-      details: contact?.phone?.length ? contact.phone : ["07050639404", "08172846333","081"],
+      details: contact?.phone?.length ? contact.phone : ["07050639404", "08172846333","08179652279"],
       color: "from-green-500 to-teal-500"
     },
     {
       icon: Mail,
       title: "Email Us",
-      details: contact?.email?.length ? contact.email : ["info@wellstockednig.com", "sales@wellstockednig.com"],
+      details: contact?.email?.length ? contact.email : ["info@wellstockedltd.com", "sales@wellstockedltd.com"],
       color: "from-blue-500 to-cyan-500"
     },
     {
@@ -143,153 +143,152 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 my-gradient"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Get In Touch
-            </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Get in touch with us for all your office equipment and automation needs
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Methods */}
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Contact Information</h2>
-            <p className="text-gray-600">Multiple ways to reach us for your convenience</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {contactMethods.map((method, index) => (
-              <Card key={index} className="text-center border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
-                <CardHeader>
-                  <div className={`mx-auto w-16 h-16 bg-gradient-to-br ${method.color} rounded-2xl flex items-center justify-center mb-4`}>
-                    <method.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-gray-900">{method.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm">
-                  <ul className="list-disc list-inside">
-                    {method.details.map((detail, idx) => (
-                      <li key={idx} className="text-gray-600 mb-1">{detail}</li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Branch Locations */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Locations</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Visit any of our branches across Nigeria for face-to-face consultations
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {branches.map((branch, index) => (
-              <Card key={index} className={`hover:shadow-lg transition-shadow ${
-                branch.type === 'primary' ? 'ring-2 ring-blue-400 ring-offset-2' : ''
-              }`}>
-                <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                      branch.type === 'primary' 
-                        ? 'bg-gradient-to-br from-blue-600 to-indigo-600' 
-                        : 'bg-gradient-to-br from-gray-600 to-gray-700'
-                    }`}>
-                      {branch.type === 'primary' ? (
-                        <Building className="h-6 w-6 text-white" />
-                      ) : (
-                        <MapPin className="h-6 w-6 text-white" />
-                      )}
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl text-gray-900">{branch.name}</CardTitle>
-                      {branch.type === 'primary' && (
-                        <span className="text-sm text-primary font-medium">Primary Location</span>
-                      )}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-600">{branch.address}</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                    <p className="text-gray-600">{branch.phone}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        {/* Hero Section */}
 
-          {/* Warehouses */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Warehouse Locations</h3>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {warehouses.map((warehouse, index) => (
-                <Card key={index} className="bg-gray-50 border-gray-200">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
-                        <Building className="h-5 w-5 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900">{warehouse.name}</h4>
-                        <p className="text-gray-600 text-sm">{warehouse.address}</p>
-                      </div>
+        <section className="relative py-24 overflow-hidden">
+          <div className="absolute inset-0 my-gradient"></div>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center text-white">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Get In Touch
+              </h1>
+              <p className="text-base text-white/90 max-w-3xl mx-auto">
+                Get in touch with us for all your office equipment and automation needs
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Methods */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {contactMethods.map((method, index) => (
+                <Card key={index} className="text-center border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
+                  <CardHeader>
+                    <div className={`mx-auto w-16 h-16 bg-gradient-to-br ${method.color} rounded-2xl flex items-center justify-center mb-4`}>
+                      <method.icon className="h-8 w-8 text-white" />
                     </div>
+                    <CardTitle className="text-xl text-gray-900">{method.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-sm">
+                    <ul className="list-disc list-inside">
+                      {method.details.map((detail, idx) => (
+                        <li key={idx} className="text-gray-600 mb-1">{detail}</li>
+                      ))}
+                    </ul>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact Form Section */}
-      <Contact />
-
-      {/* Services Overview */}
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">How We Can Help</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our comprehensive services cover all your office automation needs
-            </p>
-          </div>
-          
-          <div className="max-w-3xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-6">
-              {services.map((service, index) => (
-                <div key={index} className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full mr-4"></div>
-                  <span className="text-gray-700 font-medium">{service}</span>
-                </div>
+        {/* Branch Locations */}
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Locations</h2>
+              <p className="text-base text-gray-600 max-w-3xl mx-auto">
+                Visit any of our branches across Nigeria for face-to-face consultations
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {branches.map((branch, index) => (
+                <Card key={index} className={`hover:shadow-lg transition-shadow ${
+                  branch.type === 'primary' ? 'ring-2 ring-blue-400 ring-offset-2' : ''
+                }`}>
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                        branch.type === 'primary' 
+                          ? 'bg-gradient-to-br from-blue-600 to-indigo-600' 
+                          : 'bg-gradient-to-br from-gray-600 to-gray-700'
+                      }`}>
+                        {branch.type === 'primary' ? (
+                          <Building className="h-6 w-6 text-white" />
+                        ) : (
+                          <MapPin className="h-6 w-6 text-white" />
+                        )}
+                      </div>
+                      <div>
+                        <CardTitle className="text-xl text-gray-900">{branch.name}</CardTitle>
+                        {branch.type === 'primary' && (
+                          <span className="text-sm text-primary font-medium">Primary Location</span>
+                        )}
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                      <p className="text-gray-600">{branch.address}</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                      <p className="text-gray-600">{branch.phone}</p>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
 
-      <ReadyToTransform />
-      <Footer />
+            {/* Warehouses */}
+            <div className="mt-16">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Warehouse Locations</h3>
+              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                {warehouses.map((warehouse, index) => (
+                  <Card key={index} className="bg-gray-50 border-gray-200">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                          <Building className="h-5 w-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900">{warehouse.name}</h4>
+                          <p className="text-gray-600 text-sm">{warehouse.address}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form Section */}
+        <Contact />
+
+        {/* Services Overview */}
+        <section className="py-24 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">How We Can Help</h2>
+              <p className="text-base text-gray-600 max-w-2xl mx-auto">
+                Our comprehensive services cover all your office automation needs
+              </p>
+            </div>
+            
+            <div className="max-w-3xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-6">
+                {services.map((service, index) => (
+                  <div key={index} className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full mr-4"></div>
+                    <span className="text-gray-700 font-medium">{service}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <ReadyToTransform />
+        <Footer />
+      </section>
     </div>
   );
 };

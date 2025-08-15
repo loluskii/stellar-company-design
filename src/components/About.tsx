@@ -31,8 +31,8 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div className="space-y-8">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">{aboutContent.title}</h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">{aboutContent.title}</h2>
+              <p className="text-base text-gray-600 leading-relaxed mb-6">
                 {aboutContent.description}
               </p>
             </div>

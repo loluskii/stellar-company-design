@@ -31,8 +31,8 @@ const Contact = () => {
     <section className="py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
             Ready to transform your office with premium equipment and automation solutions? 
             Contact our expert team today.
           </p>

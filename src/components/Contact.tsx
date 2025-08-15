@@ -69,7 +69,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">Address</h3>
-                    <p className="text-gray-600">{contact?.address || 'Wellstocked Mall, 1 Hakeem Dickson Link Road, Lekki Phase 1, Lagos, Nigeria'}</p>
+                    <p className="text-gray-600">{ 'Wellstocked Mall, 1 Hakeem Dickson Link Road, Lekki Phase 1, Lagos, Nigeria'}</p>
                   </div>
                 </div>
                 

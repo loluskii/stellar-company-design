@@ -42,7 +42,7 @@ const Hero = () => {
               <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white" style={{ fontFamily: 'Times New Roman', }}>
                 {heroContent.title}
               </h1>
-              <p className="text-lg sm:text-xl text-blue-100 leading-snug md:leading-relaxed">
+              <p className="text-base text-blue-100 leading-snug md:leading-relaxed">
                 {heroContent.description}
               </p>
             </div>

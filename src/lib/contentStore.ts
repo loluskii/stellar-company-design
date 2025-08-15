@@ -52,44 +52,6 @@ interface AboutContent {
   values: string[];
 }
 
-interface AboutPageSections {
-  id?: string;
-  hero_title: string;
-  hero_subtitle: string;
-  hero_description: string;
-  story_title: string;
-  story_content: string[];
-  values_title: string;
-  values_description: string;
-  journey_title: string;
-  journey_description: string;
-}
-
-interface AboutPageStat {
-  id?: string;
-  icon: string;
-  number: string;
-  label: string;
-  sort_order?: number;
-}
-
-interface AboutPageValue {
-  id?: string;
-  icon: string;
-  title: string;
-  description: string;
-  sort_order?: number;
-}
-
-interface AboutPageMilestone {
-  id?: string;
-  year: string;
-  title: string;
-  description: string;
-  highlight: boolean;
-  sort_order?: number;
-}
-
 interface ServicesPageSections {
   id?: string;
   benefits_title: string;
@@ -111,12 +73,6 @@ interface SiteContent {
   clients: ClientItem[];
   about: AboutContent | null;
   contact: ContactInfo | null;
-  aboutPage: {
-    sections: AboutPageSections | null;
-    stats: AboutPageStat[];
-    values: AboutPageValue[];
-    milestones: AboutPageMilestone[];
-  };
   servicesPage: {
     sections: ServicesPageSections | null;
     benefits: ServicesPageBenefit[];
@@ -132,12 +88,6 @@ export class ContentStore {
     clients: [],
     about: null,
     contact: null,
-    aboutPage: {
-      sections: null,
-      stats: [],
-      values: [],
-      milestones: []
-    },
     servicesPage: {
       sections: null,
       benefits: []
@@ -152,17 +102,13 @@ export class ContentStore {
     clients: false,
     about: false,
     contact: false,
-    aboutPageSections: false,
-    aboutPageStats: false,
-    aboutPageValues: false,
-    aboutPageMilestones: false,
     servicesPageSections: false,
     servicesPageBenefits: false,
   };
 
   private constructor() {
     // Load cached data from localStorage on initialization
-    this.loadCachedData();
+    // this.loadCachedData();
   }
 
   static getInstance(): ContentStore {
@@ -173,36 +119,36 @@ export class ContentStore {
   }
 
   // Load cached data from localStorage
-  private loadCachedData() {
-    try {
-      const cached = localStorage.getItem('contentStore');
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        this.content = { ...this.content, ...parsed };
+  // private loadCachedData() {
+  //   try {
+  //     const cached = localStorage.getItem('contentStore');
+  //     if (cached) {
+  //       const parsed = JSON.parse(cached);
+  //       this.content = { ...this.content, ...parsed };
         
-        // Mark cached sections as loaded
-        Object.keys(parsed).forEach(key => {
-          if (this.loadedFlags.hasOwnProperty(key)) {
-            this.loadedFlags[key] = true;
-          }
-        });
-      }
-    } catch (error) {
-      console.warn('Failed to load cached content:', error);
-    }
-  }
+  //       // Mark cached sections as loaded
+  //       Object.keys(parsed).forEach(key => {
+  //         if (this.loadedFlags.hasOwnProperty(key)) {
+  //           this.loadedFlags[key] = true;
+  //         }
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.warn('Failed to load cached content:', error);
+  //   }
+  // }
 
   // Cache data to localStorage
-  private cacheData(key: string, data: any) {
-    try {
-      const cached = localStorage.getItem('contentStore') || '{}';
-      const parsed = JSON.parse(cached);
-      parsed[key] = data;
-      localStorage.setItem('contentStore', JSON.stringify(parsed));
-    } catch (error) {
-      console.warn('Failed to cache content:', error);
-    }
-  }
+  // private cacheData(key: string, data: any) {
+  //   try {
+  //     const cached = localStorage.getItem('contentStore') || '{}';
+  //     const parsed = JSON.parse(cached);
+  //     parsed[key] = data;
+  //     localStorage.setItem('contentStore', JSON.stringify(parsed));
+  //   } catch (error) {
+  //     console.warn('Failed to cache content:', error);
+  //   }
+  // }
 
   async loadContent(): Promise<SiteContent> {
     try {
@@ -214,7 +160,6 @@ export class ContentStore {
         this.loadClients(),
         this.loadAbout(),
         this.loadContact(),
-        this.loadAboutPage(),
         this.loadServicesPage(),
       ]);
       return this.content;
@@ -228,6 +173,13 @@ export class ContentStore {
     return this.content;
   }
 
+  // Reset loaded flags to force reload data
+  resetLoadedFlags(): void {
+    Object.keys(this.loadedFlags).forEach(key => {
+      this.loadedFlags[key] = false;
+    });
+  }
+
   // Granular loaders (cached per session)
   async loadHero(): Promise<void> {
     if (this.loadedFlags.hero) return;
@@ -238,7 +190,7 @@ export class ContentStore {
         .single();
       this.content.hero = data || null;
       this.loadedFlags.hero = true;
-      this.cacheData('hero', data || null);
+      // this.cacheData('hero', data || null);
     } catch (error) {
       console.warn('Failed to load hero content:', error);
     }
@@ -253,7 +205,7 @@ export class ContentStore {
         .order('sort_order');
       this.content.services = data || [];
       this.loadedFlags.services = true;
-      this.cacheData('services', data || []);
+      // this.cacheData('services', data || []);
     } catch (error) {
       console.warn('Failed to load services:', error);
     }
@@ -268,7 +220,7 @@ export class ContentStore {
         .order('sort_order');
       this.content.products = data || [];
       this.loadedFlags.products = true;
-      this.cacheData('products', data || []);
+      // this.cacheData('products', data || []);
     } catch (error) {
       console.warn('Failed to load products:', error);
     }
@@ -283,7 +235,7 @@ export class ContentStore {
         .order('sort_order');
       this.content.clients = data || [];
       this.loadedFlags.clients = true;
-      this.cacheData('clients', data || []);
+      // this.cacheData('clients', data || []);
     } catch (error) {
       console.warn('Failed to load clients:', error);
     }
@@ -298,7 +250,7 @@ export class ContentStore {
         .maybeSingle();
       this.content.about = data || null;
       this.loadedFlags.about = true;
-      this.cacheData('about', data || null);
+      // this.cacheData('about', data || null);
     } catch (error) {
       console.warn('Failed to load about content:', error);
     }
@@ -313,102 +265,31 @@ export class ContentStore {
         .maybeSingle();
       this.content.contact = data || null;
       this.loadedFlags.contact = true;
-      this.cacheData('contact', data || null);
+      // this.cacheData('contact', data || null);
     } catch (error) {
       console.warn('Failed to load contact info:', error);
     }
-  }
-
-  async loadAboutPage(): Promise<void> {
-    await Promise.all([
-      (async () => {
-        if (this.loadedFlags.aboutPageSections) return;
-        try {
-          const { data } = await supabase
-            .from('about_page_sections')
-            .select('*')
-            .maybeSingle();
-          this.content.aboutPage.sections = data || null;
-          this.loadedFlags.aboutPageSections = true;
-          this.cacheData('aboutPageSections', data || null);
-        } catch (error) {
-          console.warn('Failed to load about page sections:', error);
-        }
-      })(),
-      (async () => {
-        if (this.loadedFlags.aboutPageStats) return;
-        try {
-          const { data } = await supabase
-            .from('about_page_stats')
-            .select('*')
-            .order('sort_order');
-          this.content.aboutPage.stats = data || [];
-          this.loadedFlags.aboutPageStats = true;
-          this.cacheData('aboutPageStats', data || []);
-        } catch (error) {
-          console.warn('Failed to load about page stats:', error);
-        }
-      })(),
-      (async () => {
-        if (this.loadedFlags.aboutPageValues) return;
-        try {
-          const { data } = await supabase
-            .from('about_page_values')
-            .select('*')
-            .order('sort_order');
-          this.content.aboutPage.values = data || [];
-          this.loadedFlags.aboutPageValues = true;
-          this.cacheData('aboutPageValues', data || []);
-        } catch (error) {
-          console.warn('Failed to load about page values:', error);
-        }
-      })(),
-      (async () => {
-        if (this.loadedFlags.aboutPageMilestones) return;
-        try {
-          const { data } = await supabase
-            .from('about_page_milestones')
-            .select('*')
-            .order('sort_order');
-          this.content.aboutPage.milestones = data || [];
-          this.loadedFlags.aboutPageMilestones = true;
-          this.cacheData('aboutPageMilestones', data || []);
-        } catch (error) {
-          console.warn('Failed to load about page milestones:', error);
-        }
-      })(),
-    ]);
   }
 
   async loadServicesPage(): Promise<void> {
     await Promise.all([
       (async () => {
         if (this.loadedFlags.servicesPageSections) return;
-        try {
-          const { data } = await supabase
-            .from('services_page_sections')
-            .select('*')
-            .maybeSingle();
-          this.content.servicesPage.sections = data || null;
-          this.loadedFlags.servicesPageSections = true;
-          this.cacheData('servicesPageSections', data || null);
-        } catch (error) {
-          console.warn('Failed to load services page sections:', error);
-        }
+        const { data } = await supabase
+          .from('services_page_sections')
+          .select('*')
+          .maybeSingle();
+        this.content.servicesPage.sections = data || null;
+        this.loadedFlags.servicesPageSections = true;
       })(),
       (async () => {
         if (this.loadedFlags.servicesPageBenefits) return;
-        try {
-          const { data } = await supabase
-            .from('services_page_benefits')
-            .select('*')
-            .order('sort_order');
-          this.content.servicesPage.benefits = data || [];
-          this.loadedFlags.servicesPageBenefits = true;
-          this.cacheData('servicesPageBenefits', data || []);
-        } catch (error) {
-          console.warn('Failed to load services page benefits:', error);
-        }
+        const { data } = await supabase
+          .from('services_page_benefits')
+          .select('*')
+          .order('sort_order');
+        this.content.servicesPage.benefits = data || [];
+        this.loadedFlags.servicesPageBenefits = true;
       })(),
     ]);
   }
@@ -542,95 +423,6 @@ export class ContentStore {
     }
   }
 
-  async updateAboutPageSections(sections: Omit<AboutPageSections, 'id'>): Promise<void> {
-    try {
-      const { data } = await supabase
-        .from('about_page_sections')
-        .upsert({
-          id: this.content.aboutPage.sections?.id,
-          ...sections
-        })
-        .select()
-        .single();
-
-      if (data) {
-        this.content.aboutPage.sections = data;
-      }
-    } catch (error) {
-      console.error('Error updating about page sections:', error);
-      throw error;
-    }
-  }
-
-  async updateAboutPageStats(stats: AboutPageStat[]): Promise<void> {
-    try {
-      // Delete all existing stats
-      await supabase.from('about_page_stats').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      
-      // Insert new stats
-      const { data } = await supabase
-        .from('about_page_stats')
-        .insert(stats.map((stat, index) => ({
-          ...stat,
-          sort_order: index
-        })))
-        .select();
-
-      if (data) {
-        this.content.aboutPage.stats = data;
-      }
-    } catch (error) {
-      console.error('Error updating about page stats:', error);
-      throw error;
-    }
-  }
-
-  async updateAboutPageValues(values: AboutPageValue[]): Promise<void> {
-    try {
-      // Delete all existing values
-      await supabase.from('about_page_values').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      
-      // Insert new values
-      const { data } = await supabase
-        .from('about_page_values')
-        .insert(values.map((value, index) => ({
-          ...value,
-          sort_order: index
-        })))
-        .select();
-
-      if (data) {
-        this.content.aboutPage.values = data;
-      }
-    } catch (error) {
-      console.error('Error updating about page values:', error);
-      throw error;
-    }
-  }
-
-  async updateAboutPageMilestones(milestones: AboutPageMilestone[]): Promise<void> {
-    try {
-      // Delete all existing milestones
-      await supabase.from('about_page_milestones').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      
-      // Insert new milestones
-      const { data } = await supabase
-        .from('about_page_milestones')
-        .insert(milestones.map((milestone, index) => ({
-          ...milestone,
-          sort_order: index
-        })))
-        .select();
-
-      if (data) {
-        this.content.aboutPage.milestones = data;
-      }
-    } catch (error) {
-      console.error('Error updating about page milestones:', error);
-      throw error;
-    }
-  }
-
   async updateServicesPageSections(sections: Omit<ServicesPageSections, 'id'>): Promise<void> {
     try {
       const { data } = await supabase
@@ -683,10 +475,6 @@ export type {
   ContactInfo, 
   HeroContent, 
   AboutContent,
-  AboutPageSections,
-  AboutPageStat,
-  AboutPageValue,
-  AboutPageMilestone,
   ServicesPageSections,
   ServicesPageBenefit
 };

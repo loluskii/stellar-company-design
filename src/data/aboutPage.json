@@ -1,0 +1,103 @@
+{
+  "sections": {
+    "hero_title": "Redefining",
+    "hero_subtitle": "Office Excellence",
+    "hero_description": "For over 15 years, we've been transforming workspaces across Nigeria with cutting-edge technology and unmatched expertise.",
+    "story_title": "Our Story of Innovation",
+    "story_content": [
+      "Founded on 20th of November 1987, Wellstocked Nigeria Limited emerged from a vision to revolutionize office automation across Nigeria. What started as a mission to provide quality equipment has evolved into a comprehensive technology partnership platform.",
+      "Today, we stand as Nigeria's premier office automation specialist, serving over 500 clients across diverse industries including oil & gas, banking, telecommunications, and government sectors.",
+      "Our commitment to excellence, innovation, and customer success has made us the trusted choice for organizations seeking to transform their operations through technology."
+    ],
+    "values_title": "Our Core Values",
+    "values_description": "The principles that guide everything we do and define who we are as a company",
+    "journey_title": "Our Journey",
+    "journey_description": "Key milestones that shaped our growth and success story"
+  },
+  "stats": [
+    {
+      "icon": "Users",
+      "number": "500+",
+      "label": "Satisfied Clients"
+    },
+    {
+      "icon": "Building",
+      "number": "15+",
+      "label": "Years Experience"
+    },
+    {
+      "icon": "Award",
+      "number": "50+",
+      "label": "Major Projects"
+    },
+    {
+      "icon": "Clock",
+      "number": "24/7",
+      "label": "Support Available"
+    }
+  ],
+  "values": [
+    {
+      "icon": "Target",
+      "title": "Excellence",
+      "description": "We deliver superior quality products and services that exceed expectations."
+    },
+    {
+      "icon": "Shield",
+      "title": "Reliability",
+      "description": "Dependable solutions and support you can count on for your business operations."
+    },
+    {
+      "icon": "Heart",
+      "title": "Customer Focus",
+      "description": "Your success is our priority. We build lasting partnerships through exceptional service."
+    },
+    {
+      "icon": "Zap",
+      "title": "Innovation",
+      "description": "Embracing cutting-edge technology to provide modern solutions for evolving needs."
+    },
+    {
+      "icon": "Eye",
+      "title": "Transparency",
+      "description": "Clear communication and honest business practices in all our interactions."
+    },
+    {
+      "icon": "Globe2",
+      "title": "Integrity",
+      "description": "Ethical business practices and genuine commitment to our clients' success."
+    }
+  ],
+  "milestones": [
+    {
+      "year": "1987",
+      "title": "Foundation",
+      "description": "WSN established as a pioneer in office equipment distribution",
+      "highlight": true
+    },
+    {
+      "year": "2012",
+      "title": "Sector Expansion",
+      "description": "Strategic expansion into oil & gas and banking sectors",
+      "highlight": false
+    },
+    {
+      "year": "2016",
+      "title": "Digital Evolution",
+      "description": "Integration of IT solutions and digital transformation services",
+      "highlight": false
+    },
+    {
+      "year": "2020",
+      "title": "Market Leadership",
+      "description": "Achieved recognition as a leading distributor nationwide",
+      "highlight": false
+    },
+    {
+      "year": "2024",
+      "title": "Future Forward",
+      "description": "Pioneering next-generation office automation solutions",
+      "highlight": true
+    }
+  ]
+}

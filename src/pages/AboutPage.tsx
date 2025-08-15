@@ -6,19 +6,20 @@ import Clients from "@/components/Clients";
 import ReadyToTransform from "@/components/ReadyToTransform";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Building, Award, Clock, Target, Eye, Heart, Zap, Shield, Globe2, CheckCircle } from "lucide-react";
-import { ContentStore } from "@/lib/contentStore";
+import aboutPageData from "@/data/aboutPage.json";
 
 const AboutPage = () => {
   const [aboutPageContent, setAboutPageContent] = useState<any>(null);
-  const contentStore = ContentStore.getInstance();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadContent = async () => {
-      await contentStore.loadAboutPage();
-      const siteContent = contentStore.getContent();
-      setAboutPageContent(siteContent.aboutPage);
-    };
-    loadContent();
+    // Simulate loading for consistency
+    const timer = setTimeout(() => {
+      setAboutPageContent(aboutPageData);
+      setLoading(false);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Icon mapping
@@ -26,52 +27,25 @@ const AboutPage = () => {
     Users, Building, Award, Clock, Target, Eye, Heart, Zap, Shield, Globe2, CheckCircle
   };
 
-  // Fallback data
-  const fallbackSections = {
-    hero_title: "Redefining",
-    hero_subtitle: "Office Excellence", 
-    hero_description: "For over 15 years, we've been transforming workspaces across Nigeria with cutting-edge technology and unmatched expertise.",
-    story_title: "Our Story of Innovation",
-    story_content: [
-      "Founded in 2008, Wellstocked Nigeria Limited emerged from a vision to revolutionize office automation across Nigeria. What started as a mission to provide quality equipment has evolved into a comprehensive technology partnership platform.",
-      "Today, we stand as Nigeria's premier office automation specialist, serving over 500 clients across diverse industries including oil & gas, banking, telecommunications, and government sectors.",
-      "Our commitment to excellence, innovation, and customer success has made us the trusted choice for organizations seeking to transform their operations through technology."
-    ],
-    values_title: "Our Core Values",
-    values_description: "The principles that guide everything we do and define who we are as a company",
-    journey_title: "Our Journey", 
-    journey_description: "Key milestones that shaped our growth and success story"
-  };
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="pt-32 pb-16">
+          <div className="container mx-auto px-4 text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading content...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-  const fallbackStats = [
-    { icon: "Users", number: "500+", label: "Satisfied Clients" },
-    { icon: "Building", number: "15+", label: "Years Experience" },
-    { icon: "Award", number: "50+", label: "Major Projects" },
-    { icon: "Clock", number: "24/7", label: "Support Available" }
-  ];
-
-  const fallbackValues = [
-    { icon: "Target", title: "Excellence", description: "We deliver superior quality products and services that exceed expectations." },
-    { icon: "Shield", title: "Reliability", description: "Dependable solutions and support you can count on for your business operations." },
-    { icon: "Heart", title: "Customer Focus", description: "Your success is our priority. We build lasting partnerships through exceptional service." },
-    { icon: "Zap", title: "Innovation", description: "Embracing cutting-edge technology to provide modern solutions for evolving needs." },
-    { icon: "Eye", title: "Transparency", description: "Clear communication and honest business practices in all our interactions." },
-    { icon: "Globe2", title: "Integrity", description: "Ethical business practices and genuine commitment to our clients' success." }
-  ];
-
-  const fallbackMilestones = [
-    { year: "2008", title: "Foundation", description: "WSN established as a pioneer in office equipment distribution", highlight: true },
-    { year: "2012", title: "Sector Expansion", description: "Strategic expansion into oil & gas and banking sectors", highlight: false },
-    { year: "2016", title: "Digital Evolution", description: "Integration of IT solutions and digital transformation services", highlight: false },
-    { year: "2020", title: "Market Leadership", description: "Achieved recognition as a leading distributor nationwide", highlight: false },
-    { year: "2024", title: "Future Forward", description: "Pioneering next-generation office automation solutions", highlight: true }
-  ];
-
-  // Use CMS content or fallback
-  const sections = aboutPageContent?.sections || fallbackSections;
-  const stats = aboutPageContent?.stats?.length ? aboutPageContent.stats : fallbackStats;
-  const values = aboutPageContent?.values?.length ? aboutPageContent.values : fallbackValues;
-  const milestones = aboutPageContent?.milestones?.length ? aboutPageContent.milestones : fallbackMilestones;
+  // Use static content from JSON
+  const sections = aboutPageContent?.sections;
+  const stats = aboutPageContent?.stats || [];
+  const values = aboutPageContent?.values || [];
+  const milestones = aboutPageContent?.milestones || [];
 
   return (
     <div className="min-h-screen bg-white">
@@ -84,13 +58,13 @@ const AboutPage = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-6xl md:text-7xl font-bold mb-8 leading-tight">
+            <h1 className="text-6xl md:text-5xl font-bold mb-8 leading-tight">
               {sections.hero_title}
               <span className="block bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
                 {sections.hero_subtitle}
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto">
               {sections.hero_description}
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -98,7 +72,7 @@ const AboutPage = () => {
                 const IconComponent = iconMap[stat.icon] || Users;
                 return (
                   <div key={index} className="text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl mb-4 backdrop-blur-sm">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl mb-4">
                       <IconComponent className="h-8 w-8 text-cyan-400" />
                     </div>
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.number}</div>
@@ -111,65 +85,60 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Company Story */}
-      <section className="py-24 bg-gray-50">
+      {/* Story Section */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
-                  {sections.story_title.split(' ').slice(0, -1).join(' ')}
-                  <span className="text-primary"> {sections.story_title.split(' ').slice(-1)}</span>
-                </h2>
-                <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
-                  {sections.story_content.map((paragraph: string, index: number) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-indigo-100 rounded-3xl p-8 flex items-center justify-center">
-                  <div className="text-center">
-                    <Building className="h-24 w-24 text-primary mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">15+ Years</h3>
-                    <p className="text-gray-600">of Innovation & Excellence</p>
-                  </div>
-                </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-8">
+                {sections.story_title.split(' ').slice(0, -1).join(' ')}
+                <span className="text-primary"> {sections.story_title.split(' ').slice(-1)}</span>
+              </h2>
+              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+                {sections.story_content?.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
               </div>
             </div>
+            
+            {/* <div className="aspect-[4/3] hidden bg-gradient-to-br from-blue-100 to-indigo-100 rounded-3xl p-8 flex items-center justify-center">
+              <div className="text-center">
+                <Building className="h-24 w-24 text-primary mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">15+ Years</h3>
+                <p className="text-gray-600">of Innovation & Excellence</p>
+              </div>
+            </div> */}
           </div>
         </div>
       </section>
 
-      {/* Core Values - Modern Grid */}
-      <section className="py-24 bg-white">
+      {/* Values Section */}
+      <section className="py-24 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                {sections.values_title}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {sections.values_description}
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {values.map((value, index) => {
-                const IconComponent = iconMap[value.icon] || Target;
-                return (
-                  <Card key={index} className="border-0 bg-gradient-to-br from-gray-50 to-white hover:shadow-xl transition-all duration-300 group">
-                    <CardContent className="p-8 text-center">
-                      <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <IconComponent className="h-8 w-8 text-white" />
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{value.description}</p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              {sections.values_title}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              {sections.values_description}
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {values.map((value, index) => {
+              const IconComponent = iconMap[value.icon] || CheckCircle;
+              return (
+                <Card key={index} className="text-center hover-glow border-0 bg-white shadow-lg">
+                  <CardContent className="p-8">
+                    <div className="mx-auto w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+                      <IconComponent className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -179,7 +148,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 {sections.journey_title}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -217,13 +186,11 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Main About Section */}
-      <About />
-
       {/* Clients Section */}
       <Clients />
 
       <ReadyToTransform />
+
       <Footer />
     </div>
   );

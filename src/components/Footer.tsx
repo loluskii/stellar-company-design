@@ -7,10 +7,10 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex flex-col items-start">
               <img src="/wsn-logo.png" alt="WSN Logo" className="h-12 w-auto mb-2" />
-              <p className="text-lg text-gray-400">NIGERIA LIMITED</p>
+              <p className="text-lg text-gray-400">WELLSTOCKED NIGERIA LIMITED</p>
             </div>
             <p className="text-gray-400 leading-relaxed">
               Recognized, innovative, and authorized distributor of quality office equipment 

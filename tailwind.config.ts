@@ -20,7 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				inter: ['Inter', 'system-ui', 'sans-serif'],
+				sans: ['Merriweather', 'system-ui', 'sans-serif'],
 				serif: [
 					'Times New Roman',
 					'Times',

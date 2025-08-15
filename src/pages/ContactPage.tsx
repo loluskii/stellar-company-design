@@ -5,6 +5,7 @@ import Contact from "@/components/Contact";
 import ReadyToTransform from "@/components/ReadyToTransform";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock, Building } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 import { ContentStore, ContactInfo } from "@/lib/contentStore";
 
 const ContactPage = () => {
@@ -112,9 +113,9 @@ const ContactPage = () => {
 
   const contactMethods = [
     {
-      icon: Phone,
-      title: "Call Us",
-      details: contact?.phone?.length ? contact.phone : ["01-2702549", "01-4610412", "07027702217", "07027706037"],
+      icon: FaWhatsapp,
+      title: "Call or Text Us on WhatsApp",
+      details: contact?.phone?.length ? contact.phone : ["07050639404", "08172846333","081"],
       color: "from-green-500 to-teal-500"
     },
     {
@@ -174,10 +175,12 @@ const ContactPage = () => {
                   </div>
                   <CardTitle className="text-xl text-gray-900">{method.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  {method.details.map((detail, idx) => (
-                    <p key={idx} className="text-gray-600 mb-1">{detail}</p>
-                  ))}
+                <CardContent className="text-sm">
+                  <ul className="list-disc list-inside">
+                    {method.details.map((detail, idx) => (
+                      <li key={idx} className="text-gray-600 mb-1">{detail}</li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             ))}

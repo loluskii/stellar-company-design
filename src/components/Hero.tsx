@@ -39,7 +39,7 @@ const Hero = () => {
               <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-white">
                 {heroContent.subtitle}
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white" style={{ fontFamily: 'Times New Roman', }}>
+              <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white">
                 {heroContent.title}
               </h1>
               <p className="text-base text-blue-100 leading-snug md:leading-relaxed">

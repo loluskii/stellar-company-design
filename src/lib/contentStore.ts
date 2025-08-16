@@ -54,8 +54,15 @@ interface AboutContent {
 
 interface ServicesPageSections {
   id?: string;
+  hero_title?: string;
+  hero_subtitle?: string;
+  hero_description?: string;
+  features_title?: string;
+  features_description?: string;
   benefits_title: string;
   benefits_description: string;
+  process_title?: string;
+  process_description?: string;
 }
 
 interface ServicesPageBenefit {
@@ -66,9 +73,28 @@ interface ServicesPageBenefit {
   sort_order?: number;
 }
 
+interface ServicesPageFeature {
+  id?: string;
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+  sort_order?: number;
+}
+
+interface ServicesPageProcess {
+  id?: string;
+  step_number: number;
+  title: string;
+  description: string;
+  icon: string;
+  sort_order?: number;
+}
+
 interface SiteContent {
   hero: HeroContent | null;
-  services: ServiceItem[];
+  homeServices: ServiceItem[]; // Services for home page
+  services: ServiceItem[]; // Keep for compatibility
   products: ProductCategory[];
   clients: ClientItem[];
   about: AboutContent | null;
@@ -76,6 +102,8 @@ interface SiteContent {
   servicesPage: {
     sections: ServicesPageSections | null;
     benefits: ServicesPageBenefit[];
+    features: ServicesPageFeature[];
+    process: ServicesPageProcess[];
   };
 }
 
@@ -83,6 +111,7 @@ export class ContentStore {
   private static instance: ContentStore;
   private content: SiteContent = {
     hero: null,
+    homeServices: [],
     services: [],
     products: [],
     clients: [],
@@ -90,13 +119,16 @@ export class ContentStore {
     contact: null,
     servicesPage: {
       sections: null,
-      benefits: []
+      benefits: [],
+      features: [],
+      process: []
     }
   };
 
   // Simple in-memory loaded flags to avoid redundant network requests
   private loadedFlags: Record<string, boolean> = {
     hero: false,
+    homeServices: false,
     services: false,
     products: false,
     clients: false,
@@ -104,6 +136,8 @@ export class ContentStore {
     contact: false,
     servicesPageSections: false,
     servicesPageBenefits: false,
+    servicesPageFeatures: false,
+    servicesPageProcess: false,
   };
 
   private constructor() {
@@ -155,6 +189,7 @@ export class ContentStore {
       // Load everything, but skip sections already loaded
       await Promise.all([
         this.loadHero(),
+        this.loadHomeServices(),
         this.loadServices(),
         this.loadProducts(),
         this.loadClients(),
@@ -193,6 +228,20 @@ export class ContentStore {
       // this.cacheData('hero', data || null);
     } catch (error) {
       console.warn('Failed to load hero content:', error);
+    }
+  }
+
+  async loadHomeServices(): Promise<void> {
+    if (this.loadedFlags.homeServices) return;
+    try {
+      const { data } = await supabase
+        .from('home_services')
+        .select('*')
+        .order('sort_order');
+      this.content.homeServices = data || [];
+      this.loadedFlags.homeServices = true;
+    } catch (error) {
+      console.warn('Failed to load home services:', error);
     }
   }
 
@@ -291,6 +340,24 @@ export class ContentStore {
         this.content.servicesPage.benefits = data || [];
         this.loadedFlags.servicesPageBenefits = true;
       })(),
+      (async () => {
+        if (this.loadedFlags.servicesPageFeatures) return;
+        const { data } = await supabase
+          .from('services_page_features')
+          .select('*')
+          .order('sort_order');
+        this.content.servicesPage.features = data || [];
+        this.loadedFlags.servicesPageFeatures = true;
+      })(),
+      (async () => {
+        if (this.loadedFlags.servicesPageProcess) return;
+        const { data } = await supabase
+          .from('services_page_process')
+          .select('*')
+          .order('sort_order');
+        this.content.servicesPage.process = data || [];
+        this.loadedFlags.servicesPageProcess = true;
+      })(),
     ]);
   }
 
@@ -310,6 +377,29 @@ export class ContentStore {
       }
     } catch (error) {
       console.error('Error updating hero content:', error);
+      throw error;
+    }
+  }
+
+  async updateHomeServices(services: ServiceItem[]): Promise<void> {
+    try {
+      // Delete all existing home services
+      await supabase.from('home_services').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Insert new home services
+      const { data } = await supabase
+        .from('home_services')
+        .insert(services.map((service, index) => ({
+          ...service,
+          sort_order: index
+        })))
+        .select();
+
+      if (data) {
+        this.content.homeServices = data;
+      }
+    } catch (error) {
+      console.error('Error updating home services:', error);
       throw error;
     }
   }
@@ -465,6 +555,52 @@ export class ContentStore {
       throw error;
     }
   }
+
+  async updateServicesPageFeatures(features: ServicesPageFeature[]): Promise<void> {
+    try {
+      // Delete all existing features
+      await supabase.from('services_page_features').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Insert new features
+      const { data } = await supabase
+        .from('services_page_features')
+        .insert(features.map((feature, index) => ({
+          ...feature,
+          sort_order: index
+        })))
+        .select();
+
+      if (data) {
+        this.content.servicesPage.features = data;
+      }
+    } catch (error) {
+      console.error('Error updating services page features:', error);
+      throw error;
+    }
+  }
+
+  async updateServicesPageProcess(process: ServicesPageProcess[]): Promise<void> {
+    try {
+      // Delete all existing process
+      await supabase.from('services_page_process').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Insert new process
+      const { data } = await supabase
+        .from('services_page_process')
+        .insert(process.map((step, index) => ({
+          ...step,
+          sort_order: index
+        })))
+        .select();
+
+      if (data) {
+        this.content.servicesPage.process = data;
+      }
+    } catch (error) {
+      console.error('Error updating services page process:', error);
+      throw error;
+    }
+  }
 }
 
 export type { 
@@ -476,5 +612,7 @@ export type {
   HeroContent, 
   AboutContent,
   ServicesPageSections,
-  ServicesPageBenefit
+  ServicesPageBenefit,
+  ServicesPageFeature,
+  ServicesPageProcess
 };

@@ -33,9 +33,9 @@ const Services = () => {
   useEffect(() => {
     const loadContent = async () => {
       const contentStore = ContentStore.getInstance();
-      await contentStore.loadServices();
+      await contentStore.loadHomeServices();
       const siteContent = contentStore.getContent();
-      setServices(siteContent.services);
+      setServices(siteContent.homeServices);
     };
     loadContent();
   }, []);

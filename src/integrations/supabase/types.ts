@@ -281,6 +281,39 @@ export type Database = {
         }
         Relationships: []
       }
+      home_services: {
+        Row: {
+          created_at: string
+          description: string
+          features: string[]
+          icon: string
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          features?: string[]
+          icon: string
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          features?: string[]
+          icon?: string
+          id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       product_categories: {
         Row: {
           created_at: string
@@ -374,26 +407,113 @@ export type Database = {
         }
         Relationships: []
       }
+      services_page_features: {
+        Row: {
+          created_at: string
+          description: string
+          features: string[]
+          icon: string
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          features?: string[]
+          icon: string
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          features?: string[]
+          icon?: string
+          id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services_page_process: {
+        Row: {
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          sort_order: number
+          step_number: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          icon: string
+          id?: string
+          sort_order?: number
+          step_number: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          sort_order?: number
+          step_number?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       services_page_sections: {
         Row: {
           benefits_description: string
           benefits_title: string
           created_at: string
+          features_description: string | null
+          features_title: string | null
+          hero_description: string | null
+          hero_subtitle: string | null
+          hero_title: string | null
           id: string
+          process_description: string | null
+          process_title: string | null
           updated_at: string
         }
         Insert: {
           benefits_description: string
           benefits_title: string
           created_at?: string
+          features_description?: string | null
+          features_title?: string | null
+          hero_description?: string | null
+          hero_subtitle?: string | null
+          hero_title?: string | null
           id?: string
+          process_description?: string | null
+          process_title?: string | null
           updated_at?: string
         }
         Update: {
           benefits_description?: string
           benefits_title?: string
           created_at?: string
+          features_description?: string | null
+          features_title?: string | null
+          hero_description?: string | null
+          hero_subtitle?: string | null
+          hero_title?: string | null
           id?: string
+          process_description?: string | null
+          process_title?: string | null
           updated_at?: string
         }
         Relationships: []

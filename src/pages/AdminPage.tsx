@@ -10,9 +10,10 @@ import HeroEditor from "@/components/admin/HeroEditor";
 import ServicesEditor from "@/components/admin/ServicesEditor";
 import ProductsEditor from "@/components/admin/ProductsEditor";
 import ClientsEditor from "@/components/admin/ClientsEditor";
-import AboutEditor from "@/components/admin/AboutEditor";
+import AboutPageEditor from "@/components/admin/AboutPageEditor";
 import ContactEditor from "@/components/admin/ContactEditor";
 import ServicesPageEditor from "@/components/admin/ServicesPageEditor";
+import HomeServicesEditor from "@/components/admin/HomeServicesEditor";
 import { useToast } from "@/hooks/use-toast";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
@@ -98,6 +99,20 @@ const AdminPage = () => {
                     Hero Section
                   </Button>
                   <Button
+                    variant={activeTab === "about" ? "default" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveTab("about")}
+                  >
+                    About Page
+                  </Button>
+                  <Button
+                    variant={activeTab === "homeServices" ? "default" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveTab("homeServices")}
+                  >
+                    Home Services
+                  </Button>
+                  <Button
                     variant={activeTab === "services" ? "default" : "ghost"}
                     className="w-full justify-start"
                     onClick={() => setActiveTab("services")}
@@ -151,12 +166,13 @@ const AdminPage = () => {
                 </CardHeader>
                 <CardContent>
                   {activeTab === "hero" && <HeroEditor />}
+                  {activeTab === "about" && <AboutPageEditor />}
+                  {activeTab === "homeServices" && <HomeServicesEditor />}
                   {activeTab === "services" && <ServicesEditor />}
+                  {activeTab === "servicesPage" && <ServicesPageEditor />}
                   {activeTab === "products" && <ProductsEditor />}
                   {activeTab === "clients" && <ClientsEditor />}
-                  {activeTab === "about" && <AboutEditor />}
                   {activeTab === "contact" && <ContactEditor />}
-                  {activeTab === "servicesPage" && <ServicesPageEditor />}
                 </CardContent>
               </Card>
             </div>

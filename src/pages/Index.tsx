@@ -19,7 +19,7 @@ const Index = () => {
     Promise.all([
       store.loadHero(),
       store.loadAbout(),
-      store.loadServices(),
+      store.loadHomeServices(),
       store.loadClients(),
     ]).then(() => setLoading(false));
   }, []);

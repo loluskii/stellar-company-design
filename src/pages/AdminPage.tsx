@@ -10,7 +10,6 @@ import HeroEditor from "@/components/admin/HeroEditor";
 import ServicesEditor from "@/components/admin/ServicesEditor";
 import ProductsEditor from "@/components/admin/ProductsEditor";
 import ClientsEditor from "@/components/admin/ClientsEditor";
-import AboutPageEditor from "@/components/admin/AboutPageEditor";
 import ContactEditor from "@/components/admin/ContactEditor";
 import ServicesPageEditor from "@/components/admin/ServicesPageEditor";
 import HomeServicesEditor from "@/components/admin/HomeServicesEditor";
@@ -166,7 +165,6 @@ const AdminPage = () => {
                 </CardHeader>
                 <CardContent>
                   {activeTab === "hero" && <HeroEditor />}
-                  {activeTab === "about" && <AboutPageEditor />}
                   {activeTab === "homeServices" && <HomeServicesEditor />}
                   {activeTab === "services" && <ServicesEditor />}
                   {activeTab === "servicesPage" && <ServicesPageEditor />}

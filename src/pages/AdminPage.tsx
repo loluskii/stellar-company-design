@@ -7,6 +7,7 @@ import { Settings, Eye, Save, RotateCcw, LogOut } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { ContentStore } from "@/lib/contentStore";
 import HeroEditor from "@/components/admin/HeroEditor";
+import ServicesEditor from "@/components/admin/ServicesEditor";
 import ProductsEditor from "@/components/admin/ProductsEditor";
 import ClientsEditor from "@/components/admin/ClientsEditor";
 import ContactEditor from "@/components/admin/ContactEditor";
@@ -111,6 +112,13 @@ const AdminPage = () => {
                     Home Services
                   </Button>
                   <Button
+                    variant={activeTab === "services" ? "default" : "ghost"}
+                    className="w-full justify-start"
+                    onClick={() => setActiveTab("services")}
+                  >
+                    Services
+                  </Button>
+                  <Button
                     variant={activeTab === "products" ? "default" : "ghost"}
                     className="w-full justify-start"
                     onClick={() => setActiveTab("products")}
@@ -158,7 +166,7 @@ const AdminPage = () => {
                 <CardContent>
                   {activeTab === "hero" && <HeroEditor />}
                   {activeTab === "homeServices" && <HomeServicesEditor />}
-                  
+                  {activeTab === "services" && <ServicesEditor />}
                   {activeTab === "servicesPage" && <ServicesPageEditor />}
                   {activeTab === "products" && <ProductsEditor />}
                   {activeTab === "clients" && <ClientsEditor />}

@@ -8,7 +8,7 @@ import { Settings, Printer, Server, Wrench, Airplay,
   FileCheck2, FileBarChart2, FileSearch2, FileCog, FilePlus2, FileMinus2, FileX2, FileArchive, FileStack, 
   FileSignature, FileSpreadsheet, FileSymlink, FileText, FileType, FileVideo2, FileVolume2, FileWarning, 
   Folder, FolderOpen, ChevronDown, ChevronUp } from "lucide-react";
-import { ContentStore, ServicesPageFeature } from "@/lib/contentStore";
+import { ContentStore,ServiceItem } from "@/lib/contentStore";
 
 // Icon mapping for services loaded from database
 const iconMap: { [key: string]: any } = {
@@ -27,15 +27,15 @@ const iconMap: { [key: string]: any } = {
 
 const Services = () => {
   const [showAll, setShowAll] = useState(false);
-  const [services, setServices] = useState<ServicesPageFeature[]>([]);
+  const [services, setServices] = useState([]);
   const maxInitialFeatures = 5;
 
   useEffect(() => {
     const loadContent = async () => {
       const contentStore = ContentStore.getInstance();
-      await contentStore.loadServicesPage();
+      await contentStore.loadServices();
       const siteContent = contentStore.getContent();
-      setServices(siteContent.servicesPage.features);
+      setServices(siteContent.services);
     };
     loadContent();
   }, []);

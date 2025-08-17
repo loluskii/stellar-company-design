@@ -27,27 +27,59 @@ const ServicesPage = () => {
     CheckCircle, Clock, Users, Award, Settings, Printer, Server, Wrench, Building2, Globe, Database, Shield, Cpu, Network, Cloud, ArrowRight
   };
 
-  // If no CMS content is available, show loading or empty state
-  if (!servicesPageContent) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/30">
-        <Header />
-        <section className="py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl font-bold mb-4">Services</h1>
-            <p className="text-gray-600">Loading services content...</p>
-          </div>
-        </section>
-        <Footer />
-      </div>
-    );
-  }
+  // Fallback data
+  const fallbackSections = {
+    hero_title: "Our Services & Solutions",
+    hero_subtitle: "Comprehensive Technology Solutions",
+    hero_description: "From office equipment to IT infrastructure, we provide complete business solutions tailored to your needs.",
+    features_title: "What We Offer",
+    features_description: "Comprehensive solutions for all your business technology needs",
+    benefits_title: "Why Choose WSN?",
+    benefits_description: "Decades of experience delivering exceptional service and support",
+    process_title: "Our Process",
+    process_description: "How we deliver exceptional results for your business"
+  };
 
-  // Use only CMS content
-  const sections = servicesPageContent.sections;
-  const features = servicesPageContent.features || [];
-  const benefits = servicesPageContent.benefits || [];
-  const process = servicesPageContent.process || [];
+  const fallbackFeatures = [
+    {
+      icon: "Printer",
+      title: "Office Equipment",
+      description: "Complete range of office automation solutions",
+      features: ["Sharp Photocopiers", "HP & Dell Printers", "Industrial UPS Systems", "ATM Consumables", "Note Counting Machines"]
+    },
+    {
+      icon: "Server",
+      title: "IT Infrastructure",
+      description: "Enterprise-grade IT solutions and support",
+      features: ["Server Installation", "Network Setup", "Cloud Solutions", "Security Systems", "Database Management"]
+    },
+    {
+      icon: "Wrench",
+      title: "Maintenance & Support",
+      description: "Comprehensive maintenance and technical support",
+      features: ["24/7 Support", "Preventive Maintenance", "On-site Repairs", "Remote Diagnostics", "Parts Replacement"]
+    }
+  ];
+
+  const fallbackBenefits = [
+    { icon: "CheckCircle", title: "Quality Assurance", description: "Only authorized dealers with genuine products" },
+    { icon: "Clock", title: "24/7 Support", description: "Round-the-clock technical assistance" },
+    { icon: "Users", title: "Expert Team", description: "Trained engineers and technicians" },
+    { icon: "Award", title: "Proven Track Record", description: "Serving major corporations across Nigeria" }
+  ];
+
+  const fallbackProcess = [
+    { step_number: 1, icon: "Users", title: "Consultation", description: "We analyze your business needs and requirements" },
+    { step_number: 2, icon: "Settings", title: "Planning", description: "Custom solution design and implementation planning" },
+    { step_number: 3, icon: "Wrench", title: "Implementation", description: "Professional installation and configuration" },
+    { step_number: 4, icon: "Award", title: "Support", description: "Ongoing maintenance and technical support" }
+  ];
+
+  // Use CMS content or fallback
+  const sections = servicesPageContent?.sections || fallbackSections;
+  const features = servicesPageContent?.features?.length ? servicesPageContent.features : fallbackFeatures;
+  const benefits = servicesPageContent?.benefits?.length ? servicesPageContent.benefits : fallbackBenefits;
+  const process = servicesPageContent?.process?.length ? servicesPageContent.process : fallbackProcess;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/30">
@@ -59,13 +91,13 @@ const ServicesPage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center text-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              {sections?.hero_title || "Our Services"}
+              {sections.hero_title}
             </h1>
             <p className="text-xl mb-4">
-              {sections?.hero_subtitle || ""}
+              {sections.hero_subtitle}
             </p>
             <p className="text-base text-white/90 max-w-3xl mx-auto">
-              {sections?.hero_description || ""}
+              {sections.hero_description}
             </p>
           </div>
         </div>
@@ -75,9 +107,9 @@ const ServicesPage = () => {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{sections?.features_title || "Our Features"}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{sections.features_title}</h2>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              {sections?.features_description || ""}
+              {sections.features_description}
             </p>
           </div>
           
@@ -114,15 +146,14 @@ const ServicesPage = () => {
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{sections?.process_title || "Our Process"}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{sections.process_title}</h2>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              {sections?.process_description || ""}
+              {sections.process_description}
             </p>
           </div>
           
-          {process.length > 0 && (
-            <div className="grid md:grid-cols-4 gap-8">
-              {process.map((step, index) => {
+          <div className="grid md:grid-cols-4 gap-8">
+            {process.map((step, index) => {
               const IconComponent = iconMap[step.icon] || Settings;
               return (
                 <div key={index} className="text-center">
@@ -144,8 +175,7 @@ const ServicesPage = () => {
                 </div>
               );
             })}
-            </div>
-          )}
+          </div>
         </div>
       </section>
 
@@ -153,15 +183,14 @@ const ServicesPage = () => {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{sections?.benefits_title || "Why Choose Us"}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{sections.benefits_title}</h2>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              {sections?.benefits_description || ""}
+              {sections.benefits_description}
             </p>
           </div>
           
-          {benefits.length > 0 && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {benefits.map((benefit, index) => {
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => {
               const IconComponent = iconMap[benefit.icon] || CheckCircle;
               return (
                 <Card key={index} className="text-center hover-glow border-0 bg-gradient-to-br from-white to-gray-50">
@@ -177,8 +206,7 @@ const ServicesPage = () => {
                 </Card>
               );
             })}
-            </div>
-          )}
+          </div>
         </div>
       </section>
 

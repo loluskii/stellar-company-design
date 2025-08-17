@@ -40,19 +40,58 @@ const Services = () => {
     loadContent();
   }, []);
 
+  // Fallback services while loading
+  const fallbackServices: ServiceItem[] = [
+    {
+      title: "Office Equipment Sales & Supply",
+      description: "Authorized distributor and supplier of quality office equipment and automation solutions.",
+      features: [
+        "Sharp Photocopiers",
+        "Panasonic, Sharp, HP Printers",
+        "Industrial/Online UPS",
+        "Computer Systems & Accessories (HP, Dell, etc.)",
+        "ATM Consumables",
+        "Note Counting Machines",
+        "Air Conditioners",
+        "Office Furniture",
+        "Interactive Displays & Video Walls",
+        "Industrial Scanners & Shredders",
+        "POS Machines & Consumables",
+        "ID Card Printing Machines (Fargo)",
+        "Networking Hardware/Software (Cisco, etc.)"
+      ],
+      icon: "Printer"
+    },
+    {
+      title: "Leasing & Maintenance",
+      description: "Flexible leasing options and comprehensive maintenance for all supplied equipment.",
+      features: [
+        "Preventive Maintenance",
+        "After-Sales Service",
+        "Breakdown Repairs",
+        "Regular Servicing",
+        "Nationwide Support",
+        "Prompt Response, Minimal Downtime"
+      ],
+      icon: "Wrench"
+    },
+    {
+      title: "IT & Office Solutions",
+      description: "Integrated technology and office solutions for modern businesses.",
+      features: [
+        "Computer Networking",
+        "Servers & Storage",
+        "Cloud Solutions",
+        "Software Licensing",
+        "Security & Access Control",
+        "Broadband & Connectivity",
+        "Consulting & Custom Solutions"
+      ],
+      icon: "Server"
+    }
+  ];
 
-  if (services.length === 0) {
-    return (
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Services</h2>
-            <p className="text-gray-600">No services configured. Please add services in the admin panel.</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const displayServices = services.length > 0 ? services : fallbackServices;
 
   return (
     <section className="py-16 bg-gray-50">
@@ -72,7 +111,7 @@ const Services = () => {
       </section>
       <div className="container mx-auto px-4 mt-12">
         <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => {
+          {displayServices.map((service, index) => {
             const IconComponent = iconMap[service.icon] || Settings;
             const displayFeatures = showAll 
               ? service.features 
@@ -106,7 +145,7 @@ const Services = () => {
             );
           })}
         </div>
-        {!showAll && services.some(service => service.features.length > maxInitialFeatures) && (
+        {!showAll && displayServices.some(service => service.features.length > maxInitialFeatures) && (
           <div className="text-center mt-12">
             <Button 
               onClick={() => setShowAll(true)}

@@ -44,12 +44,22 @@ const ServicesPage = () => {
   const { sections, benefits } = servicesPageContent;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/30">
+    <div className="min-h-screen bg-white to-purple-50/30">
       <Header />
       
-      {/* Hero Section */}
+      <section className="relative pt-36 overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center ">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Our Services & Solutions
+            </h1>
+            <p className="text-base max-w-3xl mx-auto">
+            Comprehensive sales, supply, leasing, and maintenance of office equipment, IT, and automation solutions for every sector in Nigeria.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      {/* Main Services */}
       <Services />
 
       {/* Why Choose Us */}

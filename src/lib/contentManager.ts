@@ -1,4 +1,9 @@
 // JSON-based content management system
+import hero from "@/data/hero.json"
+import about from "@/data/about.json"
+import clients from "@/data/clients.json"
+import contact from "@/data/contact.json"
+import services from "@/data/services.json"
 
 interface ServiceItem {
   id?: string;
@@ -120,9 +125,7 @@ export class ContentManager {
 
   async loadHero(): Promise<void> {
     try {
-      const response = await fetch('/src/data/hero.json');
-      const data = await response.json();
-      this.content.hero = data;
+      this.content.hero = hero;
     } catch (error) {
       console.warn('Failed to load hero content:', error);
     }
@@ -130,9 +133,7 @@ export class ContentManager {
 
   async loadServices(): Promise<void> {
     try {
-      const response = await fetch('/src/data/services.json');
-      const data = await response.json();
-      this.content.services = data;
+      this.content.services = services;
     } catch (error) {
       console.warn('Failed to load services:', error);
     }
@@ -140,9 +141,7 @@ export class ContentManager {
 
   async loadClients(): Promise<void> {
     try {
-      const response = await fetch('/src/data/clients.json');
-      const data = await response.json();
-      this.content.clients = data;
+      this.content.clients = clients;
     } catch (error) {
       console.warn('Failed to load clients:', error);
     }
@@ -150,9 +149,7 @@ export class ContentManager {
 
   async loadContact(): Promise<void> {
     try {
-      const response = await fetch('/src/data/contact.json');
-      const data = await response.json();
-      this.content.contact = data;
+      this.content.contact = contact;
     } catch (error) {
       console.warn('Failed to load contact info:', error);
     }
@@ -160,9 +157,7 @@ export class ContentManager {
 
   async loadAbout(): Promise<void> {
     try {
-      const response = await fetch('/src/data/about.json');
-      const data = await response.json();
-      this.content.about = data;
+      this.content.about = about;
     } catch (error) {
       console.warn('Failed to load about content:', error);
     }

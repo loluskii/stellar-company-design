@@ -1,26 +1,15 @@
 import { useState, useRef, useEffect } from "react";
-import { ContentManager, ClientItem } from "@/lib/contentManager";
+import clients from "@/data/clients.json"
 
 const Clients = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [duration, setDuration] = useState("20s");
-  const [clients, setClients] = useState<ClientItem[]>([]);
   const marqueeRef = useRef(null);
 
   useEffect(() => {
-    const loadContent = async () => {
-      const contentManager = ContentManager.getInstance();
-      await contentManager.loadClients();
-      const siteContent = contentManager.getContent();
-      setClients(siteContent.clients);
-    };
-    loadContent();
-  }, []);
-
-  useEffect(() => {
     if (marqueeRef.current) {
-      // Total width of the marquee content
-      const totalWidth = marqueeRef.current.scrollWidth / 2; // /2 because it's duplicated
+      // Total width of the marquee content (only one set, not duplicated)
+      const totalWidth = marqueeRef.current.scrollWidth / 2; // /2 because content is duplicated
       const speedFactor = 80; // px per second
       const time = totalWidth / speedFactor; // seconds
       setDuration(`${time}s`);
@@ -36,8 +25,6 @@ const Clients = () => {
       </section>
     );
   }
-
-  const duplicatedClients = [...clients, ...clients];
 
   return (
     <section className="py-16 relative overflow-hidden bg-white">
@@ -65,10 +52,20 @@ const Clients = () => {
             animationPlayState: isPaused ? "paused" : "running"
           }}
         >
-          {duplicatedClients.map((client, index) => (
-            <div key={`${client.name}-${index}`} className="w-24 h-24 flex items-center justify-center transition-all duration-700 ease-out">
+          {/* First set of clients */}
+          {clients.map((client, index) => (
+            <div key={`first-${client.name}-${index}`} className="w-24 h-24 flex items-center justify-center transition-all duration-700 ease-out">
               <div className="text-5xl grayscale hover:grayscale-0 transition-all duration-700 ease-out relative">
-                <img src={client.logo_url} alt={client.name} />
+                <img src={client.logo_url} alt={client.name} className="max-w-full max-h-full object-contain" />
+                <div className="absolute inset-0 bg-white rounded-full blur-xl opacity-0 transition-opacity duration-500"></div>
+              </div>
+            </div>
+          ))}
+          {/* Duplicate set of clients for seamless loop */}
+          {clients.map((client, index) => (
+            <div key={`second-${client.name}-${index}`} className="w-24 h-24 flex items-center justify-center transition-all duration-700 ease-out">
+              <div className="text-5xl grayscale hover:grayscale-0 transition-all duration-700 ease-out relative">
+                <img src={client.logo_url} alt={client.name} className="max-w-full max-h-full object-contain" />
                 <div className="absolute inset-0 bg-white rounded-full blur-xl opacity-0 transition-opacity duration-500"></div>
               </div>
             </div>

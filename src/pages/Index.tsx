@@ -45,13 +45,23 @@ const Index = () => {
         <div className="animate-slide-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
           <About />
         </div>
-        <div className="animate-slide-up" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
-          <Services />
-        </div>
-        <div className="animate-slide-up" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
-          <Clients />
+        <div className="animate-slide-up " style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+          <section className="relative py-20 overflow-hidden bg-gray-50">
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center ">
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                Our Services & Solutions
+                </h1>
+                <p className="text-base max-w-3xl mx-auto">
+                Comprehensive sales, supply, leasing, and maintenance of office equipment, IT, and automation solutions for every sector in Nigeria.
+                </p>
+              </div>
+            </div>
+            <Services />
+          </section>
         </div>
         <div className="animate-fade-in" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
+          <Clients />
           <ReadyToTransform />
           <Footer />
         </div>

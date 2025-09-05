@@ -1,6 +1,6 @@
 
 import { Separator } from "@/components/ui/separator";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -53,6 +53,50 @@ const Footer = () => {
                 <MapPin className="h-8 w-8 text-primary" />
                 <span className="text-gray-400">Wellstocked Mall, 1 Hakeem Dickson Link Road, Lekki Phase 1, Lagos, Nigeria</span>
               </div>
+              <br />
+              <span className="text-gray-400">Find us on social media</span>
+              <div className="flex items-center gap-4"> 
+                <a
+                  href="https://instagram.com/wellstockedng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-primary transition-colors duration-200"
+                  aria-label="Follow us on Instagram"
+                >
+                  <Instagram className="h-6 w-6" />
+                </a>
+                
+                <a
+                  href="https://facebook.com/wellstockedng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-primary transition-colors duration-200"
+                  aria-label="Follow us on Facebook"
+                >
+                  <Facebook className="h-6 w-6" />
+                </a>
+                
+                <a
+                  href="https://linkedin.com/company/wellstockedng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-primary transition-colors duration-200"
+                  aria-label="Follow us on LinkedIn"
+                >
+                  <Linkedin className="h-6 w-6" />
+                </a>
+                
+                <a
+                  href="https://x.com/wellstockedng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-primary transition-colors duration-200"
+                  aria-label="Follow us on Twitter"
+                >
+                  <Twitter className="h-6 w-6" />
+                </a>
+              </div>
+
             </div>
           </div>
         </div>

@@ -1,26 +1,26 @@
 [
-  {
-    "id": "client-1",
-    "name": "Shell Nigeria",
-    "logo_url": "/wsn-logo.png",
-    "sort_order": 0
+  { "name": "UNICEF", "logo_url": "https://weadapt.org/wp-content/uploads/2023/05/unicef_vert.png"
   },
-  {
-    "id": "client-2",
-    "name": "Access Bank",
-    "logo_url": "/wsn-logo.png",
-    "sort_order": 1
+  { "name": "FirstBank", "logo_url": "https://www.firstbanknigeria.com/wp-content/uploads/2020/01/First-Bank.svg"
   },
-  {
-    "id": "client-3",
-    "name": "MTN Nigeria",
-    "logo_url": "/wsn-logo.png",
-    "sort_order": 2
+  { "name": "Shell", "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/640px-Shell_logo.svg.png"
   },
-  {
-    "id": "client-4",
-    "name": "Federal Ministry",
-    "logo_url": "/wsn-logo.png",
-    "sort_order": 3
+  { "name": "MTN", "logo_url": "https://logos-world.net/wp-content/uploads/2023/01/MTN-Logo.png"
+  },
+  { "name": "Telnet", "logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQE6Alnz3S39SA/company-logo_200_200/company-logo_200_200/0/1630493011038?e=2147483647&v=beta&t=P9e2DFO4O9x21udzKluhu8_M2WLNAfKZ05n2ZU24aM4"
+  },
+  { "name": "Access Bank", "logo_url": "https://wp.logos-download.com/wp-content/uploads/2023/02/Access_Bank_PLC_Logo.png?dl"
+  },
+  { "name": "Fidelity Bank", "logo_url": "https://www.seekpng.com/png/full/356-3560448_fidelity-bank-old-logo-brandessence-fidelity-bank-nigeria.png"
+  },
+  { "name": "AEDC", "logo_url": "https://nerc.gov.ng/wp-content/uploads/2024/04/Artboard-3.png"
+  },
+  { "name": "Sterling Bank", "logo_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Sterling_Bank_Logo_Straight.png"
+  },
+  { "name": "UBA", "logo_url": "https://images.africanfinancials.com/ng-uba-logo.png"
+  },
+  { "name": "Panasonic", "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Panasonic_logo_%28Blue%29.svg/1200px-Panasonic_logo_%28Blue%29.svg.png"
+  },
+  { "name": "HP", "logo_url": "https://telnetng.com/wp-content/uploads/2025/04/HP-Logo-1024x576.png"
   }
 ]

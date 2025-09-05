@@ -4,29 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { ContentManager, ContactInfo } from "@/lib/contentManager";
+import contact from "@/data/contact.json"
 
 const Contact = () => {
-  const [contact, setContact] = useState<ContactInfo | null>(null);
-
-  useEffect(() => {
-    const loadContent = async () => {
-      const contentManager = ContentManager.getInstance();
-      await contentManager.loadContact();
-      const siteContent = contentManager.getContent();
-      setContact(siteContent.contact);
-    };
-    loadContent();
-  }, []);
-
-  // Fallback content while loading
-  const contactInfo = contact || {
-    phone: ["+234 XXX XXX XXXX", "+234 YYY YYY YYYY"],
-    email: ["info@wellstocked.ng", "sales@wellstocked.ng"],
-    address: ["123 Business District, Lagos, Nigeria", "Regional Office: Abuja, Nigeria"],
-    business_hours: ["Monday - Friday: 8:00 AM - 6:00 PM", "Saturday: 9:00 AM - 2:00 PM", "Sunday: Closed"]
-  };
-
   return (
     <section className="py-24 bg-gray-50">
       <div className="container mx-auto px-4">

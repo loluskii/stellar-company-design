@@ -51,28 +51,12 @@ const Services = () => {
   }
 
   return (
-    <section className="py-16 bg-gray-50">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 my-gradient"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Our Services & Solutions
-            </h1>
-            <p className="text-base text-white/90 max-w-3xl mx-auto">
-            Comprehensive sales, supply, leasing, and maintenance of office equipment, IT, and automation solutions for every sector in Nigeria.
-            </p>
-          </div>
-        </div>
-      </section>
+    <section className="py-8">
       <div className="container mx-auto px-4 mt-12">
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const IconComponent = iconMap[service.icon] || Settings;
-            const displayFeatures = showAll 
-              ? service.features 
-              : service.features.slice(0, maxInitialFeatures);
+            const displayFeatures =  service.features.slice(0, 5);
             const remainingCount = service.features.length - maxInitialFeatures;
             
             return (
@@ -86,7 +70,7 @@ const Services = () => {
                 <CardContent className="text-center">
                   <p className="text-gray-600 mb-4">{service.description}</p>
                   <div className="flex flex-wrap gap-2 justify-center mb-6">
-                    {service.features.map((feature, idx) => (
+                    {displayFeatures.map((feature, idx) => (
                       <span key={idx} className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
                         {feature}
                       </span>
@@ -102,7 +86,7 @@ const Services = () => {
             );
           })}
         </div>
-        {!showAll && services.some(service => service.features.length > maxInitialFeatures) && (
+        {/* {!showAll && services.some(service => service.features.length > maxInitialFeatures) && (
           <div className="text-center mt-12">
             <Button 
               onClick={() => setShowAll(true)}
@@ -113,7 +97,7 @@ const Services = () => {
               <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </div>
-        )}
+        )} */}
         {showAll && (
           <div className="text-center mt-12">
             <Button 

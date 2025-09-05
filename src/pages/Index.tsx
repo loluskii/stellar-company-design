@@ -9,18 +9,18 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ReadyToTransform from "@/components/ReadyToTransform";
 import { Progress } from "@/components/ui/progress";
-import { ContentStore } from "@/lib/contentStore";
+import { ContentManager } from "@/lib/contentManager";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const store = ContentStore.getInstance();
+    const manager = ContentManager.getInstance();
     Promise.all([
-      store.loadHero(),
-      store.loadAbout(),
-      store.loadServices(),
-      store.loadClients(),
+      manager.loadHero(),
+      manager.loadAbout(),
+      manager.loadServices(),
+      manager.loadClients(),
     ]).then(() => setLoading(false));
   }, []);
 

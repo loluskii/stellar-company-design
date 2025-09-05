@@ -1,0 +1,26 @@
+[
+  {
+    "id": "client-1",
+    "name": "Shell Nigeria",
+    "logo_url": "/wsn-logo.png",
+    "sort_order": 0
+  },
+  {
+    "id": "client-2",
+    "name": "Access Bank",
+    "logo_url": "/wsn-logo.png",
+    "sort_order": 1
+  },
+  {
+    "id": "client-3",
+    "name": "MTN Nigeria",
+    "logo_url": "/wsn-logo.png",
+    "sort_order": 2
+  },
+  {
+    "id": "client-4",
+    "name": "Federal Ministry",
+    "logo_url": "/wsn-logo.png",
+    "sort_order": 3
+  }
+]

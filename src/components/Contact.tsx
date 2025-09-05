@@ -4,16 +4,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { ContentStore, ContactInfo } from "@/lib/contentStore";
+import { ContentManager, ContactInfo } from "@/lib/contentManager";
 
 const Contact = () => {
   const [contact, setContact] = useState<ContactInfo | null>(null);
 
   useEffect(() => {
     const loadContent = async () => {
-      const contentStore = ContentStore.getInstance();
-      await contentStore.loadContent();
-      const siteContent = contentStore.getContent();
+      const contentManager = ContentManager.getInstance();
+      await contentManager.loadContact();
+      const siteContent = contentManager.getContent();
       setContact(siteContent.contact);
     };
     loadContent();

@@ -6,7 +6,7 @@ import ReadyToTransform from "@/components/ReadyToTransform";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock, Building } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
-import { ContentStore, ContactInfo } from "@/lib/contentStore";
+import { ContentManager, ContactInfo } from "@/lib/contentManager";
 
 const ContactPage = () => {
   type BranchItem = { name: string; address: string; phone?: string; type: "primary" | "branch" };
@@ -16,9 +16,9 @@ const ContactPage = () => {
 
   useEffect(() => {
     const load = async () => {
-      const store = ContentStore.getInstance();
-      await store.loadContact(true);
-      setContact(store.getContent().contact);
+      const manager = ContentManager.getInstance();
+      await manager.loadContact();
+      setContact(manager.getContent().contact);
     };
     load();
   }, []);

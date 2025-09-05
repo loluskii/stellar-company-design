@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Users, Award, Globe } from "lucide-react";
-import { ContentStore, AboutContent } from "@/lib/contentStore";
+import { ContentManager, AboutContent } from "@/lib/contentManager";
 
 const About = () => {
   const [about, setAbout] = useState<AboutContent | null>(null);
 
   useEffect(() => {
     const loadContent = async () => {
-      const contentStore = ContentStore.getInstance();
-      await contentStore.loadAbout();
-      const siteContent = contentStore.getContent();
+      const contentManager = ContentManager.getInstance();
+      await contentManager.loadAbout();
+      const siteContent = contentManager.getContent();
       setAbout(siteContent.about);
     };
     loadContent();

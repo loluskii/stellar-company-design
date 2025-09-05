@@ -2,16 +2,16 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Mail } from "lucide-react";
-import { ContentStore, HeroContent } from "@/lib/contentStore";
+import { ContentManager, HeroContent } from "@/lib/contentManager";
 
 const Hero = () => {
   const [content, setContent] = useState<HeroContent | null>(null);
 
   useEffect(() => {
     const loadContent = async () => {
-      const contentStore = ContentStore.getInstance();
-      await contentStore.loadHero();
-      const siteContent = contentStore.getContent();
+      const contentManager = ContentManager.getInstance();
+      await contentManager.loadHero();
+      const siteContent = contentManager.getContent();
       setContent(siteContent.hero);
     };
     loadContent();

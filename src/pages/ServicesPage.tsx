@@ -9,16 +9,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Clock, Users, Award } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ContentStore } from "@/lib/contentStore";
+import { ContentManager } from "@/lib/contentManager";
 
 const ServicesPage = () => {
   const [servicesPageContent, setServicesPageContent] = useState<any>(null);
-  const contentStore = ContentStore.getInstance();
+  const contentManager = ContentManager.getInstance();
 
   useEffect(() => {
     const loadContent = async () => {
-      await contentStore.loadServicesPage();
-      const siteContent = contentStore.getContent();
+      await contentManager.loadServicesPage();
+      const siteContent = contentManager.getContent();
       setServicesPageContent(siteContent.servicesPage);
     };
     loadContent();
@@ -29,22 +29,19 @@ const ServicesPage = () => {
     CheckCircle, Clock, Users, Award
   };
 
-  // Fallback data
-  const fallbackSections = {
-    benefits_title: "Why Choose WSN?",
-    benefits_description: "Decades of experience delivering exceptional service and support"
-  };
+  if (!servicesPageContent) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/30">
+        <Header />
+        <div className="container mx-auto px-4 py-20 text-center">
+          <p className="text-gray-500">Loading...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
-  const fallbackBenefits = [
-    { icon: "CheckCircle", title: "Quality Assurance", description: "Only authorized dealers with genuine products" },
-    { icon: "Clock", title: "24/7 Support", description: "Round-the-clock technical assistance" },
-    { icon: "Users", title: "Expert Team", description: "Trained engineers and technicians" },
-    { icon: "Award", title: "Proven Track Record", description: "Serving major corporations across Nigeria" }
-  ];
-
-  // Use CMS content or fallback
-  const sections = servicesPageContent?.sections || fallbackSections;
-  const benefits = servicesPageContent?.benefits?.length ? servicesPageContent.benefits : fallbackBenefits;
+  const { sections, benefits } = servicesPageContent;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/30">

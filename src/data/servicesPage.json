@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "benefits_title": "Why Choose WSN?",
+    "benefits_description": "Decades of experience delivering exceptional service and support across Nigeria"
+  },
+  "benefits": [
+    {
+      "id": "benefit-1",
+      "icon": "CheckCircle",
+      "title": "Quality Assurance",
+      "description": "Only authorized dealers with genuine products and warranties",
+      "sort_order": 0
+    },
+    {
+      "id": "benefit-2",
+      "icon": "Clock",
+      "title": "24/7 Support",
+      "description": "Round-the-clock technical assistance and emergency response",
+      "sort_order": 1
+    },
+    {
+      "id": "benefit-3",
+      "icon": "Users",
+      "title": "Expert Team",
+      "description": "Highly trained engineers and certified technicians",
+      "sort_order": 2
+    },
+    {
+      "id": "benefit-4",
+      "icon": "Award",
+      "title": "Proven Track Record",
+      "description": "Successfully serving major corporations across Nigeria since 1987",
+      "sort_order": 3
+    }
+  ]
+}

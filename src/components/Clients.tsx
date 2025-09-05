@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ContentStore, ClientItem } from "@/lib/contentStore";
+import { ContentManager, ClientItem } from "@/lib/contentManager";
 
 const Clients = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -9,9 +9,9 @@ const Clients = () => {
 
   useEffect(() => {
     const loadContent = async () => {
-      const contentStore = ContentStore.getInstance();
-      await contentStore.loadClients();
-      const siteContent = contentStore.getContent();
+      const contentManager = ContentManager.getInstance();
+      await contentManager.loadClients();
+      const siteContent = contentManager.getContent();
       setClients(siteContent.clients);
     };
     loadContent();
@@ -27,24 +27,17 @@ const Clients = () => {
     }
   }, [clients]);
 
-  // Fallback clients while loading
-  const fallbackClients: ClientItem[] = [
-    { name: "UNICEF", logo_url: "https://weadapt.org/wp-content/uploads/2023/05/unicef_vert.png" },
-    { name: "FirstBank", logo_url: "https://www.firstbanknigeria.com/wp-content/uploads/2020/01/First-Bank.svg" },
-    { name: "Shell", logo_url: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/640px-Shell_logo.svg.png" },
-    { name: "MTN", logo_url: "https://logos-world.net/wp-content/uploads/2023/01/MTN-Logo.png" },
-    { name: "Telnet", logo_url: "https://media.licdn.com/dms/image/v2/C4D0BAQE6Alnz3S39SA/company-logo_200_200/company-logo_200_200/0/1630493011038?e=2147483647&v=beta&t=P9e2DFO4O9x21udzKluhu8_M2WLNAfKZ05n2ZU24aM4" },
-    { name: "Access Bank", logo_url: "https://wp.logos-download.com/wp-content/uploads/2023/02/Access_Bank_PLC_Logo.png?dl" },
-    { name: "Fidelity Bank", logo_url: "https://www.seekpng.com/png/full/356-3560448_fidelity-bank-old-logo-brandessence-fidelity-bank-nigeria.png" },
-    { name: "AEDC", logo_url: "https://nerc.gov.ng/wp-content/uploads/2024/04/Artboard-3.png" },
-    { name: "Sterling Bank", logo_url: "https://upload.wikimedia.org/wikipedia/commons/0/07/Sterling_Bank_Logo_Straight.png" },
-    { name: "UBA", logo_url: "https://images.africanfinancials.com/ng-uba-logo.png" },
-    { name: "Panasonic", logo_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Panasonic_logo_%28Blue%29.svg/1200px-Panasonic_logo_%28Blue%29.svg.png" },
-    { name: "HP", logo_url: "https://telnetng.com/wp-content/uploads/2025/04/HP-Logo-1024x576.png" }
-  ];
+  if (clients.length === 0) {
+    return (
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-500">Loading clients...</p>
+        </div>
+      </section>
+    );
+  }
 
-  const displayClients = clients.length > 0 ? clients : fallbackClients;
-  const duplicatedClients = [...displayClients, ...displayClients];
+  const duplicatedClients = [...clients, ...clients];
 
   return (
     <section className="py-16 relative overflow-hidden bg-white">

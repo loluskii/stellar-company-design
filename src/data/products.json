@@ -1,0 +1,89 @@
+{
+  "sections": {
+    "hero_title": "Our Premium",
+    "hero_subtitle": "Products",
+    "hero_description": "Discover our comprehensive range of cutting-edge office equipment and automation solutions designed to enhance productivity and streamline operations."
+  },
+  "categories": [
+    {
+      "id": "digital-copiers",
+      "name": "Digital Copiers & Printers",
+      "description": "High-performance digital copying and printing solutions",
+      "icon": "Printer",
+      "products": [
+        {
+          "name": "Ricoh MP Series",
+          "description": "Advanced multifunction printers with superior speed and quality",
+          "features": ["High-speed printing", "Duplex scanning", "Network connectivity", "Energy efficient"],
+          "image": "/placeholder.svg"
+        },
+        {
+          "name": "Canon imageRUNNER",
+          "description": "Professional document solutions for modern offices",
+          "features": ["Color printing", "Advanced security", "Cloud integration", "Mobile printing"],
+          "image": "/placeholder.svg"
+        }
+      ]
+    },
+    {
+      "id": "office-automation",
+      "name": "Office Automation",
+      "description": "Complete automation solutions for seamless workflow",
+      "icon": "Settings",
+      "products": [
+        {
+          "name": "Document Management Systems",
+          "description": "Streamline document workflows and improve efficiency",
+          "features": ["Digital archiving", "Version control", "Access management", "Workflow automation"],
+          "image": "/placeholder.svg"
+        },
+        {
+          "name": "Barcode & Label Printers",
+          "description": "Professional labeling and identification solutions",
+          "features": ["High-resolution printing", "Multiple formats", "Durable labels", "Easy integration"],
+          "image": "/placeholder.svg"
+        }
+      ]
+    },
+    {
+      "id": "computer-systems",
+      "name": "Computer Systems",
+      "description": "Reliable computing solutions for business needs",
+      "icon": "Monitor",
+      "products": [
+        {
+          "name": "Business Desktops",
+          "description": "Powerful and reliable desktop computers for office use",
+          "features": ["Latest processors", "Expandable memory", "Professional support", "Energy efficient"],
+          "image": "/placeholder.svg"
+        },
+        {
+          "name": "Business Laptops",
+          "description": "Mobile computing solutions for the modern workforce",
+          "features": ["Long battery life", "Lightweight design", "Enterprise security", "Remote management"],
+          "image": "/placeholder.svg"
+        }
+      ]
+    },
+    {
+      "id": "telecommunications",
+      "name": "Telecommunications",
+      "description": "Advanced communication systems and solutions",
+      "icon": "Phone",
+      "products": [
+        {
+          "name": "IP Phone Systems",
+          "description": "Modern VoIP solutions for efficient communication",
+          "features": ["HD voice quality", "Video calling", "Mobile integration", "Call management"],
+          "image": "/placeholder.svg"
+        },
+        {
+          "name": "Conferencing Solutions",
+          "description": "Professional video and audio conferencing equipment",
+          "features": ["4K video quality", "Noise cancellation", "Easy setup", "Multi-platform support"],
+          "image": "/placeholder.svg"
+        }
+      ]
+    }
+  ]
+}

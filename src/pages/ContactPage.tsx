@@ -26,33 +26,19 @@ const ContactPage = () => {
   const fallbackBranches: BranchItem[] = [
     {
       name: "Head Office",
-      address: "Block 123, Plot 4, Adewale Kolawole Street, Off Remi Olowude Street, New Marwa Market, Lekki Phase I, Lagos",
-      phone: "07050639404, 08172846333, 08179652279",
+      address: "Wellstocked Mall, Plot 1 Hakeem Dickson Link Road, after Lekki Central Mosque, Lekki Phase 1, Lagos, Nigeria",
       type: "primary"
     },
     {
-      name: "Ikeja Branch",
-      address: "4, Pepple Street, Beside Zenith Bank, Shop 37, Computer Village, Ikeja, Lagos",
-      phone: "01-7745209",
-      type: "branch"
-    },
-    {
-      name: "Abuja Branch",
-      address: "Suite F18 Febson Mall, Herbert Macaulay Way, Zone 4, Wuse, Abuja",
-      phone: "09-5239915, 6721589",
-      type: "branch"
-    },
-    {
-      name: "Port Harcourt Branch",
-      address: "6A, Ogunabali, Off Trans-Amadi Road, Garrison, Port Harcourt, River State",
-      phone: "08104920283",
+      name: "Lagos Island Branch",
+      address: "10, Alli street, off Tinubu square, Lagos Island, Lagos",
       type: "branch"
     }
   ];
 
   const fallbackWarehouses: WarehouseItem[] = [
-    { name: "Lagos Warehouse", address: "71, Jebba Street, Ebute-Metta, Lagos" },
-    { name: "Yaba Warehouse", address: "Oyadiran Street, Sabo-Yaba, Lagos" }
+    { name: "Ebutte-Meta, Lagos", address: "Contact us for more information" },
+    { name: "Sabo-Yaba, Lagos", address: "Contact us for more information" }
   ];
 
   const { branches, warehouses } = useMemo(() => {
@@ -121,7 +107,7 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: contact?.email?.length ? contact.email : ["info@wellstockedltd.com", "sales@wellstockedltd.com"],
+      details: contact?.email?.length ? contact.email : ["info@wellstockedltd.com", "sales@wellstockedltd.com", "operations@wellstockedltd.com"],
       color: "from-blue-500 to-cyan-500"
     },
     {
@@ -227,10 +213,6 @@ const ContactPage = () => {
                       <MapPin className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
                       <p className="text-gray-600">{branch.address}</p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                      <p className="text-gray-600">{branch.phone}</p>
-                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -262,29 +244,6 @@ const ContactPage = () => {
 
         {/* Contact Form Section */}
         <Contact />
-
-        {/* Services Overview */}
-        <section className="py-24 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">How We Can Help</h2>
-              <p className="text-base text-gray-600 max-w-2xl mx-auto">
-                Our comprehensive services cover all your office automation needs
-              </p>
-            </div>
-            
-            <div className="max-w-3xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-6">
-                {services.map((service, index) => (
-                  <div key={index} className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full mr-4"></div>
-                    <span className="text-gray-700 font-medium">{service}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
         <ReadyToTransform />
         <Footer />

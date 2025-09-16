@@ -4,86 +4,107 @@
     "hero_subtitle": "Products",
     "hero_description": "Discover our comprehensive range of cutting-edge office equipment and automation solutions designed to enhance productivity and streamline operations."
   },
-  "categories": [
-    {
-      "id": "digital-copiers",
-      "name": "Digital Copiers & Printers",
-      "description": "High-performance digital copying and printing solutions",
-      "icon": "Printer",
-      "products": [
-        {
-          "name": "Ricoh MP Series",
-          "description": "Advanced multifunction printers with superior speed and quality",
-          "features": ["High-speed printing", "Duplex scanning", "Network connectivity", "Energy efficient"],
-          "image": "/placeholder.svg"
-        },
-        {
-          "name": "Canon imageRUNNER",
-          "description": "Professional document solutions for modern offices",
-          "features": ["Color printing", "Advanced security", "Cloud integration", "Mobile printing"],
-          "image": "/placeholder.svg"
-        }
-      ]
-    },
-    {
-      "id": "office-automation",
-      "name": "Office Automation",
-      "description": "Complete automation solutions for seamless workflow",
-      "icon": "Settings",
-      "products": [
-        {
-          "name": "Document Management Systems",
-          "description": "Streamline document workflows and improve efficiency",
-          "features": ["Digital archiving", "Version control", "Access management", "Workflow automation"],
-          "image": "/placeholder.svg"
-        },
-        {
-          "name": "Barcode & Label Printers",
-          "description": "Professional labeling and identification solutions",
-          "features": ["High-resolution printing", "Multiple formats", "Durable labels", "Easy integration"],
-          "image": "/placeholder.svg"
-        }
-      ]
-    },
-    {
-      "id": "computer-systems",
-      "name": "Computer Systems",
-      "description": "Reliable computing solutions for business needs",
-      "icon": "Monitor",
-      "products": [
-        {
-          "name": "Business Desktops",
-          "description": "Powerful and reliable desktop computers for office use",
-          "features": ["Latest processors", "Expandable memory", "Professional support", "Energy efficient"],
-          "image": "/placeholder.svg"
-        },
-        {
-          "name": "Business Laptops",
-          "description": "Mobile computing solutions for the modern workforce",
-          "features": ["Long battery life", "Lightweight design", "Enterprise security", "Remote management"],
-          "image": "/placeholder.svg"
-        }
-      ]
-    },
-    {
-      "id": "telecommunications",
-      "name": "Telecommunications",
-      "description": "Advanced communication systems and solutions",
-      "icon": "Phone",
-      "products": [
-        {
-          "name": "IP Phone Systems",
-          "description": "Modern VoIP solutions for efficient communication",
-          "features": ["HD voice quality", "Video calling", "Mobile integration", "Call management"],
-          "image": "/placeholder.svg"
-        },
-        {
-          "name": "Conferencing Solutions",
-          "description": "Professional video and audio conferencing equipment",
-          "features": ["4K video quality", "Noise cancellation", "Easy setup", "Multi-platform support"],
-          "image": "/placeholder.svg"
-        }
-      ]
-    }
-  ]
+"products": [
+  {
+    "name": "SHARP Printers",
+    "description": "Advanced multifunction printers designed for speed, reliability, and professional-quality output.",
+    "features": [
+      "High-speed printing",
+      "Duplex scanning and copying",
+      "Wireless & network connectivity",
+      "Energy-efficient operation",
+      "High-resolution output for sharp text and images"
+    ],
+    "image": "/placeholder.svg"
+  },
+  {
+    "name": "G+D Currency Counting Machines",
+    "description": "Reliable and accurate currency counting machines built for high-volume financial environments.",
+    "features": [
+      "High-speed note counting",
+      "Counterfeit detection with UV & MG sensors",
+      "Batch and add functions",
+      "Supports multi-currency handling",
+      "Durable design for continuous use"
+    ],
+    "image": "/placeholder.svg"
+  },
+  {
+    "name": "Scancoin Currency Counting Machines",
+    "description": "Efficient cash-handling solutions tailored for banks, retailers, and cash-heavy businesses.",
+    "features": [
+      "Fast and accurate coin and note counting",
+      "Advanced counterfeit detection",
+      "Automatic sorting by denomination",
+      "User-friendly interface",
+      "Compact and durable design"
+    ],
+    "image": "/placeholder.svg"
+  },
+  {
+    "name": "Air Conditioners",
+    "description": "Premium cooling solutions from top brands including Panasonic, Midea, LG, Kenstar, and Daikin. Designed for comfort, energy efficiency, and clean air delivery.",
+    "features": [
+      "Energy-saving inverter technology",
+      "Smart Wi-Fi control via mobile app",
+      "Rapid cooling and heating modes",
+      "Ultra-quiet operation",
+      "Advanced air purification filters",
+      "Eco-friendly refrigerants",
+      "Durable outdoor and indoor units"
+    ],
+    "image": "/placeholder.svg"
+  },
+  {
+    "name": "Queue Guide Poles & Ropes",
+    "description": "Stylish and durable queue management systems for events, banks, airports, and retail spaces.",
+    "features": [
+      "Heavy-duty stainless steel poles",
+      "Velvet, nylon, or retractable ropes",
+      "Easy setup and portability",
+      "Customizable colors and branding",
+      "Stable weighted bases for safety"
+    ],
+    "image": "/placeholder.svg"
+  },
+  {
+    "name": "Interactive Screens",
+    "description": "Touch-enabled interactive displays for classrooms, boardrooms, and collaborative workspaces.",
+    "features": [
+      "Multi-touch capability",
+      "4K Ultra HD resolution",
+      "Wireless screen sharing",
+      "Built-in annotation tools",
+      "Durable anti-glare glass",
+      "Supports video conferencing apps"
+    ],
+    "image": "/placeholder.svg"
+  },
+  {
+    "name": "Projectors",
+    "description": "High-performance projectors for business presentations, classrooms, and home entertainment.",
+    "features": [
+      "Full HD and 4K resolution options",
+      "High brightness and contrast ratios",
+      "Long lamp life or laser technology",
+      "Multiple connectivity ports (HDMI, USB, Wi-Fi)",
+      "Compact and portable designs"
+    ],
+    "image": "/placeholder.svg"
+  },
+  {
+    "name": "Video Conferencing Solutions",
+    "description": "Professional-grade video and audio conferencing systems for seamless collaboration.",
+    "features": [
+      "4K Ultra HD video quality",
+      "Noise and echo cancellation",
+      "Plug-and-play setup",
+      "Supports Zoom, Teams, Google Meet, and more",
+      "Wide-angle cameras with auto-framing",
+      "Wireless content sharing"
+    ],
+    "image": "/placeholder.svg"
+  }
+]
+
 }

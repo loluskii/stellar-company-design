@@ -1,21 +1,18 @@
 {
   "id": "contact-1",
   "phone": [
-    "+234 0705 063 9404",
-    "+234 0802 123 4567"
+    "0705 063 9404",
+    "0815 734 4232",
+    "0817 965 2279"
   ],
   "email": [
     "info@wellstockedltd.com",
-    "sales@wellstockedltd.com"
-  ],
-  "address": [
-    "123 Business District",
-    "Victoria Island, Lagos",
-    "Nigeria"
+    "sales@wellstockedltd.com",
+    "operations@wellstockedltd.com"
   ],
   "business_hours": [
     "Monday - Friday: 8:00 AM - 6:00 PM",
-    "Saturday: 9:00 AM - 4:00 PM",
+    "Saturday: Closed",
     "Sunday: Closed"
   ]
 }

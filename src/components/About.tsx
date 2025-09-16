@@ -17,9 +17,9 @@ const About = () => {
   }, []);
 
   // Fallback content while loading
-  const aboutContent = about || {
+  const aboutContent = {
     title: "About WELLSTOCKED",
-    description: `Wellstocked is a contractor, importer, and authorized distributor of quality office equipment and automation in Nigeria. Our suppliers include Sharp Corporation, Panasonic Corporation, HP, Katun EDC, Fargo, and more. We sell, distribute, and provide after-sales services through our constantly trained and competent engineers and sales force via our branches spread across the country. Our experience in our line of business spans over 29 years with a clientele base that cuts across Oil & Gas, Banking, Telecommunications, general business, and Public sectors. We provide services in any terrain and in any part of the country, with prompt response and minimal downtime. We focus on regular preventive maintenance and after-sales service to ensure long product life, rather than just breakdown maintenance.`,
+    description: ` Our experience in our line of business spans over 29 years with a clientele base that cuts across Oil & Gas, Banking, Telecommunications, general business, and Public sectors. We provide services in any terrain and in any part of the country, with prompt response and minimal downtime. We focus on regular preventive maintenance and after-sales service to ensure long product life, rather than just breakdown maintenance.`,
     mission: "To provide our clients with the highest quality products and services while maintaining the highest standards of integrity and professionalism.",
     vision: "To be the most trusted and respected provider of quality products and services in our industry.",
     values: ["Quality Excellence", "Customer Focus", "Integrity", "Innovation", "Reliability", "Prompt Response", "Nationwide Reach", "Preventive Maintenance"]
@@ -32,6 +32,9 @@ const About = () => {
           <div className="space-y-8">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">{aboutContent.title}</h2>
+              <p className="text-base text-gray-600 leading-relaxed mb-6">
+                Wellstocked is a contractor, importer, and authorized distributor of quality office equipment and automation in Nigeria. Our suppliers include Sharp Corporation, Panasonic Corporation, HP, Katun EDC, Fargo, and more. We sell, distribute, and provide after-sales services through our constantly trained and competent engineers and sales force via our branches spread across the country.
+              </p>
               <p className="text-base text-gray-600 leading-relaxed mb-6">
                 {aboutContent.description}
               </p>

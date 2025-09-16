@@ -39,17 +39,17 @@ const ProductsPage = () => {
   }
 
   const sections = productsContent?.sections;
-  const categories = productsContent?.categories || [];
+  const products = productsContent?.products || [];
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900"></div>
         <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
@@ -69,57 +69,36 @@ const ProductsPage = () => {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="space-y-24">
-            {categories.map((category, categoryIndex) => {
-              const CategoryIcon = iconMap[category.icon] || Settings;
-              
-              return (
-                <div key={category.id} className="max-w-7xl mx-auto">
-                  {/* Category Header */}
-                  <div className="text-center mb-16">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-2xl mb-6">
-                      <CategoryIcon className="h-10 w-10 text-primary" />
-                    </div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                      {category.name}
-                    </h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                      {category.description}
-                    </p>
-                  </div>
+            <div className="max-w-7xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-8">
+                {products.map((product, productIndex) => (
+                  <Card key={productIndex} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg">
+                    <CardContent className="p-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        {product.name}
+                      </h3>
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        {product.description}
+                      </p>
 
-                  {/* Products Grid */}
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {category.products.map((product, productIndex) => (
-                      <Card key={productIndex} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg">
-                        <div className="aspect-video bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
-                          <CategoryIcon className="h-16 w-16 text-primary/40" />
-                        </div>
-                        <CardContent className="p-8">
-                          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                            {product.name}
-                          </h3>
-                          <p className="text-gray-600 mb-6 leading-relaxed">
-                            {product.description}
-                          </p>
-                          
-                          <div className="space-y-3">
-                            <h4 className="font-semibold text-gray-900">Key Features:</h4>
-                            <div className="grid grid-cols-1 gap-2">
-                              {product.features.map((feature, featureIndex) => (
-                                <div key={featureIndex} className="flex items-center gap-3">
-                                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                                  <span className="text-gray-700">{feature}</span>
-                                </div>
-                              ))}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-gray-900">Key Features:</h4>
+                        <div className="grid grid-cols-1 gap-2">
+                          {product.features.map((feature, featureIndex) => (
+                            <div key={featureIndex} className="flex items-center gap-3">
+                              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                              <span className="text-gray-700">{feature}</span>
                             </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+
+            </div>
           </div>
         </div>
       </section>

@@ -22,5 +22,29 @@
   { "name": "Panasonic", "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Panasonic_logo_%28Blue%29.svg/1200px-Panasonic_logo_%28Blue%29.svg.png"
   },
   { "name": "HP", "logo_url": "https://telnetng.com/wp-content/uploads/2025/04/HP-Logo-1024x576.png"
+  },
+  { "name": "FCMB", "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/FCMB_Logo.png/250px-FCMB_Logo.png"
+  },
+  { "name": "GTBank", "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/GTBank_logo.svg/1200px-GTBank_logo.svg.png"
+  },
+  { "name": "WHO", "logo_url": "https://cdn.who.int/media/images/default-source/infographics/who-emblem.png?sfvrsn=877bb56a_2"
+  },
+  { "name": "FIRS", "logo_url": "https://images.seeklogo.com/logo-png/48/2/federal-inland-revenue-service-logo-png_seeklogo-483631.png"
+  },
+  { "name": "Custodian Plc", "logo_url": "https://images.africanfinancials.com/ng-custod-logo.png"
+  },
+  { "name": "CBN", "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3aOoMCxhzZTbp1fF_R-wTGYeeSiPn4C-I6w&s"
+  },
+  { "name": "national assembly", "logo_url": "https://nass.gov.ng/themes/newnass/assets/images/logo@2x.png"
+  },
+  { "name": "Ecobank", "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Ecobank_Logo.svg/2560px-Ecobank_Logo.svg.png"
+  },
+  { "name": "Globacom", "logo_url": "https://cdn.punchng.com/wp-content/uploads/2025/07/15224513/Globacom-logo.jpg"
+  },
+  { "name": "PayComplete", "logo_url": "https://www.vending-europe.eu/wp-content/uploads/2018/06/PayComplete-Logo_800_600.jpg"
+  },
+  { "name": "NCC", "logo_url": "https://tamsy.ncc.gov.ng/assets/img/ncc_logo_4.png"
+  },
+  { "name": "Bankers Warehouse", "logo_url": "https://www.bwlgroup.org/file/2023/07/Bankers-WareHouse-New-Logo.png"
   }
 ]

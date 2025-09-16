@@ -21,9 +21,11 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Services</h4>
             <ul className="space-y-2 text-gray-400">
+              <li>Print Management Solutions</li>
               <li>Office Equipment Sales</li>
               <li>Leasing & Maintenance</li>
-              <li>IT Solutions</li>
+              <li>Information Technology</li>
+              <li>Currency Management Solutions</li>
               <li>After-Sales Service</li>
             </ul>
           </div>
@@ -31,9 +33,11 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Products</h4>
             <ul className="space-y-2 text-gray-400">
+              <li>Sharp Multifunctional Printer</li>
               <li>Digital Copiers</li>
               <li>Office Automation</li>
               <li>Computer Systems</li>
+              <li>G+D Systems (C5, C2-3,ProNote 130)</li>
               <li>Telecommunications</li>
             </ul>
           </div>

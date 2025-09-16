@@ -4,107 +4,203 @@
     "hero_subtitle": "Products",
     "hero_description": "Discover our comprehensive range of cutting-edge office equipment and automation solutions designed to enhance productivity and streamline operations."
   },
-"products": [
-  {
-    "name": "SHARP Printers",
-    "description": "Advanced multifunction printers designed for speed, reliability, and professional-quality output.",
-    "features": [
-      "High-speed printing",
-      "Duplex scanning and copying",
-      "Wireless & network connectivity",
-      "Energy-efficient operation",
-      "High-resolution output for sharp text and images"
-    ],
-    "image": "/placeholder.svg"
-  },
-  {
-    "name": "G+D Currency Counting Machines",
-    "description": "Reliable and accurate currency counting machines built for high-volume financial environments.",
-    "features": [
-      "High-speed note counting",
-      "Counterfeit detection with UV & MG sensors",
-      "Batch and add functions",
-      "Supports multi-currency handling",
-      "Durable design for continuous use"
-    ],
-    "image": "/placeholder.svg"
-  },
-  {
-    "name": "Scancoin Currency Counting Machines",
-    "description": "Efficient cash-handling solutions tailored for banks, retailers, and cash-heavy businesses.",
-    "features": [
-      "Fast and accurate coin and note counting",
-      "Advanced counterfeit detection",
-      "Automatic sorting by denomination",
-      "User-friendly interface",
-      "Compact and durable design"
-    ],
-    "image": "/placeholder.svg"
-  },
-  {
-    "name": "Air Conditioners",
-    "description": "Premium cooling solutions from top brands including Panasonic, Midea, LG, Kenstar, and Daikin. Designed for comfort, energy efficiency, and clean air delivery.",
-    "features": [
-      "Energy-saving inverter technology",
-      "Smart Wi-Fi control via mobile app",
-      "Rapid cooling and heating modes",
-      "Ultra-quiet operation",
-      "Advanced air purification filters",
-      "Eco-friendly refrigerants",
-      "Durable outdoor and indoor units"
-    ],
-    "image": "/placeholder.svg"
-  },
-  {
-    "name": "Queue Guide Poles & Ropes",
-    "description": "Stylish and durable queue management systems for events, banks, airports, and retail spaces.",
-    "features": [
-      "Heavy-duty stainless steel poles",
-      "Velvet, nylon, or retractable ropes",
-      "Easy setup and portability",
-      "Customizable colors and branding",
-      "Stable weighted bases for safety"
-    ],
-    "image": "/placeholder.svg"
-  },
-  {
-    "name": "Interactive Screens",
-    "description": "Touch-enabled interactive displays for classrooms, boardrooms, and collaborative workspaces.",
-    "features": [
-      "Multi-touch capability",
-      "4K Ultra HD resolution",
-      "Wireless screen sharing",
-      "Built-in annotation tools",
-      "Durable anti-glare glass",
-      "Supports video conferencing apps"
-    ],
-    "image": "/placeholder.svg"
-  },
-  {
-    "name": "Projectors",
-    "description": "High-performance projectors for business presentations, classrooms, and home entertainment.",
-    "features": [
-      "Full HD and 4K resolution options",
-      "High brightness and contrast ratios",
-      "Long lamp life or laser technology",
-      "Multiple connectivity ports (HDMI, USB, Wi-Fi)",
-      "Compact and portable designs"
-    ],
-    "image": "/placeholder.svg"
-  },
-  {
-    "name": "Video Conferencing Solutions",
-    "description": "Professional-grade video and audio conferencing systems for seamless collaboration.",
-    "features": [
-      "4K Ultra HD video quality",
-      "Noise and echo cancellation",
-      "Plug-and-play setup",
-      "Supports Zoom, Teams, Google Meet, and more",
-      "Wide-angle cameras with auto-framing",
-      "Wireless content sharing"
-    ],
-    "image": "/placeholder.svg"
-  }
-]
-
+  "products": [
+    {
+      "name": "SHARP Printers",
+      "description": "Advanced multifunction printers designed for speed, reliability, and professional-quality output.",
+      "features": [
+        "High-speed printing",
+        "Duplex scanning and copying",
+        "Wireless & network connectivity",
+        "Energy-efficient operation",
+        "High-resolution output for sharp text and images"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "G+D Currency Counting Machines",
+      "description": "Reliable and accurate currency counting machines built for high-volume financial environments.",
+      "features": [
+        "High-speed note counting",
+        "Counterfeit detection with UV & MG sensors",
+        "Batch and add functions",
+        "Supports multi-currency handling",
+        "Durable design for continuous use"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Scancoin Currency Counting Machines",
+      "description": "Efficient cash-handling solutions tailored for banks, retailers, and cash-heavy businesses.",
+      "features": [
+        "Fast and accurate coin and note counting",
+        "Advanced counterfeit detection",
+        "Automatic sorting by denomination",
+        "User-friendly interface",
+        "Compact and durable design"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Air Conditioners",
+      "description": "Premium cooling solutions from top brands including Panasonic, Midea, LG, Kenstar, and Daikin. Designed for comfort, energy efficiency, and clean air delivery.",
+      "features": [
+        "Energy-saving inverter technology",
+        "Smart Wi-Fi control via mobile app",
+        "Rapid cooling and heating modes",
+        "Ultra-quiet operation",
+        "Advanced air purification filters",
+        "Eco-friendly refrigerants",
+        "Durable outdoor and indoor units"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Queue Guide Poles & Ropes",
+      "description": "Stylish and durable queue management systems for events, banks, airports, and retail spaces.",
+      "features": [
+        "Heavy-duty stainless steel poles",
+        "Velvet, nylon, or retractable ropes",
+        "Easy setup and portability",
+        "Customizable colors and branding",
+        "Stable weighted bases for safety"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Interactive Screens",
+      "description": "Touch-enabled interactive displays for classrooms, boardrooms, and collaborative workspaces.",
+      "features": [
+        "Multi-touch capability",
+        "4K Ultra HD resolution",
+        "Wireless screen sharing",
+        "Built-in annotation tools",
+        "Durable anti-glare glass",
+        "Supports video conferencing apps"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Projectors",
+      "description": "High-performance projectors for business presentations, classrooms, and home entertainment.",
+      "features": [
+        "Full HD and 4K resolution options",
+        "High brightness and contrast ratios",
+        "Long lamp life or laser technology",
+        "Multiple connectivity ports (HDMI, USB, Wi-Fi)",
+        "Compact and portable designs"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Video Conferencing Solutions",
+      "description": "Professional-grade video and audio conferencing systems for seamless collaboration.",
+      "features": [
+        "4K Ultra HD video quality",
+        "Noise and echo cancellation",
+        "Plug-and-play setup",
+        "Supports Zoom, Teams, Google Meet, and more",
+        "Wide-angle cameras with auto-framing",
+        "Wireless content sharing"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Cisco Networking Hardware & Software",
+      "description": "Enterprise-grade networking solutions including routers, switches, firewalls, and collaboration software for secure, scalable connectivity.",
+      "features": [
+        "High-performance routing and switching",
+        "Advanced network security and firewalls",
+        "Cloud-managed networking",
+        "Unified communication platforms",
+        "Scalable solutions for SMBs and enterprises"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Online & Industrial UPS",
+      "description": "Reliable power backup systems to protect mission-critical equipment from outages and fluctuations.",
+      "features": [
+        "Double-conversion online technology",
+        "High efficiency with low power consumption",
+        "LCD display for monitoring",
+        "Wide input voltage range",
+        "Extended battery runtime options",
+        "Industrial-grade durability"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "ATM Consumables",
+      "description": "High-quality consumables designed to keep ATMs running efficiently and reliably.",
+      "features": [
+        "Thermal receipt paper rolls",
+        "Journal printer rolls",
+        "Cleaning cards and kits",
+        "Ink cartridges and ribbons",
+        "Card reader maintenance supplies"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Laptops & Desktops ",
+      "description": "Powerful desktop and laptop systems for business, education, and personal use.",
+      "features": [
+        "Latest generation processors",
+        "SSD storage for high performance",
+        "Pre-installed business software options",
+        "Upgradeable memory and storage",
+        "Energy-efficient designs"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "POS Machines & Consumables",
+      "description": "Reliable point-of-sale machines and accessories for seamless retail and banking transactions.",
+      "features": [
+        "Secure card readers with EMV compliance",
+        "Touchscreen terminals",
+        "Receipt printers",
+        "POS thermal paper rolls",
+        "Barcode scanner integration"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Inverter Batteries",
+      "description": "Long-lasting batteries designed for backup power in homes, offices, and industries.",
+      "features": [
+        "High-capacity deep-cycle performance",
+        "Low-maintenance design",
+        "Fast recharge capability",
+        "Long service life",
+        "Compatible with multiple inverter brands"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Industrial Scanners",
+      "description": "High-speed and durable scanners for warehouses, logistics, and document-intensive industries.",
+      "features": [
+        "Barcode and QR code scanning",
+        "Rugged design for harsh environments",
+        "Wireless and Bluetooth connectivity",
+        "High-volume document scanning",
+        "Integration with ERP and inventory systems"
+      ],
+      "image": "/placeholder.svg"
+    },
+    {
+      "name": "Office Furniture",
+      "description": "Ergonomic and modern office furniture solutions for productive and comfortable workspaces.",
+      "features": [
+        "Ergonomic chairs with lumbar support",
+        "Height-adjustable desks",
+        "Modular workstations",
+        "Durable storage cabinets",
+        "Conference tables and reception furniture"
+      ],
+      "image": "/placeholder.svg"
+    }
+  ]
 }

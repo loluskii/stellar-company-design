@@ -19,7 +19,7 @@ const About = () => {
   // Fallback content while loading
   const aboutContent = {
     title: "About WELLSTOCKED",
-    description: ` Our experience in our line of business spans over 29 years with a clientele base that cuts across Oil & Gas, Banking, Telecommunications, general business, and Public sectors. We provide services in any terrain and in any part of the country, with prompt response and minimal downtime. We focus on regular preventive maintenance and after-sales service to ensure long product life, rather than just breakdown maintenance.`,
+    description: ` Our experience in our line of business spans over 37+ years with a clientele base that cuts across Oil & Gas, Banking, Telecommunications, general business, and Public sectors. We provide services in any terrain and in any part of the country, with prompt response and minimal downtime. We focus on regular preventive maintenance and after-sales service to ensure long product life, rather than just breakdown maintenance.`,
     mission: "To provide our clients with the highest quality products and services while maintaining the highest standards of integrity and professionalism.",
     vision: "To be the most trusted and respected provider of quality products and services in our industry.",
     values: ["Quality Excellence", "Customer Focus", "Integrity", "Innovation", "Reliability", "Prompt Response", "Nationwide Reach", "Preventive Maintenance"]
